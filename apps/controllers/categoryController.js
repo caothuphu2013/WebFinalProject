@@ -1,63 +1,14 @@
-const express = require('express');
-const categoryRepo = require('../repos/categoryRepo');
+const categoryDB = require('../models/category');
+const q = require('q');
 
-const router = express.Router();
-
-router.get('/', (req, res) => {
-    categoryRepo.loadAll().then(rows => {
-        var vm = {
-            categories: rows
-        };
-        res.render('category/index', vm);
-    });
-});
-
-router.get('/add', (req, res) => {
-    var vm = {
-        showAlert: false
-    };
-    res.render('category/add', vm);
-});
-
-router.post('/add', (req, res) => {
-    categoryRepo.add(req.body).then(value => {
-        var vm = {
-            showAlert: true
-        };
-        res.render('category/add', vm);
-    }).catch(err => {
-        res.end('fail');
-    });
-});
-
-router.get('/delete', (req, res) => {
-    var vm = {
-        CatId: req.query.id
-    }
-    res.render('category/delete', vm);
-});
-
-router.post('/delete', (req, res) => {
-    categoryRepo.delete(req.body.CatId).then(value => {
-        res.redirect('/category');
-    });
-});
-
-router.get('/edit', (req, res) => {
-    categoryRepo.single(req.query.id).then(c => {
-    	// console.log(c);
-        var vm = {
-            Category: c
-        };
-        res.render('category/edit', vm);
-    });
-});
-
-router.post('/edit', (req, res) => {
-    categoryRepo.update(req.body).then(value => {
-        res.redirect('/category');
-    });
-});
-
-
-module.exports = router;
+let categoryController = {
+    x : function(req, res) {
+        // Ta xử lý phần thanh địa chỉ nhé... Tách ra thành danhmuc?a đó rời vào db tìm kiếm a
+        q.all([categoryDB.getCategory()]).spread(function(temp1) {
+            //Xuly
+            res.render("    Gửi trả về cho views nhận     ", {
+                a: temp1
+            });
+        })
+    } 
+}
