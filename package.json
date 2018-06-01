@@ -1,24 +1,27 @@
 {
-  "name": "webmidtermproject",
+  "name": "Laptop",
   "version": "1.0.0",
-  "description": "Final Project",
+  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nguyenhotoanthuap97/WebMidtermProject.git"
-  },
-  "author": "Huynh Trong Thoai, Phan Trong Thuyen, Nguyen Ho Toan Thu, Nguyen Dinh Tien",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nguyenhotoanthuap97/WebMidtermProject/issues"
-  },
-  "homepage": "https://github.com/nguyenhotoanthuap97/WebMidtermProject#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "crypto-js": "^3.1.9-1",
     "express": "^4.16.3",
-    "handlebars": "^4.0.11",
-    "mysql": "^2.15.0"
+    "express-handlebars": "^3.0.0",
+    "express-handlebars-sections": "^1.0.1",
+    "express-mysql-session": "^1.3.0",
+    "express-session": "^1.15.6",
+    "moment": "^2.22.1",
+    "mysql": "^2.15.0",
+    "path": "^0.12.7",
+    "q": "^1.5.1",
+    "wnumb": "^1.1.0"
   }
 }
