@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
@@ -19,6 +20,7 @@
     "express-session": "^1.15.6",
     "moment": "^2.22.1",
     "mysql": "^2.15.0",
+    "path": "^0.12.7",
     "q": "^1.5.1",
     "wnumb": "^1.1.0"
   }

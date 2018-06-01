@@ -4,7 +4,7 @@ const q = require('q');
 let category = {
     getCategory: function() {
         let d = q.defer();
-        let sql = "";
+        let sql = "select name, price, picture from product";
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
