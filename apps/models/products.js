@@ -1,8 +1,8 @@
 const db = require("./database.js");
 const q = require('q');
 
-let category = {
-    getCategory: function() {
+let products = {
+    getProducts: function() {
         let d = q.defer();
         let sql = "select name, price, picture from product";
         db.query(sql, (error, results) => {
@@ -15,4 +15,4 @@ let category = {
     }
 }
 
-module.exports = category;
+module.exports = products;

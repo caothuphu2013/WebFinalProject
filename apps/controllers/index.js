@@ -1,6 +1,6 @@
 //Tổng hợp các controllers
-const categoryController = require('./categoryController');
+const productsController = require('./productsController');
 
 module.exports = {
-    category : categoryController
+    products : productsController
 }
