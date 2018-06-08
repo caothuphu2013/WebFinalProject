@@ -9,7 +9,7 @@ let products = {
             if (error) {
                 d.reject(error);
             }
-            d.resolve(results);
+            d.resolve(results);       
         });
         return d.promise;
     }
