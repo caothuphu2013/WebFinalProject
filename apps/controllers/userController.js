@@ -5,7 +5,8 @@ const helper = require('../helper/bcrypt_password');
 let userController = {
     registerPage: function(req, res) {
         res.render("_user/register", {
-            layout: "index"
+            layout: "index",
+            user: req.session.user
         });
     },
     loginPage: function(req, res) {
@@ -79,6 +80,14 @@ let userController = {
                     if (rows.length > 0) {
                         let type = rows[0].type;
                         let passwordSQL = rows[0].password;
+                        //Tạo object để truyền session
+                        let user = {
+                            username,
+                            passwordSQL,
+                            type,
+                            status: true
+                        }
+
                         if (type < 0) {
                             req.flash('error_msg', 'Tài khoản bị khóa');
                             req.redirect('/login');
@@ -86,8 +95,9 @@ let userController = {
                         else {
                             var checkPass = helper.validPassword(password, passwordSQL);
                             if (checkPass === true) {
-                                if (type === 0)
-                                    res.redirect("/");
+                                req.session.user = user;
+                                if (user.type == 0)
+                                    res.redirect("/shop");
                                 else
                                     res.redirect("/admin");
                             }
@@ -102,6 +112,9 @@ let userController = {
                         res.redirect('/login');
                     }
                 })
+                .catch(err => {
+                    console.log(err);
+                })
                 .fail(err => {
                     req.flash("error_msg", "Đăng nhập thất bại");
                     res.redirect('/login');
@@ -110,6 +123,14 @@ let userController = {
             ;
         }
 
+    }
+    ,
+    userLogout: function(req, res) {
+        req.session.destroy(err => {
+            if (err)
+                return next(err);
+            return res.redirect('/');
+        });
     }
 }
 

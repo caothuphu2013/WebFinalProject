@@ -10,6 +10,7 @@ let productsController = {
                 console.log("Error: " + err);
             })]).spread(function(temp1) {
             res.render("_shop/shop", {
+                user: req.session.user,
                 productsList: temp1,
                 layout: "index"
             });
