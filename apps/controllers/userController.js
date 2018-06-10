@@ -35,9 +35,17 @@ let userController = {
             })
         }
         else {
-            userDB.insertUser(req.body).then(rows => {
-                res.redirect("/login");
-            }).catch(err => {
+            userDB.insertUser(req.body)
+            .then(rows => {
+                req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
+                res.redirect("/login"); 
+            })
+            .fail(err => {
+                req.flash('error_msg', 'Bạn không đăng kí thành công');
+                res.redirect("/register");
+            })
+            .catch(err => {
+                req.flash('error', 'Hệ thống bị lỗi')
                 console.log(err);
             });
         }

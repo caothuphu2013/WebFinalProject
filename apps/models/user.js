@@ -11,13 +11,6 @@ let users = {
                 d.reject(error);
             }
             d.resolve(results);
-            var sql = `INSERT INTO user_info(username, name, email) VALUES (SELECT username FROM account WHERE username = ?, ?, ?);`
-            db.query(sql, [user.email, user.firstname + ' ' + user.lastname, user.email], (err, results) => {
-                if (err) {
-                    d.reject(error);
-                }
-                d.resolve(results);
-            })
         });
         return d.promise;
     }
