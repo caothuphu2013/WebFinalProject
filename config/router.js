@@ -4,6 +4,8 @@ const index = require("../apps/controllers/index");
 
 module.exports = function(app) {
     //home
+    app.get("/", index.home.loadHomePage);
+    // shop
     app.get("/shop", index.products.searchproducts);
     //admin
   
