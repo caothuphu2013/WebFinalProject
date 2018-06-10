@@ -12,12 +12,18 @@
                     {{#each errors}}
                         <div class="alert alert-danger">{{msg}}</div>
                     {{/each}}
+                
+                {{else}}
+                    {{#if error_msg}}
+                        <div class="alert alert-danger">{{error_msg}}</div>
+                    {{/if}}
                 {{/if}}
 
+
                 <div class="form-group">
-                    <label for="email" class="col-md-3 control-label">Email</label>
+                    <label for="username" class="col-md-3 control-label">Username</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="email" placeholder="Nhập email">
+                        <input type="text" class="form-control" name="username" placeholder="Nhập username">
                     </div>
                 </div>
 

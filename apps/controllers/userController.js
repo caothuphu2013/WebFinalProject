@@ -1,5 +1,6 @@
 const userDB = require('../models/user');
 const q = require('q');
+const helper = require('../helper/bcrypt_password');
 
 let userController = {
     registerPage: function(req, res) {
@@ -14,14 +15,14 @@ let userController = {
     }
     ,
     userRegister : function(req, res) {
-        let email = req.body.email;
+        let username = req.body.username;
         let firstname = req.body.firstname;
         let lastname = req.body.lastname;
         let password = req.body.password;
         let password2 = req.body.password2;
         let icode = req.body.icode; 
 
-        req.checkBody('email', 'Email không hợp lệ').isEmail();
+        req.checkBody('username', 'Username đang trống').notEmpty();
         req.checkBody('firstname', 'Họ đang trống').notEmpty();
         req.checkBody('lastname', 'Tên đang trống').notEmpty();
         req.checkBody('password', 'Password không hợp lệ').notEmpty();
@@ -35,21 +36,81 @@ let userController = {
             })
         }
         else {
-            userDB.insertUser(req.body)
-            .then(rows => {
-                req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
-                res.redirect("/login"); 
-            })
-            .fail(err => {
-                req.flash('error_msg', 'Bạn không đăng kí thành công');
-                res.redirect("/register");
-            })
-            .catch(err => {
-                req.flash('error', 'Hệ thống bị lỗi')
-                console.log(err);
-            });
+            let hashPassword = helper.encryptPassword(password)
+            console.log(hashPassword);
+            let obj = {
+                username, 
+                password: hashPassword
+            }
+            userDB.insertUser(obj)
+                .then(success => {
+                    req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
+                    res.redirect("/login"); 
+                })
+                /*
+                .fail(err => {
+                    req.flash('error_msg', 'Bạn không đăng kí thành công');
+                    res.redirect("/register");
+                })*/
+                .catch(err => {
+                    req.flash('error', 'Hệ thống bị lỗi')
+                    console.log(err);
+                });
         }
-    } 
+    }
+    ,
+    userLogin: function(req, res) {
+        let username = req.body.username;
+        let password = req.body.password;
+
+        req.checkBody('username', 'Username đang trống').notEmpty();
+        req.checkBody('password', 'Password đang trống').notEmpty();
+
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_user/login', {
+                errors: errors,
+                layout: "index"
+            })
+        }
+        else {
+            userDB.findByUsername(username)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        let type = rows[0].type;
+                        let passwordSQL = rows[0].password;
+                        if (type < 0) {
+                            req.flash('error_msg', 'Tài khoản bị khóa');
+                            req.redirect('/login');
+                        }
+                        else {
+                            var checkPass = helper.validPassword(password, passwordSQL);
+                            if (checkPass === true) {
+                                if (type === 0)
+                                    res.redirect("/");
+                                else
+                                    res.redirect("/admin");
+                            }
+                            else {
+                                req.flash("error_msg", "Mật khẩu không đúng");
+                                res.redirect('/login');
+                            }
+                        }
+                    }
+                    else {
+                        req.flash('error_msg', 'Username không tồn tại');
+                        res.redirect('/login');
+                    }
+                })
+                .fail(err => {
+                    req.flash("error_msg", "Đăng nhập thất bại");
+                    res.redirect('/login');
+                })
+            
+            ;
+        }
+
+    }
 }
 
 module.exports = userController;

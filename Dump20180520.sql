@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `type` varchar(5) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

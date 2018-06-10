@@ -7,9 +7,10 @@ module.exports = function(app) {
     app.get("/shop", index.products.searchproducts);
     //admin
   
-    app.get("/login", index.users.loginPage);
 
+    //user
     app.get("/register", index.users.registerPage);
-    //Khác
     app.post("/register", index.users.userRegister);
+    app.get("/login", index.users.loginPage);
+    app.post("/login", index.users.userLogin);
 }
