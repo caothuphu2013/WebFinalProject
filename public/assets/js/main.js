@@ -291,45 +291,6 @@ jQuery(document).ready(function ($) {
         $('.cart-amunt').text(total_money / 1000000 + ' triệu')
     });
 
-
-    $('.dashboard-products').bind('click', function () {
-        $('.statistics-provinces').hide();
-        $('.statistics-products').show();
-        $('.statistics-classify').hide();
-        $('.statistics-brands').hide();
-
-
-        $('.dashboard').removeClass('active');
-        $('.dashboard-products').addClass('active');
-        $('.dashboard-classify').removeClass('active');
-        $('.dashboard-brands').removeClass('active');
-    })
-
-    $('.dashboard-classify').bind('click', function () {
-        $('.statistics-provinces').hide();
-        $('.statistics-products').hide();
-        $('.statistics-classify').show();
-        $('.statistics-brands').hide();
-
-
-        $('.dashboard').removeClass('active');
-        $('.dashboard-products').removeClass('active');
-        $('.dashboard-classify').addClass('active');
-        $('.dashboard-brands').removeClass('active');
-    })
-
-    $('.dashboard-brands').bind('click', function () {
-        $('.statistics-provinces').hide();
-        $('.statistics-products').hide();
-        $('.statistics-classify').hide();
-        $('.statistics-brands').show();
-
-        $('.dashboard').removeClass('active');
-        $('.dashboard-products').removeClass('active');
-        $('.dashboard-classify').removeClass('active');
-        $('.dashboard-brands').addClass('active');
-    })
-
     //Dashboard
     $('.db-tab').bind('click', function () {
         $('.db-tab').attr('class', 'db-tab');
@@ -621,120 +582,6 @@ function addDotIntoMoney(money) {
     return parts.join(".");
 }
 
-
-function statisticsProducts(products) {
-    let body = $('.statistics-products').find('tbody');
-    let tr;
-    let td;
-    let text;
-    for (product of products) {
-        tr = document.createElement('tr');
-
-        td = document.createElement('td');
-        text = document.createTextNode(product.name);
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        td = document.createElement('td');
-        text = document.createTextNode('$' + addDotIntoMoney(product.price));
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        td = document.createElement('td');
-        text = document.createTextNode(Math.floor((Math.random() * 100) + 1));
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        body.append(tr);
-    }
-}
-
-function statisticsBrands(products) {
-    let Brand = {};
-    let Price = {};
-    let arr = [];
-    let body = $('.statistics-brands').find('tbody');
-    let td, tr, text;
-
-    //Filter products same to Object
-    products.forEach(element => {
-        Brand[element.brand] = (Brand[element.brand] || 0) + 1;
-        Price[element.brand] = (Price[element.brand] || 0) + element.price;
-    });
-
-    //Push Object To Array
-    for (key in Brand) {
-        arr.push({
-            brand: key,
-            count: Brand[key],
-            price: Price[key]
-        });
-    }
-
-    for (item of arr) {
-        tr = document.createElement('tr');
-        td = document.createElement('td');
-        text = document.createTextNode(item.brand);
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        td = document.createElement('td');
-        text = document.createTextNode(item.count);
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        td = document.createElement('td');
-        text = document.createTextNode('$' + addDotIntoMoney(item.price))
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        body.append(tr);
-    }
-}
-
-function statisticsClassify(products) {
-    let Classify = {};
-    let Price = {};
-    let arr = [];
-    let body = $('.statistics-classify').find('tbody');
-    let td, tr, text;
-
-    //Filter products same to Object
-    products.forEach(element => {
-        Classify[element.class] = (Classify[element.class] || 0) + 1;
-        Price[element.class] = (Price[element.class] || 0) + element.price;
-    });
-
-    //Push Object To Array
-    for (key in Classify) {
-        arr.push({
-            classify: key,
-            count: Classify[key],
-            price: Price[key]
-        });
-    }
-
-    for (item of arr) {
-        tr = document.createElement('tr');
-        td = document.createElement('td');
-        text = document.createTextNode(item.classify);
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        td = document.createElement('td');
-        text = document.createTextNode(item.count);
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        td = document.createElement('td');
-        text = document.createTextNode('$' + addDotIntoMoney(item.price))
-        td.appendChild(text);
-        tr.appendChild(td);
-
-        body.append(tr);
-    }
-}
-
 //quản lý sản phẩm
 function loadManageProduct(product_list) {
     //Load products
@@ -768,6 +615,6 @@ function statusOnClick(id, type) {
     document.getElementsByClassName('status-btn')[id * 3].style.fontWeight = '100';
     document.getElementsByClassName('status-btn')[id * 3 + 1].style.fontWeight = '100';
     document.getElementsByClassName('status-btn')[id * 3 + 2].style.fontWeight = '100';
-    document.getElementsByClassName('status-btn')[id * 3 + type].style.color = '#FF6600';    
+    document.getElementsByClassName('status-btn')[id * 3 + type].style.color = '#FF6600';
     document.getElementsByClassName('status-btn')[id * 3 + type].style.fontWeight = '700';
 }
