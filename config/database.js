@@ -2,7 +2,7 @@
 module.exports = {
     host     : '127.0.0.1',
     user     : 'root',
-    password : 'root123456',
+    password : 'admin',
     port: 3306,
     database : 'laptop_db'
   }
