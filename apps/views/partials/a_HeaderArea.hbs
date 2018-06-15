@@ -12,10 +12,22 @@
                             <a href="#">
                                 <i class="fa fa-user"></i> Thanh toán</a>
                         </li>
+
+                        {{#if user}}
+                            <li id="register-tag">
+                            <a href="/">
+                                <i class="fa fa-user"></i> Đăng xuất</a>
+                            </li>
+                        {{else}}
                         <li id="login-tag">
-                            <a href="#" data-toggle="modal" data-target="#Login">
-                                <i class="fa fa-user"></i> Đăng nhập</a>
-                        </li>
+                                <a href="/login">
+                                    <i class="fa fa-user"></i> Đăng nhập</a>
+                            </li>
+                            <li id="register-tag">
+                                <a href="/register">
+                                    <i class="fa fa-user"></i> Đăng ký</a>
+                            </li>
+                        {{/if}} 
                     </ul>
                 </div>
             </div>
