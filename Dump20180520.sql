@@ -228,7 +228,7 @@ CREATE TABLE `user_info` (
   `birthday` date DEFAULT NULL,
   `sex` varchar(5) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
-  `phone` varchar(10) NOT NULL,
+  `phone` varchar(11) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`username`),
   CONSTRAINT `Userinfo_Account_PK` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION

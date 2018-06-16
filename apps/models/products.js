@@ -24,11 +24,10 @@ let products = {
         });
         return d.promise;
     },
-
-    lookProductBrand: function(brand) {
+    getTypes: function() {
         let d = q.defer();
-        let sql = "select name, price, picture from product where brand = ?";
-        db.query(sql,[brand], (error, results) => {
+        let sql = "select id, name from type";
+        db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
             }
@@ -36,10 +35,11 @@ let products = {
         });
         return d.promise;
     },
-    lookProductType: function(type) {
+
+    lookProduct: function(att,id) {
         let d = q.defer();
-        let sql = "select name, price, picture from product where type = ? ";
-        db.query(sql,[type],(error, results) => {
+        let sql = "select name, price, picture from product where "+att+" = ?";
+        db.query(sql,[id], (error, results) => {
             if (error) {
                 d.reject(error);
             }

@@ -6,10 +6,10 @@
     </div>
     <div class="list-group">
         {{#each brandsList}}
-        <div class="list-group-item click-box">
-            <input type="checkbox" class="dell checkbox checkbox-btn" checked>
-            <a style="text-decoration: none" href="/shop/brand?id={{this.id}}" class="{{this.name}} brand">{{this.name}}</a>
-        </div>
+            <div class="list-group-item click-box">
+                <input type="checkbox" class="{{this.name}} checkbox checkbox-btn" checked>  
+                <a style="text-decoration: none" href="/shop/choose?att=brand&id={{this.id}}" class="{{this.name}} brand">{{this.name}}</a>
+            </div>    
         {{/each}}
     </div>
 </div>

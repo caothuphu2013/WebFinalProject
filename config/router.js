@@ -1,5 +1,3 @@
-const router = require("express").Router;
-
 const index = require("../apps/controllers/index");
 const admin = require("../apps/controllers/admin.js")
 
@@ -9,13 +7,13 @@ module.exports = function(app) {
     //home
     app.get("/", index.home.loadHomePage);
     // shop
-    app.get("/shop", index.products.searchproducts);
-    app.get("/shop/brand", index.products.searchproductsbrand);
+    app.get("/shop", index.products.searchProducts);
+    app.get("/shop/choose", index.products.searchProductsAuto);
    // app.get("/shop/type", index.products.searchproductstype);
 
 
     //admin
-  	app.get("/admin", admin.loadDashboard);
+    app.get("/admin", admin.loadDashboard);
 
     //user
     app.get("/register", index.users.registerPage);
@@ -23,7 +21,11 @@ module.exports = function(app) {
     app.get("/login", index.users.loginPage);
     app.post("/login", index.users.userLogin);
 
-    //Err0r
+    //profile
+    app.get("/profile", index.profile.defaultPage);
+    app.get("/profile/update", index.profile.updatePage);
+    app.post('/profile/update',index.profile.updateInfo);
+    
+        //Err0r
     app.use(errorPage);
-
 }
