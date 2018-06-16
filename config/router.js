@@ -21,4 +21,5 @@ module.exports = function(app) {
 
     //profile
     app.get("/profile_user", index.profile.Defaultpage);
+    app.post('/profile_user/update_Info',index.profile.updateInfo);
 }

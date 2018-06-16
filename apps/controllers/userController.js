@@ -68,6 +68,9 @@ let userController = {
             let p2 = profileDB.insertInfo(obj).catch(err => {
                 console.log(err);
             })
+            q.all([p1, p2]).spread(err => {
+                console.log(err);
+            })
         }
     }
     ,

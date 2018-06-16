@@ -19,10 +19,18 @@
                         </div>
                     </div>
                 <div class="col-md-8">
-                    <form class="form-horizontal col-md-8">
+                    <form class="form-horizontal col-md-8" method="POST" action="/profile_user/update_Info"> 
                         <fieldset>
                             <legend>Thông tin tài khoản</legend>
+                            {{#if success_msg}}
+                                <div class="alert alert-success">{{success_msg}}</div>
 
+                            {{else if error_msg}}
+                                <div class="alert alert-danger">{{error_msg}}</div>
+
+                            {{else if error}}
+                                <div class="alert alert-danger">{{error}}</div>
+                            {{/if}}
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="lbl_FullName">Họ tên</label>  
                                 <div class="col-md-6">
@@ -30,7 +38,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                        <input id="txt_FullName" name="fullName" type="text" placeholder="Họ tên" class="form-control input-md" value="{{user.fullname}}">
+                                        <input id="txt_FullName" name="fullName" type="text" placeholder="Họ tên" class="form-control input-md" value="{{user.name}}">
                                         </div>
                                 </div>
                             </div>
@@ -139,15 +147,14 @@
                                         </div>
                                         <input id="txt_Email" name="email" type="text" placeholder="Email" class="form-control input-md" value="{{user.email}}">
                                     </div>
-                                </div>
-                                <div class="col-md" id='error_email' style="color: red; padding-top: 1%; display: none">Email không đúng</div>                                                                    
+                                </div>          
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" ></label>  
                                 <div class="col-md-6">
-                                    <a href="#" id="btn_Update" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span>Cập nhật</a>
-                                    <a href="#" id="btn_Clear" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span>Xóa dữ liệu</a>
+                                    <button type='submit' id="btn_Update" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span>Cập nhật</button>
+                                    <button href="#" id="btn_Clear" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span>Xóa dữ liệu</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -155,3 +162,83 @@
             </div>
         </div>
     </div>
+
+<script>
+    const provinces = ['An Giang',
+'Bà Rịa - Vũng Tàu',
+'Bắc Giang',
+'Bắc Kạn',
+'Bạc Liêu',
+'Bắc Ninh',
+'Bến Tre',
+'Bình Định',
+'Bình Dương',
+'Bình Phước',
+'Bình Thuận',
+'Cà Mau',
+'Cao Bằng',
+'Cần Thơ',
+'Đà Nẵng',
+'Đắk Lắk',
+'Đắk Nông',
+'Điện Biên',
+'Đồng Nai',
+'Đồng Tháp',
+'Gia Lai',
+'Hà Giang',
+'Hà Nam',
+'Hà Nội',
+'Hà Tĩnh',
+'Hải Dương',
+'Hải Phòng',
+'Hậu Giang',
+'Hòa Bình',
+'HCM',
+'Hưng Yên',
+'Khánh Hòa',
+'Kiên Giang',
+'Kon Tum',
+'Lai Châu',
+'Lâm Đồng',
+'Lạng Sơn',
+'Lào Cai',
+'Long An',
+'Nam Định',
+'Nghệ An',
+'Ninh Bình',
+'Ninh Thuận',
+'Phú Thọ',
+'Phú Yên',
+'Quảng Bình',
+'Quảng Nam',
+'Quảng Ngãi',
+'Quảng Ninh',
+'Quảng Trị',
+'Sóc Trăng',
+'Sơn La',
+'Tây Ninh',
+'Thái Bình',
+'Thái Nguyên',
+'Thanh Hóa',
+'Thừa Thiên Huế',
+'Tiền Giang',
+'Trà Vinh',
+'Tuyên Quang',
+'Vĩnh Long',
+'Vĩnh Phúc',
+'Yên Bái'];
+
+
+function addProvinceIntoSelect(provinces) {
+    let select = document.getElementById('sel_City_Address');
+    if (select == null)
+        return;
+    var opt;
+    for (province of provinces) {
+        opt = document.createElement('option');
+        opt.value = province;
+        opt.text = province;
+        select.append(opt);
+    }
+}
+</script>
