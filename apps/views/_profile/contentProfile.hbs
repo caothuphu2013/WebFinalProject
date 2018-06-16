@@ -59,7 +59,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-birthday-cake"></i>
                                         </div>
-                                        <input id="txt_Date_Of_Birth" name="date_Of_Birth" type="date" placeholder="Ngày sinh" class="form-control input-md" value="{{user.birthday}}">
+                                        <input id="txt_Date_Of_Birth" name="date_Of_Birth" type="date" placeholder="Nhập ngày sinh" class="form-control input-md" value="{{user.birthday}}">
                                     </div>
                                 </div>
                             </div>
@@ -92,32 +92,21 @@
             
                             <div class="form-group">
                                 <label class="col-md-3 control-label col-xs-12" for="lbl_Address">Địa chỉ</label>  
-                                <div class="col-md-3  col-xs-4">
-                                    <input id="txt_Street_Address" name="street_Address" type="text" placeholder="Đường" class="form-control input-md ">
-                                </div>
-                            
-                                <div class="col-md-3 col-xs-4">
-                                    <input id="txt_Ward_Address" name="ward_Address" type="text" placeholder="Phường" class="form-control input-md ">
-                                </div>
-                            </div>
-            
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="lbl_Address"></label>  
-                                <div class="col-md-3  col-xs-4">
-                                    <input id="txt_District_Address" name="district_Address" type="text" placeholder="Quận" class="form-control input-md ">
+                                <div class="col-md-9  col-xs-4">
+                                    <input id="txt_Street_Address" name="range_address" type="text" placeholder="Nhập địa chỉ" class="form-control input-md" value="{{user.range_address}}">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="lbl_Address">Thành phố</label>  
+                                <label class="col-md-3 control-label" for="lbl_city">Thành phố</label>  
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-location-arrow"></i>
                                         </div>
                                        
-                                        <select class="form-control" name="city_Address" id="sel_City_Address">
-                                           
+                                        <select class="form-control" name="city_Address" id="sel_City_Address" value="{{user.city}}">
+                                           {{user.city}}
                                         </select>
                         
                                     </div>
@@ -164,7 +153,7 @@
     </div>
 
 <script>
-    const provinces = ['An Giang',
+const provinces = ['An Giang',
 'Bà Rịa - Vũng Tàu',
 'Bắc Giang',
 'Bắc Kạn',
@@ -241,4 +230,6 @@ function addProvinceIntoSelect(provinces) {
         select.append(opt);
     }
 }
+
+addProvinceIntoSelect(provinces);
 </script>

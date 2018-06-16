@@ -20,9 +20,23 @@ let profileController = {
                 else
                     isMan = true;
 
+                let range_address, city;
+                //Tách city
+                if (address) {
+                    let vtc = address.lastIndexOf(',');
+                    range_address = address.substring(0, vtc);
+                    city = address.substring(vtc, address.length);
+                }
 
                 let obj = {
-                    username, name, birthday, sex, address, phone, email
+                    username, 
+                    name, 
+                    birthday,
+                    sex,
+                    range_address,
+                    city,
+                    phone, 
+                    email
                 }
                 req.session.user = obj;
                 res.render('_profile/contentProfile', {
@@ -44,12 +58,10 @@ let profileController = {
         let birthday = req.body.date_Of_Birth;
         let sex = req.body.gender == 1 ? 'Nam' : 'Nữ';
 
-        let street = req.body.street_Address ? `, ${req.body.street_Address}` : '';
-        let ward = req.body.ward_Address ? `, ${req.body.ward_Address}` : '';
-        let district = req.body.district_Address ? `, ${req.body.district_Address}` : '';
-        let city = req.body.city_Address ? `, ${req.body.city_Address}` : '';
+        let range_address = req.body.range_address ? `${req.body.range_address}` : '';
+        let city = req.body.city_Address ? `${req.body.city_Address}` : '';
 
-        let address = street + ward + district + city;
+        let address = range_address + ', ' + city;
         let phone = req.body.phone;
         let email = req.body.email;
         
