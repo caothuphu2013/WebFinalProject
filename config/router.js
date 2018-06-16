@@ -3,6 +3,8 @@ const router = require("express").Router;
 const index = require("../apps/controllers/index");
 const admin = require("../apps/controllers/admin.js")
 
+const errorPage = require("../apps/controllers/errorController.js")
+
 module.exports = function(app) {
     //home
     app.get("/", index.home.loadHomePage);
@@ -14,12 +16,14 @@ module.exports = function(app) {
 
     //admin
   	app.get("/admin", admin.loadDashboard);
-    //Khác
-  
 
     //user
     app.get("/register", index.users.registerPage);
     app.post("/register", index.users.userRegister);
     app.get("/login", index.users.loginPage);
     app.post("/login", index.users.userLogin);
+
+    //Err0r
+    app.use(errorPage);
+
 }
