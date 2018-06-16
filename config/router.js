@@ -20,6 +20,7 @@ module.exports = function(app) {
     app.post("/login", index.users.userLogin);
 
     //profile
-    app.get("/profile_user", index.profile.Defaultpage);
-    app.post('/profile_user/update_Info',index.profile.updateInfo);
+    app.get("/profile", index.profile.defaultPage);
+    app.get("/profile/update", index.profile.updatePage);
+    app.post('/profile/update',index.profile.updateInfo);
 }
