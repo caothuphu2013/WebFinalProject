@@ -1,4 +1,5 @@
 const userDB = require('../models/user');
+const profileDB = require('../models/profile');
 const q = require('q');
 const helper = require('../helper/bcrypt_password');
 
@@ -21,13 +22,16 @@ let userController = {
         let lastname = req.body.lastname;
         let password = req.body.password;
         let password2 = req.body.password2;
-        let icode = req.body.icode; 
+        let email = req.body.email; 
+        let phone = req.body.phone;
 
         req.checkBody('username', 'Username đang trống').notEmpty();
         req.checkBody('firstname', 'Họ đang trống').notEmpty();
         req.checkBody('lastname', 'Tên đang trống').notEmpty();
         req.checkBody('password', 'Password không hợp lệ').notEmpty();
         req.checkBody('password2', 'Password không tương xứng').equals(password);
+        req.checkBody('email', 'Email sai định dạng').isEmail();
+        req.checkBody('phone', 'Số điện thoại sai định dạng').isMobilePhone('vi-VN');
 
         var errors = req.validationErrors();
         if (errors) {
@@ -38,25 +42,32 @@ let userController = {
         }
         else {
             let hashPassword = helper.encryptPassword(password)
-            console.log(hashPassword);
             let obj = {
                 username, 
-                password: hashPassword
+                password: hashPassword,
+                name: firstname + ' ' + lastname,
+                email,
+                phone
             }
-            userDB.insertUser(obj)
+            let p1 = userDB.insertUser(obj)
                 .then(success => {
                     req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
                     res.redirect("/login"); 
                 })
-                /*
+                
                 .fail(err => {
                     req.flash('error_msg', 'Bạn không đăng kí thành công');
                     res.redirect("/register");
-                })*/
+                })
+
                 .catch(err => {
                     req.flash('error', 'Hệ thống bị lỗi')
                     console.log(err);
                 });
+
+            let p2 = profileDB.insertInfo(obj).catch(err => {
+                console.log(err);
+            })
         }
     }
     ,
@@ -132,6 +143,7 @@ let userController = {
             return res.redirect('/');
         });
     }
+
 }
 
 module.exports = userController;

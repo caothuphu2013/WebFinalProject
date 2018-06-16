@@ -1,5 +1,3 @@
-const router = require("express").Router;
-
 const index = require("../apps/controllers/index");
 const admin = require("../apps/controllers/admin.js")
 
@@ -20,4 +18,7 @@ module.exports = function(app) {
     app.post("/register", index.users.userRegister);
     app.get("/login", index.users.loginPage);
     app.post("/login", index.users.userLogin);
+
+    //profile
+    app.get("/profile_user", index.profile.Defaultpage);
 }
