@@ -140,11 +140,8 @@ let userController = {
     }
     ,
     userLogout: function(req, res) {
-        req.session.destroy(err => {
-            if (err)
-                return next(err);
-            return res.redirect('/');
-        });
+        req.session.destroy();
+        res.redirect('/');
     }
 
 }

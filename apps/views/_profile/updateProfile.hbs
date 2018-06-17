@@ -22,15 +22,6 @@
                     <form class="form-horizontal col-md-8" method="POST" action="/profile/update"> 
                         <fieldset>
                             <legend>Thông tin tài khoản</legend>
-                            {{#if success_msg}}
-                                <div class="alert alert-success">{{success_msg}}</div>
-
-                            {{else if error_msg}}
-                                <div class="alert alert-danger">{{error_msg}}</div>
-
-                            {{else if error}}
-                                <div class="alert alert-danger">{{error}}</div>
-                            {{/if}}
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="lbl_FullName">Họ tên</label>  
                                 <div class="col-md-6">
@@ -126,7 +117,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" ></label>  
                                 <div class="col-md-6">
-                                    <button type='submit' id="btn_Update" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up"></span>Lưu</button>
+                                    <button type='submit' class="btn btn-danger"><span class="glyphicon glyphicon-save"></span>Lưu</button>
                                 </div>
                             </div>
                         </fieldset>

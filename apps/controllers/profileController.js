@@ -21,6 +21,12 @@ let profileController = {
                     city = address.substring(vtc, address.length);
                 }
                 */
+                //Kiểm tra giới tính
+                let isMan;
+                if (sex === 'Nữ')
+                    isMan = false;
+                else
+                    isMan = true;
 
                 //Date
                 let year = date.getFullYear();
@@ -42,6 +48,7 @@ let profileController = {
                 res.render('_profile/contentProfile', {
                     user: req.session.user,
                     layout: "index",
+                    isMan
                 })
             }
         })
@@ -84,7 +91,7 @@ let profileController = {
                     phone, 
                     email
                 }
-                req.session.user = obj;
+
                 res.render('_profile/updateProfile', {
                     user: req.session.user,
                     layout: "index",
