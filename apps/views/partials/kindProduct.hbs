@@ -6,9 +6,8 @@
     </div>
     <div class="list-group">
         {{#each layoutVM.typesList}}
-            <div class="list-group-item click-box">
-                <input type="checkbox" class="{{this.name}} checkbox checkbox-btn" checked>  
-                <a style="text-decoration: none;display: block;" href="/shop/choose?att=type&id={{this.id}}"class="{{this.name}} classify">{{this.name}}</a>
+            <div class="listgroup-item click-box">  
+                <a href="/shop/choose?att=type&id={{this.id}}"class="{{this.name}} classify"><input style="float:left;" type="checkbox" type="checkbox" class="{{this.name}} checkbox checkbox-btn" checked>&nbsp;{{this.name}}</a>
             </div>      
         {{/each}}
     </div>

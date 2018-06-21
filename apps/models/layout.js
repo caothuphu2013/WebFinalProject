@@ -1,6 +1,7 @@
 const db = require("./database.js");
 const q = require('q');
 
+
 exports.getBrands = () => {
     let d = q.defer();
     let sql = "select id, name from brand";

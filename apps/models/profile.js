@@ -16,6 +16,7 @@ let profile = {
     insertInfo: function(user) {
         let d = q.defer();
         let sql = `insert into user_info(username, name, birthday, sex, address, phone, email) values (?, ?, ?, ?, ?, ?, ?)`;
+        
         db.query(sql, [user.username, user.name, user.birthday, user.sex, user.address, user.phone, user.email], (error, results) => {
             if (error)
                 d.reject(error);
@@ -35,5 +36,4 @@ let profile = {
         return d.promise;
     }
 }
-
 module.exports = profile;

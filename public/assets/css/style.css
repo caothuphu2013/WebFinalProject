@@ -1,4 +1,4 @@
-Fs.floatleft {
+.floatleft {
     float: left
 }
 
@@ -1579,11 +1579,10 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .ultrabook {
     display: inline;
     margin-left: 10px;
-    padding: 10px 0;
     padding-right: 120px;
 }
 
-.list-group-item {
+.listgroup-item {
     cursor: pointer;
 }
 
@@ -1597,7 +1596,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .gaming:hover,
 .workstation:hover,
 .ultrabook:hover,
-.list-group-item.click-box:hover {
+.listgroup-item.click-box:hover {
     background-color: #01bc9c;
     color: white;
     font-weight: 700;
@@ -1623,6 +1622,20 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .product-img {
     width: 100%;
 }
+
+
+.list-group div>a
+{
+    display:block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.list-group div>a:hover
+{
+    color: white;
+}
+
 
 /*********************************/
 

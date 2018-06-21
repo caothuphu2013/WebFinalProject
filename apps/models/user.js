@@ -1,6 +1,7 @@
 const db = require("./database.js");
 const q = require('q');
 
+
 let users = {
     insertUser: function(user) {
         let d = q.defer();
@@ -24,5 +25,4 @@ let users = {
         return d.promise;
     }
 }
-
 module.exports = users;

@@ -1,6 +1,8 @@
 const db = require("./database.js");
 const q = require('q');
 
+
+
 let products = {
     getProducts: function() {
         let d = q.defer();
