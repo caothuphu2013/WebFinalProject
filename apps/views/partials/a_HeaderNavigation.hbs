@@ -27,10 +27,10 @@
                         <div class="drop-type">
                             <a class="dropdown-text-type" href="#">Chủng loại</a>
                             <div class="dropdown-content-type">
-                                <p class="content-drop-small classify">Business</p>
-                                <p class="content-drop-small classify">Workstation</p>
-                                <p class="content-drop-small classify">Gaming</p>
-                                <p class="content-drop-small classify">Ultrabook</p>
+                                {{#each typesList}}
+                                <a style="text-decoration: none" href="/shop/choose?att=type&id={{this.id}}" class="content-drop-small ">{{this.name}}</a>  
+                                {{/each}}
+
                             </div>
                         </div>
                     </li>
@@ -38,12 +38,9 @@
                         <div class="drop-brand">
                             <a class="dropdown-text-brand" href="#">Nhà sản xuất</a>
                             <div class="dropdown-content-brand">
-                                <p class="content-drop-small brand">Dell</p>
-                                <p class="content-drop-small brand">Asus</p>
-                                <p class="content-drop-small brand">Acer</p>
-                                <p class="content-drop-small brand">HP</p>
-                                <p class="content-drop-small brand">MSI</p>
-                                <p class="content-drop-small brand">Apple</p>
+                                {{#each brandsList}}
+                                <a style="text-decoration: none" href="/shop/choose?att=brand&id={{this.id}}" class="content-drop-small ">{{this.name}}</a>                         
+                                {{/each}}
                             </div>
                         </div>
                     </li>

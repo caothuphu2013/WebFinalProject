@@ -188,8 +188,8 @@ body {
 .shopping-item:hover .product-count {
     background: none repeat scroll 0 0 #000;
 }
-
-.mainmenu-area ul.navbar-nav li a {
+.mainmenu-area ul.navbar-nav li>div>a,
+.mainmenu-area ul.navbar-nav li>a {
     color: #fff;
     font-size: 16px;
     font-weight: 700;
@@ -207,9 +207,10 @@ body {
     text-align: center;
     margin-top: -20px;
 }
-
-.mainmenu-area ul.navbar-nav li:hover a,
-.mainmenu-area ul.navbar-nav li.active a {
+.mainmenu-area ul.navbar-nav li>div:hover>a,
+.mainmenu-area ul.navbar-nav li>div.active>a,
+.mainmenu-area ul.navbar-nav li:hover>a,
+.mainmenu-area ul.navbar-nav li.active>a {
     background: #222
 }
 
