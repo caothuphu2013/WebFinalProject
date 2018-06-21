@@ -5,10 +5,10 @@
         </h3>
     </div>
     <div class="list-group">
-        {{#each brandsList}}
+        {{#each layoutVM.brandsList}}
             <div class="list-group-item click-box">
                 <input type="checkbox" class="{{this.name}} checkbox checkbox-btn" checked>  
-                <a style="text-decoration: none" href="/shop/choose?att=brand&id={{this.id}}" class="{{this.name}} brand">{{this.name}}</a>
+                <a href="/shop/choose?att=brand&id={{this.id}}" class="{{this.name}} content-drop-small">{{this.name}}</a>
             </div>    
         {{/each}}
     </div>

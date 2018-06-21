@@ -27,7 +27,7 @@
                         <div class="drop-type">
                             <a class="dropdown-text-type" href="#">Chủng loại</a>
                             <div class="dropdown-content-type">
-                                {{#each typesList}}
+                                {{#each layoutVM.typesList}}
                                 <a style="text-decoration: none" href="/shop/choose?att=type&id={{this.id}}" class="content-drop-small ">{{this.name}}</a>  
                                 {{/each}}
 
@@ -38,8 +38,8 @@
                         <div class="drop-brand">
                             <a class="dropdown-text-brand" href="#">Nhà sản xuất</a>
                             <div class="dropdown-content-brand">
-                                {{#each brandsList}}
-                                <a style="text-decoration: none" href="/shop/choose?att=brand&id={{this.id}}" class="content-drop-small ">{{this.name}}</a>                         
+                                {{#each layoutVM.brandsList}}
+                                <a style="text-decoration: none" href="/shop/choose?att=brand&id={{this.id}}" class="content-drop-small ">{{this.name}}</a>                        
                                 {{/each}}
                             </div>
                         </div>

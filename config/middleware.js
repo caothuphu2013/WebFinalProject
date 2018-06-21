@@ -5,7 +5,7 @@ const session = require('express-session');
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const flash = require('connect-flash');
-const layout = require('../apps/models/products');
+const layout = require('../apps/models/layout');
 const q = require('q');
 
 module.exports = function(app) {
@@ -48,22 +48,18 @@ module.exports = function(app) {
         res.locals.success_msg = req.flash('success_msg');
         res.locals.error_msg = req.flash('error_msg');
         res.locals.error = req.flash('error');
-        
-        q.all([layout.getBrands(),layout.getTypes()]).spread(function(temp1,temp2) {
-            res.locals.brandsList = temp1;
-            res.locals.typesList = temp2;
-        })
         next();
 
     });
 
-    // app.use(function(req, res, next) {
-    //     categoryDB.getTypes().then(rows =>{
-    //         res.locals.layoutVM = {
-    //             brandsList: rows
-    //         };
-    //         next();
-    //     });
-    // });
+    app.use(function(req, res, next) {
+        q.all([layout.getBrands(),layout.getTypes()]).spread(function(temp1,temp2) {
+            res.locals.layoutVM = {
+            brandsList: temp1, 
+            typesList: temp2
+            }
+        })
+        next();
+    });
     
 }
