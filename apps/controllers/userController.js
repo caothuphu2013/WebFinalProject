@@ -68,6 +68,9 @@ let userController = {
             let p2 = profileDB.insertInfo(obj).catch(err => {
                 console.log(err);
             })
+            q.all([p1, p2]).spread(err => {
+                console.log(err);
+            })
         }
     }
     ,
@@ -137,11 +140,8 @@ let userController = {
     }
     ,
     userLogout: function(req, res) {
-        req.session.destroy(err => {
-            if (err)
-                return next(err);
-            return res.redirect('/');
-        });
+        req.session.destroy();
+        res.redirect('/');
     }
 
 }

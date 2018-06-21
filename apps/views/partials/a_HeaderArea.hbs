@@ -26,8 +26,8 @@
                         </li>
 
                         {{#if user}}
-                            <li id="register-tag">
-                            <a href="/">
+                            <li id="logout-tag">
+                            <a href="/logout">
                                 <i class="fa fa-user"></i> Đăng xuất</a>
                             </li>
                         {{else}}
@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-4">
                 {{#if user}}
-                    <a href="/profile_user">
+                    <a href="/profile">
                         <img id='avatar' src="/img/avatar.jpg" alt="" class="img-thumbnail img-fluid">
                     </a>
                 {{/if}}

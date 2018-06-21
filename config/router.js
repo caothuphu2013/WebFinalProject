@@ -18,7 +18,10 @@ module.exports = function(app) {
     app.post("/register", index.users.userRegister);
     app.get("/login", index.users.loginPage);
     app.post("/login", index.users.userLogin);
+    app.get("/logout", index.users.userLogout);
 
     //profile
-    app.get("/profile_user", index.profile.Defaultpage);
+    app.get("/profile", index.profile.defaultPage);
+    app.get("/profile/update", index.profile.updatePage);
+    app.post('/profile/update',index.profile.updateInfo);
 }

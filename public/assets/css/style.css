@@ -849,6 +849,7 @@ textarea {
     padding: 10px;
 }
 
+/*
 input[type="submit"],
 button[type=submit] {
     background: none repeat scroll 0 0 #1abc9c;
@@ -862,6 +863,7 @@ input[type="submit"]:hover,
 button[type=submit]:hover {
     background-color: #222
 }
+*/
 
 .update-button,
 .checkout-button {
