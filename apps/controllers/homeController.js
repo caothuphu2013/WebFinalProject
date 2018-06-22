@@ -6,9 +6,8 @@ let homeController = {
         let p1 = layout.getBrands().catch(err=>{
             console.log("Error: " + err);
         });
-        q.all([p1]).spread(function(temp1){
+        q.all([p1]).spread(function(){
             res.render('_home/home', {
-                productsList: temp1,
                 layout: "index"
             });
         });
