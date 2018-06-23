@@ -8,6 +8,7 @@ let homeController = {
         });
         q.all([p1]).spread(function(){
             res.render('_home/home', {
+                user: req.session.user,
                 layout: "index"
             });
         });

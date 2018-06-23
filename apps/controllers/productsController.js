@@ -9,6 +9,7 @@ let productsController = {
             res.render("_shop/shop", {
                 user: req.session.user,
                 productsList: temp1,
+                noProducts: temp1.length === 0,
                 layout: "index"
             });
         })
@@ -23,6 +24,31 @@ let productsController = {
             res.render("_shop/shop", {
                 user: req.session.user,
                 productsList: temp1,
+                noProducts: temp1.length === 0,
+                layout: "index"
+            });
+        })
+    }
+    ,
+    search : function(req, res) {
+        let word = req.body.searchWhat;
+        word = '%' + word + '%';
+        let type = req.body.typeSearch;
+        var p1;
+        if (type === "name") {
+
+            p1 = categoryDB.lookNameLike(word).catch(err => {
+                console.log("Error: " + err);});
+        }
+        else if (type === "type") {
+            p1 = categoryDB.lookTypeLike(word).catch(err => {
+                console.log("Error: " + err);});
+        }     
+        q.all([p1]).spread(function(temp1) {
+            res.render("_shop/shop", {
+                user: req.session.user,
+                productsList: temp1,
+                noProducts: temp1.length === 0,
                 layout: "index"
             });
         })

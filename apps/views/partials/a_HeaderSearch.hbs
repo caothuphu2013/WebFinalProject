@@ -1,34 +1,50 @@
 <div class="row" style="margin-top: 2%">
     <div id="search-area">
-        <div class="search col-md-8">
-            <label for="search-input" class="search-label">Tìm kiếm</label>
-            <input type="text" placeholder="Tên sản phẩm..." class="form-control" id="search-input" />
-        </div>
-        <div class="search-type col-md-4">
-            <label class="search-label">Theo</label>
-            <div class="dropdown">
-                <div class="search-type-btn dropdown-text col-md-6">Sản phẩm</div>
-                <div class="dropdown-content">
-                    <p class="content-drop">Sản phẩm</p>
-                    <p class="content-drop">Nhà sản xuất</p>
-                </div>
+        <form id="searchform" role="form" method="post" action="/shop/search">
+            <div class="search col-md-8">
+                <label for="search-input" class="search-label">Tìm kiếm</label>
+                <input type="text" placeholder="Tên sản phẩm..." class="form-control" id="search-input" name="searchWhat"/>
             </div>
-            <div class="search-type-btn click col-md-6 glyphicon glyphicon-search" id='btn_Search'></div>
-        </div>
+            <div class="search-type col-md-4">
+                <label class="search-label">Theo</label>
+                <div class="dropdown">
+                    <div class="search-type-btn dropdown-text col-md-6">Sản phẩm</div>
+                    <div class="dropdown-content">
+                        <p class="content-drop">Sản phẩm</p>
+                        <p class="content-drop">Loại</p>
+                    </div>
+                </div>            
+                <button type = "submit" class="search-type-btn click col-md-6 glyphicon glyphicon-search" id='btn_Search'></button> 
+            </div>
+        </form>
     </div>
 </div>
 
 {{#section 'js'}}
-<script type="text/javascript">
-    jQuery(document).ready(function ($) {
-    //search type choosing
-        $('.content-drop').bind('click', function (event) {
-            var selected = $(this).text();
-            $('.dropdown-text').text(selected);
-            $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+        //search type choosing
+            $('.content-drop').bind('click', function (event) {
+                var selected = $(this).text();
+                $('.dropdown-text').text(selected);
+                $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
+            });
         });
-    })(jQuery);
-</script>
+
+
+        $("#searchform" ).submit(function(event) {
+            let tmp = $('.dropdown-text').text();
+            if (tmp === "Sản phẩm") 
+            { 
+                $(this).append('<input type="hidden" name="typeSearch" value ="name"/>');
+            }
+            else if (tmp === "Loại") 
+            { 
+                $(this).append('<input type="hidden" name="typeSearch" value="type"/>');
+            }
+        });
+
+    </script>
 {{/section}}
 
    

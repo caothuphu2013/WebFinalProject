@@ -1,4 +1,4 @@
- {{> a_HeaderShop}}
+{{> a_HeaderShop}}
 <div class="container">
     {{> a_HeaderSearch}}
     <div class="single-product-area">
@@ -10,9 +10,15 @@
                     {{> priceProduct}}
                     <button type="button" class="btn btn-default filter-btn">Lọc</button>
                 </div>
+                {{#if noProducts}} 
+                <div class="col-md-9 col-sm-12">
+                    <h2 class="text-danger">Không có sản phẩm thoả yêu cầu.</h2>
+                </div>
+                {{else}}
                 <div class="col-md-9 col-sm-12">
                     {{> listProducts}}
                 </div>
+                {{/if}}
             </div>
             
             <div class="row">
@@ -28,4 +34,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>z

@@ -7,6 +7,8 @@ module.exports = function(app) {
     // shop
     app.get("/shop", index.products.searchProducts);
     app.get("/shop/choose", index.products.searchProductsAuto);
+    app.post("/shop/search", index.products.search);
+
 
     //single-product
     app.get("/product",index.singleproduct.getProduct);
