@@ -1,12 +1,10 @@
 const db = require("./database.js");
 const q = require('q');
 
-
-
 let products = {
     getProducts: function() {
         let d = q.defer();
-        let sql = "select name, price, picture from product";
+        let sql = "select id, name, price, picture from product";
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
@@ -17,7 +15,7 @@ let products = {
     },
     lookProduct: function(att,id) {
         let d = q.defer();
-        let sql = "select name, price, picture from product where "+att+" = ?";
+        let sql = "select id, name, price, picture from product where "+att+" = ?";
         db.query(sql,[id], (error, results) => {
             if (error) {
                 d.reject(error);

@@ -439,7 +439,6 @@ div.navbar-nav li.active {
 }
 
 .product-carousel-price {
-    position: absolute;
     bottom: 1%;
     right: 0;
     margin-bottom: 50px;
@@ -996,7 +995,6 @@ button[type=submit]:hover {
 }
 
 .add_to_cart_button {
-    position: absolute;
     bottom: 0;
     background: none repeat scroll 0 0 #1abc9c;
     border: medium none;
