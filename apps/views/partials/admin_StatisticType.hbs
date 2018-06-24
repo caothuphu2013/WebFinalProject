@@ -1,0 +1,27 @@
+<div class="col-md-8">
+    <div class="panel panel-default statistics-classify" style="">
+        <div class="panel-heading">
+            <h3 class="panel-title">Thống kê loại sản phẩm</h3>
+        </div>
+        <div class="panel-body" style="margin-bottom: -4%;">
+            <table class="table bootstrap-datatable">
+                <thead>
+                    <tr>
+                        <th>Tên loại</th>
+                        <th>Số sản phẩm</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each type}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td>{{this.soldProduct}}</td>
+                            <td>{{this.revenue}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

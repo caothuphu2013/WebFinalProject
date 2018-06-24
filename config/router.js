@@ -1,5 +1,6 @@
 const index = require("../apps/controllers/index");
 const admin = require("../apps/controllers/admin.js")
+const errorPage = require("../apps/controllers/errorController.js")
 
 module.exports = function(app) {
     //home
@@ -14,7 +15,9 @@ module.exports = function(app) {
     app.get("/product",index.singleproduct.getProduct);
 
     //admin
-    app.get("/admin", admin.loadDashboard);
+    app.get("/dashboard", admin.loadDashboard);
+    app.get("/dashboardtype", admin.loadDashboardType);
+    app.get("/dashboardbrand", admin.loadDashboardBrand);
 
     //user
     app.get("/register", index.users.registerPage);
@@ -27,4 +30,7 @@ module.exports = function(app) {
     app.get("/profile", index.profile.defaultPage);
     app.get("/profile/update", index.profile.updatePage);
     app.post('/profile/update',index.profile.updateInfo);
+
+        //Err0r
+    app.use(errorPage);
 }
