@@ -5,10 +5,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-12">
+                    <form id="filterform" role="form" method="post" action="/shop/filter">
                     {{> listProducers}} 
                     {{> kindProduct}} 
                     {{> priceProduct}}
-                    <button type="button" class="btn btn-default filter-btn">Lọc</button>
+                    <button type="submit" class="btn btn-default filter-btn" onclick="filter();">Lọc</button>
+                    </form>
                 </div>
                 {{#if noProducts}} 
                 <div class="col-md-9 col-sm-12">
@@ -34,4 +36,31 @@
             </div>
         </div>
     </div>
-</div>z
+</div>
+
+
+{{#section 'js'}}
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+        //search type choosing
+            $('.content-drop').bind('click', function (event) {
+                var selected = $(this).text();
+                $('.dropdown-text').text(selected);
+                $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
+            });
+        });
+
+        $("#searchform" ).submit(function(event) {
+            let tmp = $('.dropdown-text').text();
+            if (tmp === "Sản phẩm") 
+            { 
+                $(this).append('<input type="hidden" name="typeSearch" value ="name"/>');
+            }
+            else if (tmp === "Loại") 
+            { 
+                $(this).append('<input type="hidden" name="typeSearch" value="type"/>');
+            }
+        });
+
+    </script>
+{{/section}}
