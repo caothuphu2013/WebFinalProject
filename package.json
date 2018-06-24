@@ -23,6 +23,7 @@
     "express-validator": "^5.2.0",
     "moment": "^2.22.1",
     "mysql": "^2.15.0",
+    "nodemailer": "^4.6.7",
     "path": "^0.12.7",
     "q": "^1.5.1",
     "wnumb": "^1.1.0"

@@ -35,7 +35,7 @@ let profileController = {
                 let birthday = year + '-' + month + '-' + day;
 
                 //Taọ object truyền session
-                let obj = {
+                let info = {
                     username, 
                     name, 
                     birthday,
@@ -44,9 +44,9 @@ let profileController = {
                     phone, 
                     email
                 }
-                req.session.user = obj;
                 res.render('_profile/contentProfile', {
                     user: req.session.user,
+                    info,
                     layout: "index",
                     isMan
                 })
@@ -82,7 +82,7 @@ let profileController = {
                 let birthday = year + '-' + month + '-' + day;
 
                 //Taọ object truyền session
-                let obj = {
+                let info = {
                     username, 
                     name, 
                     birthday: birthday,
@@ -94,6 +94,7 @@ let profileController = {
 
                 res.render('_profile/updateProfile', {
                     user: req.session.user,
+                    info,
                     layout: "index",
                     isMan
                 })

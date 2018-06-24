@@ -22,6 +22,8 @@ module.exports = function(app) {
     app.get("/login", index.users.loginPage);
     app.post("/login", index.users.userLogin);
     app.get("/logout", index.users.userLogout);
+    app.get("/changepassword", index.users.changePasswordPage);
+    app.post('/changepassword', index.users.userChangePassword);
 
     //profile
     app.get("/profile", index.profile.defaultPage);

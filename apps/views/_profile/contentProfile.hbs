@@ -5,7 +5,7 @@
                         <div class="profiles">
                             <p class="image"><img src="/img/avatar.jpg" height="100" width="100" alt=""></p>
                             <p class="control-label">Tài khoản của</p>
-                            <h6>{{user.username}}</h6>
+                            <h6>{{info.username}}</h6>
                         </div>
                         <div class="nav navbar-nav">
                             
@@ -34,7 +34,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                        <input id="txt_FullName" name="fullName" type="text" placeholder="Họ tên" class="form-control input-md" disabled value="{{user.name}}">
+                                        <input id="txt_FullName" name="fullName" type="text" placeholder="Họ tên" class="form-control input-md" disabled value="{{info.name}}">
                                         </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-birthday-cake"></i>
                                         </div>
-                                        <input id="txt_Date_Of_Birth" name="date_Of_Birth" type="date" placeholder="Nhập ngày sinh" class="form-control input-md" value="{{user.birthday}}" disabled>
+                                        <input id="txt_Date_Of_Birth" name="date_Of_Birth" type="date" placeholder="Nhập ngày sinh" class="form-control input-md" value="{{info.birthday}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label col-xs-12" for="lbl_Address">Địa chỉ</label>  
                                 <div class="col-md-9  col-xs-12">
-                                    <input id="txt_Address" name="address" type="text" placeholder="Nhập địa chỉ" class="form-control input-md" value="{{user.address}}" disabled>
+                                    <input id="txt_Address" name="address" type="text" placeholder="Nhập địa chỉ" class="form-control input-md" value="{{info.address}}" disabled>
                                 </div>
                             </div>
             
@@ -101,7 +101,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                         </div>
-                                        <input id="txt_Phone" name="phone" type="text" placeholder="Số điện thoại" class="form-control input-md" value="{{user.phone}}" disabled>
+                                        <input id="txt_Phone" name="phone" type="text" placeholder="Số điện thoại" class="form-control input-md" value="{{info.phone}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-envelope-o"></i>
                                         </div>
-                                        <input id="txt_Email" name="email" type="text" placeholder="Email" class="form-control input-md" value="{{user.email}}" disabled>
+                                        <input id="txt_Email" name="email" type="text" placeholder="Email" class="form-control input-md" value="{{info.email}}" disabled>
                                     </div>
                                 </div>          
                             </div>

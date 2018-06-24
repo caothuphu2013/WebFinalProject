@@ -1,28 +1,32 @@
 const userDB = require('../models/user');
-const profileDB = require('../models/profile');
 const q = require('q');
 const helper = require('../helper/bcrypt_password');
 
 let userController = {
-    registerPage: function(req, res) {
+    registerPage: function (req, res) {
         res.render("_user/register", {
             layout: "index",
             user: req.session.user
         });
     },
-    loginPage: function(req, res) {
+    loginPage: function (req, res) {
         res.render("_user/login", {
             layout: "index"
         });
+    },
+    changePasswordPage: function (req, res) {
+        res.render("_user/changePassword", {
+            layout: "index"
+        })
     }
     ,
-    userRegister : function(req, res) {
+    userRegister: function (req, res) {
         let username = req.body.username;
         let firstname = req.body.firstname;
         let lastname = req.body.lastname;
         let password = req.body.password;
         let password2 = req.body.password2;
-        let email = req.body.email; 
+        let email = req.body.email;
         let phone = req.body.phone;
 
         req.checkBody('username', 'Username đang trống').notEmpty();
@@ -43,7 +47,7 @@ let userController = {
         else {
             let hashPassword = helper.encryptPassword(password)
             let obj = {
-                username, 
+                username,
                 password: hashPassword,
                 name: firstname + ' ' + lastname,
                 email,
@@ -52,9 +56,9 @@ let userController = {
             let p1 = userDB.insertUser(obj)
                 .then(success => {
                     req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
-                    res.redirect("/login"); 
+                    res.redirect("/login");
                 })
-                
+
                 .fail(err => {
                     req.flash('error_msg', 'Bạn không đăng kí thành công');
                     res.redirect("/register");
@@ -65,7 +69,7 @@ let userController = {
                     console.log(err);
                 });
 
-            let p2 = profileDB.insertInfo(obj).catch(err => {
+            let p2 = userDB.insertInfo(obj).catch(err => {
                 console.log(err);
             })
             q.all([p1, p2]).spread(err => {
@@ -74,7 +78,7 @@ let userController = {
         }
     }
     ,
-    userLogin: function(req, res) {
+    userLogin: function (req, res) {
         let username = req.body.username;
         let password = req.body.password;
 
@@ -111,7 +115,7 @@ let userController = {
                             if (checkPass === true) {
                                 req.session.user = user;
                                 if (user.type == 0)
-                                    res.redirect("/shop");
+                                    res.redirect("/");
                                 else
                                     res.redirect("/admin");
                             }
@@ -133,15 +137,76 @@ let userController = {
                     req.flash("error_msg", "Đăng nhập thất bại");
                     res.redirect('/login');
                 })
-            
-            ;
+
+                ;
         }
 
     }
     ,
-    userLogout: function(req, res) {
+    userLogout: function (req, res) {
         req.session.destroy();
         res.redirect('/');
+    }
+    ,
+    userChangePassword: function (req, res) {
+        let email = req.body.email;
+        let password = req.body.password;
+        let password_confirmation = req.body.password_confirmation;
+
+        req.checkBody('email', 'Email sai định dạng').isEmail();
+        req.checkBody('password', 'Password đang trống').notEmpty();
+        req.checkBody('password_confirmation', 'Password không tương xứng').equals(password);
+
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_user/changepassword', {
+                errors: errors,
+                layout: "index"
+            })
+        }
+        else {
+            userDB.findByEmail(email)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        let username = rows[0].username;
+                        let hashPassword = helper.encryptPassword(password);
+
+                        //Tạo object để truyền session
+                        let user = {
+                            username,
+                            password: hashPassword,
+                            type: 0,
+                            status: true
+                        }
+
+                        req.session.user = user;
+                        userDB.updatePassword(user)
+                            .then((success) => {
+                                req.flash('success_msg', 'Bạn tạo mật khẩu mới thành công');
+                                res.redirect('/login');
+                            })
+                            /*
+                            .fail((error) => {
+                                res.flash('error_msg', 'Tạo mật khẩu thất bại');
+                                res.redirect('/changepassword');
+                            });*/
+                            .catch(err => {
+                                console.log(err);
+                            })
+                    }
+                    else {
+                        req.flash('error_msg', 'Email không tồn tại');
+                        res.redirect('/changePassword');
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .fail(err => {
+                    req.flash("error_msg", "Đăng nhập thất bại");
+                    res.redirect('/login');
+                });
+        }
     }
 
 }
