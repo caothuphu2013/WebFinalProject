@@ -19,33 +19,5 @@
         </form>
     </div>
 </div>
-
-{{#section 'js'}}
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-        //search type choosing
-            $('.content-drop').bind('click', function (event) {
-                var selected = $(this).text();
-                $('.dropdown-text').text(selected);
-                $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
-            });
-        });
-
-
-        $("#searchform" ).submit(function(event) {
-            let tmp = $('.dropdown-text').text();
-            if (tmp === "Sản phẩm") 
-            { 
-                $(this).append('<input type="hidden" name="typeSearch" value ="name"/>');
-            }
-            else if (tmp === "Loại") 
-            { 
-                $(this).append('<input type="hidden" name="typeSearch" value="type"/>');
-            }
-        });
-
-    </script>
-{{/section}}
-
    
     

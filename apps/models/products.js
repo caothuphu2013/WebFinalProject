@@ -46,6 +46,20 @@ let products = {
         });
         return d.promise;
     },
+    filterProducts: function(brand, type) {
+        let d = q.defer();
+        let sql = `select product.id, product.name, price, picture 
+            from product,brand,type 
+            where product.brand = brand.id and product.type = type.id
+            and brand.name in (?) and type.name in (?)`;
+        db.query(sql,[brand,type], (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);       
+        });
+        return d.promise;
+    },
     getProductStatistic: function() {
         let d = q.defer();
         let sql = "select name, price, buyTimes from product";
@@ -78,7 +92,7 @@ let products = {
             d.resolve(results);
         });
         return d.promise;
-    },
+    }
 }
 
 module.exports = products;

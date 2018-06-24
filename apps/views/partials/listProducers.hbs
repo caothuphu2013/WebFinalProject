@@ -7,7 +7,7 @@
     <div class="list-group">
         {{#each layoutVM.brandsList}}
             <div class="listgroup-item click-box">  
-                <a href="/shop/choose?att=brand&id={{this.id}}" class="{{this.name}}"><input style="float:left;width:15px;height:15px;" type="checkbox" class="{{this.name}} checkbox checkbox-btn" checked>&nbsp;{{this.name}}</a>
+                <a href="/shop/choose?att=brand&id={{this.id}}" class="{{this.name}}"><input style="float:left;width:15px;height:15px;" type="checkbox" name="brand" value="{{this.name}}" checked>&nbsp;{{this.name}}</a>
             </div>    
         {{/each}}
     </div>

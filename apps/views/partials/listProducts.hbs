@@ -2,10 +2,10 @@
 <div class='col-md-3 col-sm-6'>
     <div class='single-shop-product'>
         <div class='product-upper'>
-            <img src="/img/{{this.picture}}.jpg" />
+            <a href='/product?id={{this.id}}'><img href='/product?id={{this.id}}' src="/img/{{this.picture}}.jpg" /></a>
         </div>
         <h2>
-            <a href='/product?id={{this.id}}' class='product-link'>{{this.name}}</a>
+            <p class='product-link'>{{this.name}}</p>
         </h2>
         <div class='product-carousel-price'>
             <del>{{this.price}}$</del>

@@ -34,19 +34,18 @@ let profileController = {
                 let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
                 let birthday = year + '-' + month + '-' + day;
 
-                //Taọ object truyền session
-                let obj = {
+                let info = {
                     username, 
                     name, 
                     birthday,
                     sex,
                     address,
                     phone, 
-                    email
+                    email,
                 }
-                req.session.user = obj;
                 res.render('_profile/contentProfile', {
                     user: req.session.user,
+                    info,
                     layout: "index",
                     isMan
                 })
@@ -82,7 +81,7 @@ let profileController = {
                 let birthday = year + '-' + month + '-' + day;
 
                 //Taọ object truyền session
-                let obj = {
+                let info = {
                     username, 
                     name, 
                     birthday: birthday,
@@ -94,6 +93,7 @@ let profileController = {
 
                 res.render('_profile/updateProfile', {
                     user: req.session.user,
+                    info,
                     layout: "index",
                     isMan
                 })
@@ -113,28 +113,55 @@ let profileController = {
 
         let address = req.body.address ? `${req.body.address}` : '';
         //let city = req.body.city_Address ? `${req.body.city_Address}` : '';
-
         //let address = range_address + ', ' + city;
         let phone = req.body.phone;
         let email = req.body.email;
         
-        let obj = {
+        let image = req.file ? '/img/account/' + req.file.filename : '/img/avatar.jpg';
+ 
+        let obj_1 = {
             username, name, birthday, sex, address, phone, email
         }
 
-        profileDB.updateInfo(obj)
+        let obj_2 = {
+            ...req.session.user,
+            image
+        }
+        //////////////////////////////////////////////
+        let p1 = profileDB.updateInfo(obj_1)
         .then(rows => {
-            req.flash('success_msg', 'Cập nhật thông tin thành công');
-            res.redirect('/profile');
+            if (image !== '/img/avatar.jpg') {
+                profileDB.updateAvatar(obj_2)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        req.session.user = obj_2;
+                        req.flash('success_msg', 'Cập nhật thông tin thành công');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash("'error_msg", 'Cập nhật ảnh đại diện thất bại');
+                        res.redirect('/profile');
+                    }
+                })
+                .catch (err => {
+                    console.log(err);
+                })
+            }
+            else {
+                req.flash('success_msg', 'Cập nhật thông tin thành công');
+                res.redirect('/profile');
+            }
+
         })
+        /*
         .fail(err => {
             req.flash('error_msg', 'Cập nhật thông tin thất bại');
             res.redirect('/profile/update');
-        })
+        })*/
         .catch(err => {
             req.flash('error', 'Hệ thống bị lỗi');
             console.log(err);
-        })
+        });
     }
 }
 

@@ -53,6 +53,36 @@ let productsController = {
             });
         })
     }
+    ,
+    filter : function(req, res) {
+        let brand = req.body.brand;
+        let type = req.body.type;
+        let brandstr = "";
+        let typestr = "";
+        for(let index in brand) { 
+            brandstr += "'" + brand[index] + "',"; 
+        } 
+        brandstr = brandstr.slice(0, -1);
+
+        for(let index in type) { 
+            typestr += "'" + type[index] + "',"; 
+        } 
+        typestr = typestr.slice(0, -1);
+
+        let p1 = categoryDB.filterProducts(brand,type).catch(err => {
+                console.log("Error: " + err);});
+
+        q.all([p1]).spread(function(temp1) {
+            res.render("_shop/shop", {
+                user: req.session.user,
+                productsList: temp1,
+                noProducts: temp1.length === 0,
+                brandcheck:brand,
+                typecheck:type,
+                layout: "index"
+            });
+        })
+    }
 }
 
 module.exports = productsController;

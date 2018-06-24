@@ -1,28 +1,43 @@
 const userDB = require('../models/user');
-const profileDB = require('../models/profile');
 const q = require('q');
 const helper = require('../helper/bcrypt_password');
+let emailer = require('../helper/email');
+
+let email_temp = '';
 
 let userController = {
-    registerPage: function(req, res) {
+    registerPage: function (req, res) {
         res.render("_user/register", {
             layout: "index",
             user: req.session.user
         });
-    },
-    loginPage: function(req, res) {
+    }
+    ,
+    loginPage: function (req, res) {
         res.render("_user/login", {
             layout: "index"
         });
     }
     ,
-    userRegister : function(req, res) {
+    forgetPasswordPage: function (req, res) {
+        res.render("_user/forgetPassword", {
+            layout: "index"
+        })
+    }
+    ,
+    createNewPasswordPage: function (req, res) {
+        res.render("_user/createNewPassword", {
+            layout: "index"
+        })
+    }
+    ,
+    userRegister: function (req, res) {
         let username = req.body.username;
         let firstname = req.body.firstname;
         let lastname = req.body.lastname;
         let password = req.body.password;
         let password2 = req.body.password2;
-        let email = req.body.email; 
+        let email = req.body.email;
         let phone = req.body.phone;
 
         req.checkBody('username', 'Username đang trống').notEmpty();
@@ -43,8 +58,9 @@ let userController = {
         else {
             let hashPassword = helper.encryptPassword(password)
             let obj = {
-                username, 
+                username,
                 password: hashPassword,
+                image: '/img/avatar.jpg',
                 name: firstname + ' ' + lastname,
                 email,
                 phone
@@ -52,9 +68,9 @@ let userController = {
             let p1 = userDB.insertUser(obj)
                 .then(success => {
                     req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
-                    res.redirect("/login"); 
+                    res.redirect("/login");
                 })
-                
+
                 .fail(err => {
                     req.flash('error_msg', 'Bạn không đăng kí thành công');
                     res.redirect("/register");
@@ -65,7 +81,7 @@ let userController = {
                     console.log(err);
                 });
 
-            let p2 = profileDB.insertInfo(obj).catch(err => {
+            let p2 = userDB.insertInfo(obj).catch(err => {
                 console.log(err);
             })
             q.all([p1, p2]).spread(err => {
@@ -74,7 +90,7 @@ let userController = {
         }
     }
     ,
-    userLogin: function(req, res) {
+    userLogin: function (req, res) {
         let username = req.body.username;
         let password = req.body.password;
 
@@ -94,12 +110,14 @@ let userController = {
                     if (rows.length > 0) {
                         let type = rows[0].type;
                         let passwordSQL = rows[0].password;
+                        let image = rows[0].image;
+
                         //Tạo object để truyền session
                         let user = {
                             username,
                             passwordSQL,
                             type,
-                            status: true
+                            image
                         }
 
                         if (type < 0) {
@@ -111,7 +129,7 @@ let userController = {
                             if (checkPass === true) {
                                 req.session.user = user;
                                 if (user.type == 0)
-                                    res.redirect("/shop");
+                                    res.redirect("/");
                                 else
                                     res.redirect("/admin");
                             }
@@ -126,24 +144,109 @@ let userController = {
                         res.redirect('/login');
                     }
                 })
-                .catch(err => {
-                    console.log(err);
-                })
                 .fail(err => {
                     req.flash("error_msg", "Đăng nhập thất bại");
                     res.redirect('/login');
-                })
-            
-            ;
+                });
         }
 
     }
     ,
-    userLogout: function(req, res) {
+    userLogout: function (req, res) {
         req.session.destroy();
         res.redirect('/');
     }
+    ,
+    userForgetPassword: function (req, res) {
+        let email = req.body.email;
+        req.checkBody('email', 'Email sai định dạng').isEmail();
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_user/forgetPassword', {
+                errors: errors,
+                layout: "index"
+            })
+        }
+        else {
+            userDB.findByEmail(email)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        email_temp = email;
+                        //create nodemailer to send message
+                        emailer = new emailer(email, 
+                               `Chào bạn, chúng tôi nhận được thông báo rằng bạn quên mật khẩu của mình.\n
+                                Vì vậy, để reset mật khẩu, bạn vui lòng truy cập đường link bên dưới. \n
+                                   \t http://localhost:8080/newpassword \n
+                                Thân.
+                                `);
+                        emailer.SendEmail();
 
+                        req.flash('success_msg', 'Tin nhắn xác nhận đã được gửi.');
+                        res.redirect('/forgetpassword');
+                    }
+                    else {
+                        req.flash('error_msg', 'Email không tồn tại');
+                        res.redirect('/forgetpassword');
+                    } 
+                })
+                .catch(error => {
+                    console.log(error);
+                }) 
+                .fail((error) => {
+                    req.flash('error_msg', 'Không gửi được tin nhắn tới email của bạn');
+                    res.redirect('/forgetpassword');
+                });
+        }
+    }
+    ,
+    userCreateNewPassword: function (req, res) {
+        let password = req.body.password;
+        let password_confirmation = req.body.password_confirmation;
+
+        req.checkBody('password', 'Password đang trống').notEmpty();
+        req.checkBody('password_confirmation', 'Password không tương xứng').equals(password);
+
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_user/createNewPassword', {
+                errors: errors,
+                layout: "index"
+            })
+        }
+        else {
+            userDB.findByEmail(email_temp)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        // Create session
+                        let username = rows[0].username;
+                        let hashPassword = helper.encryptPassword(password);
+
+                        let user = {
+                            username,
+                            password: hashPassword,
+                        }
+
+                        userDB.updatePassword(user)
+                            .then((success) => {
+                                req.flash('success_msg', 'Bạn tạo mật khẩu mới thành công');
+                                res.redirect('/login');
+                            })
+                            .fail((error) => {
+                                res.flash('error_msg', 'Tạo mật khẩu thất bại');
+                                res.redirect('/newpassword');
+                            });
+                    }
+                    else {
+                        req.flash('error_msg', 'Email không tồn tại');
+                        res.redirect('/newpassword');
+                    }
+                })
+                .fail(err => {
+                    req.flash("error_msg", "Không thể đổi mật khẩu");
+                    res.redirect('/login');
+                });
+        }
+    }
 }
 
 module.exports = userController;
