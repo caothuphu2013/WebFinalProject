@@ -996,7 +996,7 @@ button[type=submit]:hover {
 
 .near-bottom {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     background: none repeat scroll 0 0 #1abc9c;
     border: medium none;
     color: #fff;
@@ -1420,8 +1420,12 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 
 .single-shop-product {
     position: relative;
-    height: 330px;
-    margin-bottom: 100px;
+    height: 350px;
+    margin-bottom: 50px;
+    right:15px;
+}
+.single-shop-product:hover {
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
 }
 
 .pagination>li>a,
@@ -1464,6 +1468,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     width: 150px;
     text-align: center;
     cursor: pointer;
+    border-style: none;
 }
 
 .search-type-btn.dropdown-text.col-md-6 {
@@ -1626,6 +1631,10 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 .product-upper {
     width: 188px;
     height: 188px;
+}
+
+.product-upper img{
+    width: 95%
 }
 
 .product-img {

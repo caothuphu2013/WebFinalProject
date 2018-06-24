@@ -8,6 +8,7 @@ module.exports = function(app) {
     app.get("/shop", index.products.searchProducts);
     app.get("/shop/choose", index.products.searchProductsAuto);
     app.post("/shop/search", index.products.search);
+    app.post("/shop/filter", index.products.filter);
 
 
     //single-product
