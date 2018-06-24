@@ -11,16 +11,12 @@ let userController = {
             layout: "index",
             user: req.session.user
         });
-    },
+    }
+    ,
     loginPage: function (req, res) {
         res.render("_user/login", {
             layout: "index"
         });
-    },
-    changePasswordPage: function (req, res) {
-        res.render("_user/changePassword", {
-            layout: "index"
-        })
     }
     ,
     forgetPasswordPage: function (req, res) {
@@ -64,6 +60,7 @@ let userController = {
             let obj = {
                 username,
                 password: hashPassword,
+                image: '/img/avatar.jpg',
                 name: firstname + ' ' + lastname,
                 email,
                 phone
@@ -113,12 +110,14 @@ let userController = {
                     if (rows.length > 0) {
                         let type = rows[0].type;
                         let passwordSQL = rows[0].password;
+                        let image = rows[0].image;
+
                         //Tạo object để truyền session
                         let user = {
                             username,
                             passwordSQL,
                             type,
-                            status: true
+                            image
                         }
 
                         if (type < 0) {
@@ -145,15 +144,10 @@ let userController = {
                         res.redirect('/login');
                     }
                 })
-                .catch(err => {
-                    console.log(err);
-                })
                 .fail(err => {
                     req.flash("error_msg", "Đăng nhập thất bại");
                     res.redirect('/login');
-                })
-
-                ;
+                });
         }
 
     }
@@ -161,59 +155,6 @@ let userController = {
     userLogout: function (req, res) {
         req.session.destroy();
         res.redirect('/');
-    }
-    ,
-    userChangePassword: function (req, res) {
-        let email = req.body.email;
-        let password = req.body.password;
-        let password_confirmation = req.body.password_confirmation;
-
-        req.checkBody('email', 'Email sai định dạng').isEmail();
-        req.checkBody('password', 'Password đang trống').notEmpty();
-        req.checkBody('password_confirmation', 'Password không tương xứng').equals(password);
-
-        var errors = req.validationErrors();
-        if (errors) {
-            res.render('_user/changePassword', {
-                errors: errors,
-                layout: "index"
-            })
-        }
-        else {
-            userDB.findByEmail(email)
-                .then(rows => {
-                    if (rows.length > 0) {
-                        let username = rows[0].username;
-                        let hashPassword = helper.encryptPassword(password);
-
-                        //Tạo object để truyền session
-                        let user = {
-                            username,
-                            password: hashPassword,
-                            type: 0,
-                            status: true
-                        }
-                        userDB.updatePassword(user)
-                            .then((success) => {
-                                req.flash('success_msg', 'Bạn tạo mật khẩu mới thành công');
-                                res.redirect('/login');
-                            })
-                            
-                            .fail((error) => {
-                                res.flash('error_msg', 'Tạo mật khẩu thất bại');
-                                res.redirect('/changepassword');
-                            });
-                    }
-                    else {
-                        req.flash('error_msg', 'Email không tồn tại');
-                        res.redirect('/changePassword');
-                    }
-                })
-                .fail(err => {
-                    req.flash("error_msg", "Không thể đổi mật khẩu");
-                    res.redirect('/login');
-                });
-        }
     }
     ,
     userForgetPassword: function (req, res) {
@@ -306,7 +247,6 @@ let userController = {
                 });
         }
     }
-
 }
 
 module.exports = userController;

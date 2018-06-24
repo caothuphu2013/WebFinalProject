@@ -23,5 +23,15 @@ let profile = {
         });
         return d.promise;
     },
+    updateAvatar: function(user) {
+        let d = q.defer();
+        let sql = `update account set image=? where username = ?`;
+        db.query(sql, [user.image, user.username], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
 }
 module.exports = profile;

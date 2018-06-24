@@ -46,8 +46,11 @@
             <div class="col-md-4">
                 {{#if user}}
                     <a href="/profile">
-                        <img id='avatar' src="/img/avatar.jpg" alt="" class="img-thumbnail img-fluid">
+                        <img id='avatar' src="{{user.image}}" alt="" class="img-thumbnail img-fluid" width="40px" height="40px">
                     </a>
+                    <div style="float: right; margin-right: 4%; margin-top: 3%">
+                        Chào, {{user.username}}
+                    </div> 
                 {{/if}}
             </div>
         </div>

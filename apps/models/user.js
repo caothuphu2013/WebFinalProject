@@ -5,8 +5,8 @@ const q = require('q');
 let users = {
     insertUser: function(user) {
         let d = q.defer();
-        let sql = `INSERT INTO account(username, password, type) VALUES (?, ?, 0);`;
-        db.query(sql, [user.username, user.password], (error, results) => {
+        let sql = `INSERT INTO account(username, password, type, image) VALUES (?, ?, 0, ?);`;
+        db.query(sql, [user.username, user.password, user.image], (error, results) => {
             if (error) {
                 d.reject(error);
             }

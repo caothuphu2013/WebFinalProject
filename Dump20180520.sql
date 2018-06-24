@@ -26,6 +26,7 @@ CREATE TABLE `account` (
   `username` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   `type` varchar(5) NOT NULL,
+  `image` varchar(50) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -36,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-REPLACE INTO `account` (`username`, `password`, `type`) VALUES ('admin','admin','1'),('user1','user1','0');
+REPLACE INTO `account` (`username`, `password`, `type`, `image`) VALUES ('admin','admin','1', '/img/avatar.jpg'),('user1','user1','0', '/img/avatar.jpg');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 

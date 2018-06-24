@@ -8,6 +8,10 @@ const flash = require('connect-flash');
 const layout = require('../apps/models/layout');
 const q = require('q');
 
+const config = require('./database');
+const passport = require('passport');
+const facebookStrategy = require('passport-facebook').Strategy;
+
 module.exports = function(app) {
 
     app.use(express.static("public"));
@@ -49,7 +53,6 @@ module.exports = function(app) {
         res.locals.error_msg = req.flash('error_msg');
         res.locals.error = req.flash('error');
         next();
-
     });
 
     app.use(function(req, res, next) {
@@ -61,5 +64,30 @@ module.exports = function(app) {
         })
         next();
     });
+
     
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    //passpor
+    passport.serializeUser(function(user, done) {
+        done(null, user);
+    });
+    passport.deserializeUser(function(obj, done) {
+        done(null, obj);
+    })
+
+    // Use the FacebookStrategy within Passport.
+    passport.use(new facebookStrategy({
+        clientID: config.facebook_api_key,
+        clientSecret: config.facebook_api_secret,
+        callbackURL: config.callback_url
+    }, 
+        function (accessToken, refreshToken, profile, done) {
+            process.nextTick(function() {
+                //Check whether the User exists or not using profile.id
+                return done(null, profile);
+            })
+        }
+    ));
 }
