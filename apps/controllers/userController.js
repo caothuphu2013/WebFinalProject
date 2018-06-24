@@ -1,6 +1,9 @@
 const userDB = require('../models/user');
 const q = require('q');
 const helper = require('../helper/bcrypt_password');
+let emailer = require('../helper/email');
+
+let email_temp = '';
 
 let userController = {
     registerPage: function (req, res) {
@@ -16,6 +19,18 @@ let userController = {
     },
     changePasswordPage: function (req, res) {
         res.render("_user/changePassword", {
+            layout: "index"
+        })
+    }
+    ,
+    forgetPasswordPage: function (req, res) {
+        res.render("_user/forgetPassword", {
+            layout: "index"
+        })
+    }
+    ,
+    createNewPasswordPage: function (req, res) {
+        res.render("_user/createNewPassword", {
             layout: "index"
         })
     }
@@ -159,7 +174,7 @@ let userController = {
 
         var errors = req.validationErrors();
         if (errors) {
-            res.render('_user/changepassword', {
+            res.render('_user/changePassword', {
                 errors: errors,
                 layout: "index"
             })
@@ -178,32 +193,115 @@ let userController = {
                             type: 0,
                             status: true
                         }
-
-                        req.session.user = user;
                         userDB.updatePassword(user)
                             .then((success) => {
                                 req.flash('success_msg', 'Bạn tạo mật khẩu mới thành công');
                                 res.redirect('/login');
                             })
-                            /*
+                            
                             .fail((error) => {
                                 res.flash('error_msg', 'Tạo mật khẩu thất bại');
                                 res.redirect('/changepassword');
-                            });*/
-                            .catch(err => {
-                                console.log(err);
-                            })
+                            });
                     }
                     else {
                         req.flash('error_msg', 'Email không tồn tại');
                         res.redirect('/changePassword');
                     }
                 })
-                .catch(err => {
-                    console.log(err);
+                .fail(err => {
+                    req.flash("error_msg", "Không thể đổi mật khẩu");
+                    res.redirect('/login');
+                });
+        }
+    }
+    ,
+    userForgetPassword: function (req, res) {
+        let email = req.body.email;
+        req.checkBody('email', 'Email sai định dạng').isEmail();
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_user/forgetPassword', {
+                errors: errors,
+                layout: "index"
+            })
+        }
+        else {
+            userDB.findByEmail(email)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        email_temp = email;
+                        //create nodemailer to send message
+                        emailer = new emailer(email, 
+                               `Chào bạn, chúng tôi nhận được thông báo rằng bạn quên mật khẩu của mình.\n
+                                Vì vậy, để reset mật khẩu, bạn vui lòng truy cập đường link bên dưới. \n
+                                   \t http://localhost:8080/newpassword \n
+                                Thân.
+                                `);
+                        emailer.SendEmail();
+
+                        req.flash('success_msg', 'Tin nhắn xác nhận đã được gửi.');
+                        res.redirect('/forgetpassword');
+                    }
+                    else {
+                        req.flash('error_msg', 'Email không tồn tại');
+                        res.redirect('/forgetpassword');
+                    } 
+                })
+                .catch(error => {
+                    console.log(error);
+                }) 
+                .fail((error) => {
+                    req.flash('error_msg', 'Không gửi được tin nhắn tới email của bạn');
+                    res.redirect('/forgetpassword');
+                });
+        }
+    }
+    ,
+    userCreateNewPassword: function (req, res) {
+        let password = req.body.password;
+        let password_confirmation = req.body.password_confirmation;
+
+        req.checkBody('password', 'Password đang trống').notEmpty();
+        req.checkBody('password_confirmation', 'Password không tương xứng').equals(password);
+
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_user/createNewPassword', {
+                errors: errors,
+                layout: "index"
+            })
+        }
+        else {
+            userDB.findByEmail(email_temp)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        // Create session
+                        let username = rows[0].username;
+                        let hashPassword = helper.encryptPassword(password);
+
+                        let user = {
+                            username,
+                            password: hashPassword,
+                        }
+
+                        userDB.updatePassword(user)
+                            .then((success) => {
+                                req.flash('success_msg', 'Bạn tạo mật khẩu mới thành công');
+                                res.redirect('/login');
+                            })
+                            .fail((error) => {
+                                res.flash('error_msg', 'Tạo mật khẩu thất bại');
+                                res.redirect('/newpassword');
+                            });
+                    }
+                    else {
+                        req.flash('error_msg', 'Email không tồn tại');
+                        res.redirect('/newpassword');
+                    }
                 })
                 .fail(err => {
-                    req.flash("error_msg", "Đăng nhập thất bại");
+                    req.flash("error_msg", "Không thể đổi mật khẩu");
                     res.redirect('/login');
                 });
         }

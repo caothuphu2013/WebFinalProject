@@ -28,6 +28,10 @@ module.exports = function(app) {
     app.get("/logout", index.users.userLogout);
     app.get("/changepassword", index.users.changePasswordPage);
     app.post('/changepassword', index.users.userChangePassword);
+    app.get("/forgetpassword", index.users.forgetPasswordPage);
+    app.post("/forgetpassword", index.users.userForgetPassword);
+    app.get("/newpassword", index.users.createNewPasswordPage);
+    app.post("/newpassword", index.users.userCreateNewPassword);
 
     //profile
     app.get("/profile", index.profile.defaultPage);
