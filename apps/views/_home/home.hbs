@@ -5,13 +5,71 @@
         {{> SlideBullets}}
         <div class="carousel-inner" role="listbox">
             {{> HomeSlider}}
-        </div>	
+        </div>
     </div>
 </div>
 <!-- End slider area -->
+
 <div class="promo-area">
     <div class="zigzag-bottom"></div>
     {{> PromotionArea}}
 </div>
-
 <!-- End promo area -->
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    {{> MainArea}}
+</div>
+{{!-- End main content --}}
+<div class="brands-area">
+    <div class="zigzag-bottom"></div>
+    {{> brandArea}}
+</div>
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    {{> bestSelling}}
+</div>
+
+
+{{#section 'js'}}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('.product-carousel').owlCarousel({
+            loop: true,
+            nav: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                600: {
+                    items: 3,
+                }
+            }
+        });
+
+        $('.brand-list').owlCarousel({
+            loop: true,
+            nav: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                600: {
+                    items: 2,
+                },
+                1000: {
+                    items: 2,
+                },
+                1200: {
+                    items: 3,
+                }
+            }
+        });
+    })(jQuery);
+</script>
+{{/section}}
