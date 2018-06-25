@@ -18,7 +18,8 @@ var upload = multer({storage:storage});
 // Exports
 module.exports = function(app) {
     //home
-    app.get("/", index.home.loadHomePage);
+    app.get("/", index.home.loadHomePage); 
+    app.get("/index", index.home.loadHomePage);
     // shop
     app.get("/shop", index.products.searchProducts);
     app.get("/shop/choose", index.products.searchProductsAuto);
@@ -48,12 +49,20 @@ module.exports = function(app) {
     app.get("/logout", index.users.userLogout);
     app.get("/forgetpassword", index.users.forgetPasswordPage);
     app.post("/forgetpassword", index.users.userForgetPassword);
+    app.get("/newpassword", index.users.createNewPasswordPage);
+    app.post("/newpassword", index.users.userCreateNewPassword);
 
     //profile
     app.get("/profile", index.profile.defaultPage);
     app.get("/profile/update", index.profile.updatePage);
     app.post('/profile/update', upload.single('upload_photo'), index.profile.updateInfo);
 
-    //Err0r
+    
+    //contact
+    app.get('/contact', index.contact.contactPage);
+    app.post('/contact', index.contact.sendMessage);
+    app.get('/contact/form', index.contact.formContactPage);
+
+        //Err0r
     app.use(errorPage);
 }

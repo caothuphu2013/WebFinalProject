@@ -1,9 +1,23 @@
+    <style>
+      .profiles {
+          margin-left: 14%;
+      }
+
+      .profiles .image {
+          margin-left: -10% !important;
+      }
+      .profiles img {
+          height: 150px;
+          width: 150px;
+       }
+  </style>
+  
   <div class="content-profile" style="margin: 5%;">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                         <div class="profiles">
-                            <p class="image"><img src="{{user.image}}" height="100" width="100" alt=""></p>
+                            <p class="image"><img src="{{user.image}}" class="img-thumbnail img-fluid" alt=""></p>
                             <p class="control-label">Tài khoản của</p>
                             <h6>{{user.username}}</h6>
                         </div>
@@ -38,7 +52,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="lbl_UploadPhoto">Tải ảnh lên</label>
                                 <div class="col-md-6">
-                                    <input id="Upload_photo" name="upload_photo" class="img-thumbnail img-fluid" type="file" width="100px" height="100px">
+                                    <input id="Upload_photo" name="upload_photo" type="file">
                                 </div>
                             </div>
             
