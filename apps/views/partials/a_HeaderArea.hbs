@@ -7,6 +7,8 @@
         margin-right: 3%;
         margin-top: 1%;
         margin-bottom: 1%;
+        width: 32px;
+        height: 32px;
     }
 </style>
 
@@ -46,7 +48,7 @@
             <div class="col-md-4">
                 {{#if user}}
                     <a href="/profile">
-                        <img id='avatar' src="{{user.image}}" alt="" class="img-thumbnail img-fluid" width="40px" height="40px">
+                        <img id='avatar' src="{{user.image}}" alt="" class="img-fluid">
                     </a>
                     <div style="float: right; margin-right: 4%; margin-top: 3%">
                         Chào, {{user.username}}

@@ -1,5 +1,6 @@
 const profileDB = require('../models/profile');
 const q = require('q');
+const dateToString = require('../helper/convertDateToString');
 
 let profileController = {
     defaultPage: function(req, res) {
@@ -21,7 +22,7 @@ let profileController = {
                     city = address.substring(vtc, address.length);
                 }
                 */
-                //Kiểm tra giới tính
+                //Check gender
                 let isMan;
                 if (sex === 'Nữ')
                     isMan = false;
@@ -29,11 +30,9 @@ let profileController = {
                     isMan = true;
 
                 //Date
-                let year = date.getFullYear();
-                let month =  date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth();
-                let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-                let birthday = year + '-' + month + '-' + day;
+                let birthday = new dateToString(date);
 
+                //Create object info to render view
                 let info = {
                     username, 
                     name, 
@@ -67,7 +66,7 @@ let profileController = {
                 let phone = rows[0].phone;
                 let email = rows[0].email;
 
-                //Kiểm tra giới tính
+                //Check gender
                 let isMan;
                 if (sex === 'Nữ')
                     isMan = false;
@@ -75,12 +74,9 @@ let profileController = {
                     isMan = true;
 
                 //Date
-                let year = date.getFullYear();
-                let month =  date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth();
-                let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-                let birthday = year + '-' + month + '-' + day;
+                let birthday = new dateToString(date);
 
-                //Taọ object truyền session
+                //Create object info to render view
                 let info = {
                     username, 
                     name, 

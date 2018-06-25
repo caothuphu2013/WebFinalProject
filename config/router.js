@@ -18,7 +18,8 @@ var upload = multer({storage:storage});
 // Exports 
 module.exports = function(app) {
     //home
-    app.get("/", index.home.loadHomePage);
+    app.get("/", index.home.loadHomePage); 
+    app.get("/index", index.home.loadHomePage);
     // shop
     app.get("/shop", index.products.searchProducts);
     app.get("/shop/choose", index.products.searchProductsAuto);
@@ -47,6 +48,10 @@ module.exports = function(app) {
     app.get("/profile", index.profile.defaultPage);
     app.get("/profile/update", index.profile.updatePage);
     app.post('/profile/update', upload.single('upload_photo'), index.profile.updateInfo);
+
+    
+    //contact
+    app.get('/contact', index.contact.contactPage);
 
         //Err0r
     app.use(errorPage);

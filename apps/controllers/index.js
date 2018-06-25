@@ -4,11 +4,13 @@ const singleproductController = require('./singleproductController');
 const userController = require('./userController');
 const homeController = require('./homeController');
 const profileController = require('./profileController');
+const contactController = require('./contactController');
 
 module.exports = {
     products : productsController,
     singleproduct : singleproductController,
     users: userController,
     home: homeController,
-    profile: profileController
+    profile: profileController,
+    contact: contactController
 }
