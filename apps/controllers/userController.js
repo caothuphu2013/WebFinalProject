@@ -2,6 +2,7 @@ const userDB = require('../models/user');
 const q = require('q');
 const helper = require('../helper/bcrypt_password');
 let emailer = require('../helper/email');
+const emailUs = 'dackweb2018@gmail.com'
 
 let email_temp = '';
 
@@ -173,7 +174,7 @@ let userController = {
                     if (rows.length > 0) {
                         email_temp = email;
                         //create nodemailer to send message
-                        emailer = new emailer(email, 
+                        emailer = new emailer(emailUs , email, 'Tạo mật khẩu mới',
                                `Chào bạn, chúng tôi nhận được thông báo rằng bạn quên mật khẩu của mình.\n
                                 Vì vậy, để reset mật khẩu, bạn vui lòng truy cập đường link bên dưới. \n
                                    \t http://localhost:8080/newpassword \n

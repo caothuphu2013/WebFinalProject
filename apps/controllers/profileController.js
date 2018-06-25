@@ -1,6 +1,6 @@
 const profileDB = require('../models/profile');
 const q = require('q');
-const dateToString = require('../helper/convertDateToString');
+const dateToString = require('../helper/date');
 
 let profileController = {
     defaultPage: function(req, res) {
@@ -30,7 +30,7 @@ let profileController = {
                     isMan = true;
 
                 //Date
-                let birthday = new dateToString(date);
+                let birthday = new dateToString(date).convertDateToString();
 
                 //Create object info to render view
                 let info = {
@@ -74,7 +74,7 @@ let profileController = {
                     isMan = true;
 
                 //Date
-                let birthday = new dateToString(date);
+                let birthday = new dateToString(date).convertDateToString();
 
                 //Create object info to render view
                 let info = {

@@ -49,6 +49,8 @@ module.exports = function(app) {
     app.get("/logout", index.users.userLogout);
     app.get("/forgetpassword", index.users.forgetPasswordPage);
     app.post("/forgetpassword", index.users.userForgetPassword);
+    app.get("/newpassword", index.users.createNewPasswordPage);
+    app.post("/newpassword", index.users.userCreateNewPassword);
 
     //profile
     app.get("/profile", index.profile.defaultPage);
@@ -58,6 +60,7 @@ module.exports = function(app) {
     
     //contact
     app.get('/contact', index.contact.contactPage);
+    app.post('/contact', index.contact.sendMessage);
 
         //Err0r
     app.use(errorPage);
