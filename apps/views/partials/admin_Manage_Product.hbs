@@ -1,3 +1,12 @@
+<style>
+	.sp {
+		background-color: #222;
+	}
+	.cl, .nsx, .dh {
+		background-color: #labc9c;
+	}
+</style>
+
 {{#each products}}
 <div class='col-md-3 col-sm-6'>
 	<div class='single-shop-product'>
@@ -8,8 +17,8 @@
 		</div>
 		<div class='col-md-2 col-sm-2' style='width:10%; height:100%;margin:0; padding:0;'></div>
 		</div>
-		<div style='height: 40px'>
-		<h2 class='product-link'>{{this.name}}</h2>
+		<div style='height: 65px;'>
+		<h2 class='product-link' style=''>{{this.name}}</h2>
 		</div>
 		<div class='product-carousel-price' style='height: 30px; margin: 0; padding: 0;'>
 			<ins>${{this.price}}.00</ins>
@@ -20,3 +29,4 @@
 	</div>
 </div>
 {{/each}}
+<button type='button' class='btn btn-default add-btn' style='float:right; margin-bottom:20px; width: 200px; background-color: #1abc9c; color: white;'>Thêm sản phẩm mới</button>

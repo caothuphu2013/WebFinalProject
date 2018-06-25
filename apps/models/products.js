@@ -48,15 +48,15 @@ let products = {
     },
     filterProducts: function(brand, type) {
         let d = q.defer();
-        let sql = `select product.id, product.name, price, picture 
-            from product,brand,type 
+        let sql = `select product.id, product.name, price, picture
+            from product,brand,type
             where product.brand = brand.id and product.type = type.id
             and brand.name in (?) and type.name in (?)`;
         db.query(sql,[brand,type], (error, results) => {
             if (error) {
                 d.reject(error);
             }
-            d.resolve(results);       
+            d.resolve(results);
         });
         return d.promise;
     },
@@ -92,7 +92,51 @@ let products = {
             d.resolve(results);
         });
         return d.promise;
-    }
+    },
+    getType: function() {
+        let d = q.defer();
+        let sql = "select id, name from laptop_db.type"
+        db.query(sql, (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    getBrand: function() {
+        let d = q.defer();
+        let sql = "select id, name from laptop_db.brand"
+        db.query(sql, (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    getOrders: function() {
+        let d = q.defer();
+        let sql = "select idBill, time, status, total from laptop_db.bill"
+        db.query(sql, (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    getOrderInfo: function(idBill) {
+        let d = q.defer();
+        let sql = "select idBill_info, product, count from laptop_db.bill_info where idBill = ?"
+        db.query(sql, [idBill], (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
 }
 
 module.exports = products;

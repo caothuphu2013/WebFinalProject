@@ -1,0 +1,23 @@
+<style>
+	.nsx {
+		background-color: #222;
+	}
+	.sp, .cl, .dh {
+		background-color: #labc9c;
+	}
+</style>
+{{#each brands}}
+<div class='col-md-3 col-sm-6'>
+	<div class='single-shop-product'>
+		<div style='height:188px'>
+			<div class='col-md-2 col-sm-2' style='width:10%; height:100%; margin:0; padding:0;'></div>
+			<div class='product-upper col-md-8' style='margin:0; padding:0; width: 80%'>
+				<img src='/img/Logo{{this.name}}.jpg' alt='{{this.name}}' title='{{this.name}}' class='product-img'/>
+			</div>
+			<div class='col-md-2 col-sm-2' style='width:10%; height:100%;margin:0; padding:0;'></div>
+		</div>
+		<h2><p class='product-link'>{{this.name}}</p></h2>
+		<button type='button' class='btn btn-default' style='margin: 0 35%; width: 30%;' onclick=''>Xóa</button>
+	</div>
+</div>
+{{/each}}

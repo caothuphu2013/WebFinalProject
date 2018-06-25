@@ -15,7 +15,7 @@ var storage = multer.diskStorage({
 var upload = multer({storage:storage});
 
 
-// Exports
+// Exports 
 module.exports = function(app) {
     //home
     app.get("/", index.home.loadHomePage);
@@ -34,11 +34,11 @@ module.exports = function(app) {
     app.get("/dashboardbrand", admin.dashboard.loadDashboardBrand);
 
     //admin management
-    app.get("/management", (req, res) => {res.redirect('/management/product')});
-    app.get("/management/type", admin.manage.loadTypeManagement);
-    app.get("/management/product", admin.manage.loadProductManagement);
-    app.get("/management/brand", admin.manage.loadBrandManagement);
-    app.get("/management/orders", admin.manage.loadOrdersManagement);
+    app.get("/management", admin.manage.loadProductManagement);
+    app.get("/management?manage=type", admin.manage.loadProductManagement);
+    app.get("/management?manage=product", admin.manage.loadProductManagement);
+    app.get("/management?manage=brand", admin.manage.loadProductManagement);
+    app.get("/management?manage=orders", admin.manage.loadProductManagement);
 
     //user
     app.get("/register", index.users.registerPage);
