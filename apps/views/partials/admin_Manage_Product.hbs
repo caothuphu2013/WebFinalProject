@@ -1,0 +1,22 @@
+{{#each products}}
+<div class='col-md-3 col-sm-6'>
+	<div class='single-shop-product'>
+		<div style='height:188px'>
+		<div class='col-md-2 col-sm-2' style='width:10%; height:100%; margin:0; padding:0;'></div>
+		<div class='product-upper col-md-8' style='margin:0; padding:0; width: 80%'>
+			<img src='/img/{{this.picture}}.jpg' alt='{{this.name}}' title='{{this.name}}' class='product-img'/>
+		</div>
+		<div class='col-md-2 col-sm-2' style='width:10%; height:100%;margin:0; padding:0;'></div>
+		</div>
+		<div style='height: 40px'>
+		<h2 class='product-link'>{{this.name}}</h2>
+		</div>
+		<div class='product-carousel-price' style='height: 30px; margin: 0; padding: 0;'>
+			<ins>${{this.price}}.00</ins>
+		</div>
+		<button type='button' class='btn btn-default' style='margin: 0; margin-left: 30%; margin-top: 10px; padding: 0; height: 50px; width: 40%' onclick='redirect("/products")'>
+		Chỉnh sửa
+		</button>
+	</div>
+</div>
+{{/each}}

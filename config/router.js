@@ -1,6 +1,6 @@
 const index = require("../apps/controllers/index");
-const admin = require("../apps/controllers/admin.js");
-const errorPage = require("../apps/controllers/errorController.js");
+const admin = require("../apps/controllers/admin")
+const errorPage = require("../apps/controllers/errorController")
 const multer = require('multer');
 
 // Create Multer
@@ -26,14 +26,20 @@ module.exports = function(app) {
     app.post("/shop/search", index.products.search);
     app.post("/shop/filter", index.products.filter);
 
-
     //single-product
     app.get("/product",index.singleproduct.getProduct);
 
     //admin
-    app.get("/dashboard", admin.loadDashboard);
-    app.get("/dashboardtype", admin.loadDashboardType);
-    app.get("/dashboardbrand", admin.loadDashboardBrand);
+    app.get("/dashboard", admin.dashboard.loadDashboard);
+    app.get("/dashboardtype", admin.dashboard.loadDashboardType);
+    app.get("/dashboardbrand", admin.dashboard.loadDashboardBrand);
+
+    //admin management
+    app.get("/management", admin.manage.loadProductManagement);
+    app.get("/management?manage=type", admin.manage.loadProductManagement);
+    app.get("/management?manage=product", admin.manage.loadProductManagement);
+    app.get("/management?manage=brand", admin.manage.loadProductManagement);
+    app.get("/management?manage=orders", admin.manage.loadProductManagement);
 
     //user
     app.get("/register", index.users.registerPage);
