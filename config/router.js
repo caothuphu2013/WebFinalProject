@@ -61,6 +61,7 @@ module.exports = function(app) {
     //contact
     app.get('/contact', index.contact.contactPage);
     app.post('/contact', index.contact.sendMessage);
+    app.get('/contact/form', index.contact.formContactPage);
 
         //Err0r
     app.use(errorPage);

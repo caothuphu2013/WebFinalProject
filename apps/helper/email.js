@@ -25,7 +25,6 @@ module.exports = function (fromEmail, toEmail, subject, contentEmail) {
         if (error) {
             return console.log(error);
         }
-        console.log('Message : %s', info.messageId)
     });
   }
 }

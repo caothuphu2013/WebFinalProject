@@ -10,6 +10,13 @@ let contactController = {
         })
     }
     ,
+    formContactPage: function(req, res) {
+        res.render('_contact/formContact', {
+            user: req.session.user,
+            layout: 'contact'
+        })
+    }
+    ,
     sendMessage: function (req, res) {
         let name = req.body.name;
         let email = req.body.email;
@@ -25,9 +32,17 @@ let contactController = {
             })
         }
         else {
-            emailer = new emailer(email, emailUs, `${email} + ${name}` ,message);
-            emailer.SendEmail();
-            res.redirect('/contact');
+            try {
+                emailer = new emailer(email, emailUs, `${email} + ${name}` ,message);
+                emailer.SendEmail();
+                req.flash('success_msg', 'Tin nhắn gửi thành công');
+                res.redirect('/contact/form');
+            }
+            catch (err) {
+                req.flash('error_msg', 'Tin nhắn gửi thất bại');
+                res.redirect('/contact/form');
+            }
+            
         }
 
     }
