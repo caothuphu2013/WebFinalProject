@@ -1,5 +1,4 @@
 const home = require('../models/home');
-const l = require('../models/layout');
 const q = require('q');
 
 let homeController = {
@@ -7,7 +6,7 @@ let homeController = {
         let p1 = home.getLastestProduct().catch(err=>{
             console.log("Error: " + err);
         });
-        let p2 = l.getBrands().catch(err=>{
+        let p2 = home.getMostViewProduct().catch(err=>{
             console.log("Error: " + err);
         });
         let p3 = home.getBestSellingProduct().catch(err=>{
@@ -18,7 +17,7 @@ let homeController = {
             res.render('_home/home', {
                 user: req.session.user,
                 ListProducts: temp1,
-                ListBrands: temp2,
+                ListMostView: temp2,
                 ListBestSelling: temp3,
                 layout: "index"
             });
