@@ -1,7 +1,7 @@
 var path = require("path");
 var exphbs = require('express-handlebars');
 var express_handlebars_sections = require('express-handlebars-sections');
-
+var moment = require('moment');
 module.exports = function (app) {
   app.engine('hbs', exphbs({
       extname: ".hbs", 
@@ -14,9 +14,14 @@ module.exports = function (app) {
                 thousand: ','
             });
             return nf.to(n);
+        },
+        datetime: function(date) {
+            date = date || moment();
+            return moment(date).format('ddd, DD MMM YYYY');
         }
     }
   }));
+
   app.set('view engine', 'hbs');
   app.set("views", path.resolve("apps/views"));
 };

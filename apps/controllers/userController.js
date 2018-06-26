@@ -57,37 +57,42 @@ let userController = {
             })
         }
         else {
-            let hashPassword = helper.encryptPassword(password)
-            let obj = {
-                username,
-                password: hashPassword,
-                image: '/img/avatar.jpg',
-                name: firstname + ' ' + lastname,
-                email,
-                phone
-            }
-            let p1 = userDB.insertUser(obj)
-                .then(success => {
-                    req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
-                    res.redirect("/login");
+
+            userDB.findByUsername(username)
+                .then(rows => {
+                    if (rows.length > 0) {
+                        req.flash('error_msg', 'Username bị trùng');
+                        res.redirect("/register");
+                    }
+                    else {
+                        let hashPassword = helper.encryptPassword(password);
+                        let obj = {
+                            username,
+                            password: hashPassword,
+                            image: '/img/avatar.jpg',
+                            name: firstname + ' ' + lastname,
+                            email,
+                            phone
+                        }
+                        let p1 = userDB.insertUser(obj)
+                            .then(success => {
+                                req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
+                                res.redirect("/login");
+                            })
+
+                            .fail(err => {
+                                req.flash('error_msg', 'Bạn không đăng kí thành công');
+                                res.redirect("/register");
+                            })
+
+                        let p2 = userDB.insertInfo(obj).catch(err => {
+                            console.log(err);
+                        })
+                        q.all([p1, p2]).spread(err => {
+                            console.log(err);
+                        })
+                    }
                 })
-
-                .fail(err => {
-                    req.flash('error_msg', 'Bạn không đăng kí thành công');
-                    res.redirect("/register");
-                })
-
-                .catch(err => {
-                    req.flash('error', 'Hệ thống bị lỗi')
-                    console.log(err);
-                });
-
-            let p2 = userDB.insertInfo(obj).catch(err => {
-                console.log(err);
-            })
-            q.all([p1, p2]).spread(err => {
-                console.log(err);
-            })
         }
     }
     ,
@@ -128,11 +133,13 @@ let userController = {
                         else {
                             var checkPass = helper.validPassword(password, passwordSQL);
                             if (checkPass === true) {
+                                // create session
                                 req.session.user = user;
+
                                 if (user.type == 0)
                                     res.redirect("/");
                                 else
-                                    res.redirect("/admin");
+                                    res.redirect("/dashboard");
                             }
                             else {
                                 req.flash("error_msg", "Mật khẩu không đúng");
@@ -174,8 +181,8 @@ let userController = {
                     if (rows.length > 0) {
                         email_temp = email;
                         //create nodemailer to send message
-                        emailer = new emailer(emailUs , email, 'Tạo mật khẩu mới',
-                               `Chào bạn, chúng tôi nhận được thông báo rằng bạn quên mật khẩu của mình.\n
+                        emailer = new emailer(emailUs, email, 'Tạo mật khẩu mới',
+                            `Chào bạn, chúng tôi nhận được thông báo rằng bạn quên mật khẩu của mình.\n
                                 Vì vậy, để reset mật khẩu, bạn vui lòng truy cập đường link bên dưới. \n
                                    \t http://localhost:8080/newpassword \n
                                 Thân.
@@ -188,11 +195,11 @@ let userController = {
                     else {
                         req.flash('error_msg', 'Email không tồn tại');
                         res.redirect('/forgetpassword');
-                    } 
+                    }
                 })
                 .catch(error => {
                     console.log(error);
-                }) 
+                })
                 .fail((error) => {
                     req.flash('error_msg', 'Không gửi được tin nhắn tới email của bạn');
                     res.redirect('/forgetpassword');

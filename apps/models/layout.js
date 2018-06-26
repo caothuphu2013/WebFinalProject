@@ -4,7 +4,7 @@ const q = require('q');
 
 exports.getBrands = () => {
     let d = q.defer();
-    let sql = "select id, name from brand";
+    let sql = "select * from brand";
     db.query(sql, (error, results) => {
         if (error) {
             d.reject(error);
