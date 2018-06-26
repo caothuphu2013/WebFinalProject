@@ -14,11 +14,12 @@
                 <div class="col-md-12">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            {{> cart_ListProducts}}
-                                                            
-                            <form class="actions" method="POST">
-                                <input type="button" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
-                                <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
+                            <form method="post" action="#"></form>
+                                {{> cart_ListProducts}}
+                                <form class="form-group actions">
+                                     <input type="submit" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
+                                    <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
+                                </form>
                             </form>
 
                             <div class="cart-collaterals">
