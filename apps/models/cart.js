@@ -80,6 +80,7 @@ let cart = {
         });
         return d.promise;
     }
+    ,
 }
 
 module.exports = cart;
