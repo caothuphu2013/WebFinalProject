@@ -16,8 +16,7 @@
                         <div class="woocommerce">
                             <form id='table_cart'></form>
                                 {{> cart_ListProducts}}
-                                <form class="form-group actions" method="POST" action="/cart/update" id='table_cart'>
-                                    <input type="submit" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
+                                <form class="form-group actions" id='table_cart'>
                                     <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
                                 </form>
                             </form>
@@ -33,24 +32,3 @@
             </div>
         </div>
     </div>
-
-    <script>
-        let data = [];
-        $('#cart_table').find('tr').each(function (i, el) {
-                var $tds = $(this).find('td'),
-                name = $tds.eq(2).find('a').text();
-                count = $tds.eq(4).find('input[type=number]').val();
-                data.push({name, count});
-        });
-        console.log(JSON.stringify(data));
-        
-        $('#table_cart').submit(() => {
-            $.post('http://localhost:8080/cart/update', 
-            JSON.stringify(data), 
-            (data) => {
-                console.log(data);
-            },
-            'text'
-            );  
-        })
-    </script>

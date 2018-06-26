@@ -16,7 +16,7 @@
         {{#each info}}
         <tr class="cart_item">
             <td class="product-remove">
-                <a title="Remove this item" class="remove">×</a>
+                <a title="Remove this item" class="remove" href="/cart/remove?id={{this.id}}&money={{multiple this.price this.count}}">×</a>
             </td>
 
             <td class="product-thumbnail">
@@ -48,6 +48,7 @@
         {{/each}} {{/if}}
     </tbody>
 </table>
+<!--
 <script>
     // Click button - in cart
     $('.minus').bind('click', function () {
@@ -79,3 +80,4 @@
         parent.remove();
     });
 </script>
+-->
