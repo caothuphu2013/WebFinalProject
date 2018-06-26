@@ -43,15 +43,11 @@
                 </td>
 
                 <td class="product-subtotal">
-                    <span class="amount_count" money=''> {{multiple this.price this.count}} $</span>
+                    <span class="amount_count" money='{{multiple this.price this.count}}'> {{multiple this.price this.count}} $</span>
                 </td>
             </tr>
-            {{/each}} 
-            <form class="actions">
-                <input type="button" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
-                <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
-            </form>
-            {{/if}}
+            {{/each}}
+        {{/if}}
         </tbody>
     </table>
 </form>

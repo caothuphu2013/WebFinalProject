@@ -446,11 +446,14 @@ div.navbar-nav li.active {
 
 .product-carousel-price ins {
     color: #1abc9c;
+    position: absolute;
     font-weight: bolder;
     font-size: 17px;
     margin-right: 5px;
     text-decoration: none;
-    float: right;
+    /* float: right; */
+    bottom: 20%;
+    right: 10%;
 }
 
 .product-carousel-price del {
@@ -742,7 +745,8 @@ a {
 
 a:hover,
 a:focus {
-    color: #17a78b
+    color: #17a78b;
+    text-decoration: none;
 }
 
 .footer-bottom-area {
@@ -992,6 +996,9 @@ button[type=submit]:hover {
 .product-link {
     display: block;
     text-align: center;
+    font-size: 18px;
+    font-weight: 500px;
+    font-weight: 500;
 }
 
 .near-bottom {
@@ -1002,7 +1009,21 @@ button[type=submit]:hover {
     color: #fff;
     padding: 6px 25px;
     display: inline-block;
-    margin: 0 30px;
+    margin: 0 19%;
+}
+
+.near-bottom:hover {
+    text-decoration: none;
+    color: #000;
+    background-color: #f2f2f2;
+    opacity: 0.9;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.near-bottom:active {
+    background: #1abc9c;
+    color: #fff;
 }
 
 .add_to_cart_button {
@@ -1423,6 +1444,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
     height: 350px;
     margin-bottom: 50px;
     right:15px;
+    border: 1px #f4f4f4 solid;
 }
 .single-shop-product:hover {
     box-shadow: 0 0 20px rgba(0,0,0,.1);

@@ -1,3 +1,12 @@
+<style>
+    .actions {
+        margin-top: -2%; 
+        margin-bottom: 4%;
+        text-align: center;
+
+    }
+</style>
+
 {{> a_HeaderCart}}
     <div class="single-product-area">
         <div class="container">
@@ -6,10 +15,14 @@
                     <div class="product-content-right">
                         <div class="woocommerce">
                             {{> cart_ListProducts}}
+                                                            
+                            <form class="actions" method="POST">
+                                <input type="button" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
+                                <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
+                            </form>
 
                             <div class="cart-collaterals">
                                 {{> cart_ListOtherProducts}}
-
                                 {{> cart_TotalMoney}}
 
                                 <form method="post" action="#" class="shipping_calculator">
