@@ -54,6 +54,17 @@ let users = {
             d.resolve(results);
         });
         return d.promise;
+    },
+    insertCart: function(idCart, username, total) {
+        let d = q.defer();
+        let sql = `Insert into cart(idCart, customer, total)
+            values(?, ?, ?) `;
+        db.query(sql, [idCart, username, total], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
     }
 }
 module.exports = users;

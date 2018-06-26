@@ -63,6 +63,10 @@ module.exports = function(app) {
     app.post('/contact', index.contact.sendMessage);
     app.get('/contact/form', index.contact.formContactPage);
 
+    //cart
+    app.get('/cart', index.cart.cartPage);
+    app.get('/cart/choose',index.cart.chooseProductToCart);
+
         //Err0r
     app.use(errorPage);
 }

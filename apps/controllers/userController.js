@@ -87,8 +87,11 @@ let userController = {
 
                         let p2 = userDB.insertInfo(obj).catch(err => {
                             console.log(err);
-                        })
-                        q.all([p1, p2]).spread(err => {
+                        });
+
+                        let idCart = obj.username + '_1';
+                        let p3 = userDB.insertCart(idCart, obj.username, 0);
+                        q.all([p1, p2, p3]).spread(err => {
                             console.log(err);
                         })
                     }

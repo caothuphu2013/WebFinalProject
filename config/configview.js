@@ -18,6 +18,9 @@ module.exports = function (app) {
         datetime: function(date) {
             date = date || moment();
             return moment(date).format('ddd, DD MMM YYYY');
+        },
+        multiple: (a,b) => {
+            return a * b;
         }
     }
   }));

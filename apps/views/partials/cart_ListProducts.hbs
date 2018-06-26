@@ -1,0 +1,57 @@
+<form method="post" action="#">
+    {{#if noCart}}
+    <h1 style="margin-bottom: 3%; text-align: center">Không có giỏ hàng</h1>
+    {{else}}
+    <table cellspacing="0" class="shop_table cart">
+        <thead>
+            <tr>
+                <th class="product-remove">&nbsp;</th>
+                <th class="product-thumbnail">&nbsp;</th>
+                <th class="product-name">Sản phẩm</th>
+                <th class="product-price">Giá</th>
+                <th class="product-quantity">Số lượng</th>
+                <th class="product-subtotal">Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each info}}
+            <tr class="cart_item">
+                <td class="product-remove">
+                    <a title="Remove this item" class="remove" href="#">×</a>
+                </td>
+
+                <td class="product-thumbnail">
+                    <a href="single-product.html">
+                        <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/{{this.picture}}.jpg">
+                    </a>
+                </td>
+
+                <td class="product-name">
+                    <a href="single-product.html">{{this.name}}</a>
+                </td>
+
+                <td class="product-price">
+                    <span class="amount" money='{{this.price}}'>{{this.price}} $</span>
+                </td>
+
+                <td class="product-quantity">
+                    <div class="quantity buttons_added">
+                        <input type="button" class="minus" value="-">
+                        <input type="number" size="4" class="input-text qty text" title="Qty" value="{{this.count}}" min="0" step="1">
+                        <input type="button" class="plus" value="+">
+                    </div>
+                </td>
+
+                <td class="product-subtotal">
+                    <span class="amount_count" money=''> {{multiple this.price this.count}} $</span>
+                </td>
+            </tr>
+            {{/each}} 
+            <form class="actions">
+                <input type="button" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
+                <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
+            </form>
+            {{/if}}
+        </tbody>
+    </table>
+</form>
