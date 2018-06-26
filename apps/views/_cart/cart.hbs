@@ -14,10 +14,10 @@
                 <div class="col-md-12">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <form method="post" action="#"></form>
+                            <form id='table_cart'></form>
                                 {{> cart_ListProducts}}
-                                <form class="form-group actions">
-                                     <input type="submit" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
+                                <form class="form-group actions" method="POST" action="/cart/update" id='table_cart'>
+                                    <input type="submit" value="Cập nhật giỏ hàng" name="update_cart" class="update-button">
                                     <input type="submit" value="Thanh toán" name="proceed" class="checkout-button button alt wc-forward" formaction="../WebMidtermProject/checkout.html"/>
                                 </form>
                             </form>
@@ -26,32 +26,6 @@
                                 {{> cart_ListOtherProducts}}
                                 {{> cart_TotalMoney}}
 
-                                <form method="post" action="#" class="shipping_calculator">
-                                    <h2>
-                                        <a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap"
-                                            aria-expanded="false" aria-controls="calcalute-shipping-wrap">Tính toán phí giao hàng</a>
-                                    </h2>
-
-                                    <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
-
-                                        <p class="form-row form-row-wide">
-                                            <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="calc_shipping_country">
-                                                <option value="">Select a country…</option>
-                                            </select>
-                                        </p>
-
-                                        <p class="form-row form-row-wide">
-                                            <input type="text" id="calc_shipping_state" name="calc_shipping_state" placeholder="Tỉnh/Thành phố"
-                                                value="" class="input-text"> </p>
-
-                                        <p>
-                                            <button class="button" value="1" name="calc_shipping" type="submit">Cập nhật tổng tiền</button>
-                                        </p>
-
-                                    </section>
-                                </form>
-
-
                             </div>
                         </div>
                     </div>
@@ -59,3 +33,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let data = [];
+        $('#cart_table').find('tr').each(function (i, el) {
+                var $tds = $(this).find('td'),
+                name = $tds.eq(2).find('a').text();
+                count = $tds.eq(4).find('input[type=number]').val();
+                data.push({name, count});
+        });
+        console.log(JSON.stringify(data));
+        
+        $('#table_cart').submit(() => {
+            $.post('http://localhost:8080/cart/update', 
+            JSON.stringify(data), 
+            (data) => {
+                console.log(data);
+            },
+            'text'
+            );  
+        })
+    </script>

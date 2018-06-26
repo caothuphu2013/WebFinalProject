@@ -12,7 +12,7 @@
             <th class="product-subtotal">Tổng tiền</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody  id="cart_table">
         {{#each info}}
         <tr class="cart_item">
             <td class="product-remove">
@@ -20,13 +20,13 @@
             </td>
 
             <td class="product-thumbnail">
-                <a href="single-product.html">
+                <a href='/product?id={{this.id}}'>
                     <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/{{this.picture}}.jpg">
                 </a>
             </td>
 
             <td class="product-name">
-                <a href="single-product.html">{{this.name}}</a>
+                <a href='/product?id={{this.id}}'>{{this.name}}</a>
             </td>
 
             <td class="product-price">

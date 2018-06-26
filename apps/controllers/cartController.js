@@ -75,6 +75,20 @@ let cartController = {
         }
 
     }
+    ,
+    updateProductToCart: function(req, res) {
+        var body = '';
+        //Nhận dữ liệu
+        req.on('data', function (chunk) {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            let data = JSON.parse(body);
+            res.writeHeader(200, { 'Content-Type': 'text/plain' });
+            res.end(body);
+        })
+    }
 }
 
 module.exports = cartController;

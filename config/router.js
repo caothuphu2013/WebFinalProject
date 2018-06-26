@@ -66,6 +66,7 @@ module.exports = function(app) {
     //cart
     app.get('/cart', index.cart.cartPage);
     app.get('/cart/choose',index.cart.chooseProductToCart);
+    app.post('/cart/update', index.cart.updateProductToCart);
 
         //Err0r
     app.use(errorPage);
