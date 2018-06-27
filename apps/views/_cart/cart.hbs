@@ -18,12 +18,12 @@
                                 {{> cart_ListProducts}}
                                 <form class="form-group actions" id='table_cart'>
                                     {{#if info}}
-                                        <a href="/shop">
-                                            <input type="button" value="Thêm giỏ hàng" class="checkout-button button alt wc-forward"/>
+                                        <a href="/checkout">
+                                            <input type="button" value="Thanh toán" class="checkout-button button alt wc-forward"/>
                                         <a>
                                     {{else}}
-                                         <a href="/checkout">
-                                            <input type="button" value="Thanh toán" class="checkout-button button alt wc-forward"/>
+                                         <a href="/shop">
+                                            <input type="button" value="Thêm giỏ hàng" class="checkout-button button alt wc-forward"/>
                                         <a>
                                     {{/if}}
                                 </form>

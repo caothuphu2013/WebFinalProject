@@ -140,10 +140,16 @@ let userController = {
                                 req.session.user = user;
                                 p1 = userDB.getTotal(user.username).catch(err => console.log(err));
                                 p2 = userDB.getCount(user.username + '_1').catch(err => console.log(err));
-                                
+                            
                                 q.all([p1,p2]).spread(function(temp1, temp2){
-                                    req.session.user.total = temp1[0].total;
-                                    req.session.user.count = temp2[0].count;
+                                    if (temp1[0].total === 0) {
+                                        req.session.user.total = temp1[0].total;
+                                        req.session.user.count = 0;
+                                    }
+                                    else {
+                                        req.session.user.total = temp1[0].total;
+                                        req.session.user.count = temp2[0].count;
+                                    }
 
                                     if (user.type == 0)
                                         res.redirect("/");

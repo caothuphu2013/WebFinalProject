@@ -70,13 +70,9 @@ module.exports = function(app) {
     app.get('/cart/remove', index.cart.removeProductToCart);
     app.get('/cart/subtract', index.cart.subtractProductToCart);
     app.get('/cart/add', index.cart.addProductToCart);
-<<<<<<< HEAD
-=======
-    app.get('cart');
 
     //history
     app.get('/history', index.history.historyPage);
->>>>>>> b0bc97c470f4b8f3e5cabc0a92bd43519cae4787
 
         //Err0r
     app.use(errorPage);
