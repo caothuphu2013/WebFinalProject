@@ -69,6 +69,7 @@ module.exports = function(app) {
     app.get('/cart/remove', index.cart.removeProductToCart);
     app.get('/cart/subtract', index.cart.subtractProductToCart);
     app.get('/cart/add', index.cart.addProductToCart);
+    app.get('cart')
 
         //Err0r
     app.use(errorPage);
