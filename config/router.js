@@ -40,6 +40,7 @@ module.exports = function(app) {
     app.get("/management/product", admin.manage.loadProductManagement);
     app.get("/management/brand", admin.manage.loadBrandManagement);
     app.get("/management/orders", admin.manage.loadOrdersManagement);
+    app.get("/management/product/addproduct", admin.manage.addProduct);
 
     //user
     app.get("/register", index.users.registerPage);
