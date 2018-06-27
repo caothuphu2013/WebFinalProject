@@ -1,0 +1,85 @@
+ <style>
+      .profiles {
+          margin-left: 14%;
+      }
+
+      .profiles .image {
+          margin-left: -10% !important;
+      }
+      .profiles img {
+          height: 150px;
+          width: 150px;
+       }
+  </style>
+<!-- End mainmenu area -->
+<div class="content-profile" style="margin: 5%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profiles">
+                    <p class="image"><img src="{{user.image}}" alt="" class="img-thumbnail img-fluid rounded"></p>
+                </div>
+                <div class="nav navbar-nav">
+                        
+                        <li style="width:100%" class="">
+                            <a href="/profile"><i class="fa fa-user"></i> <span>Thông tin tài khoản</span></a>
+                        </li>
+                        <li style="width:100%" class="active">
+                            <a href="javascript:;"> <i class="fa fa-book"></i> <span>Quản lý đơn hàng</span></a>
+                        </li>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <fieldset>
+                    <legend>Đơn hàng của tôi</legend>
+                    <div class="dashboard-order have-margin">
+                        <table class="table-responsive-2">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="hidden-xs hidden-sm hidden-md">Mã đơn hàng</span>
+                                        <span class="hidden-lg">Code</span>
+                                    </th>
+                                    <th>Ngày mua</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng tiền</th>
+                                    <th>
+                                        <span class="hidden-xs hidden-sm hidden-md">Trạng thái <br> đơn hàng</span>
+                                        <span class="hidden-lg">Trạng thái</span>
+                                    </th>
+                                    <!--                            <th></th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if noHistory}}
+                                    <div class="col-md-9 col-sm-12">
+                    <h2 class="text-danger">Không có sản phẩm thoả yêu cầu.</h2>
+                </div>                          
+                                {{else}}
+                                {{#each info}}
+                                <tr class="colorgrey">
+                                    <td><a href="buy-info.html">{{idBill}}</a></td>
+                                    <td>{{time}}</td>
+                                    {{#if isUpOne}}
+                                    <td>{{name}} ...và {{count}} loại sản phẩm khác</td>
+                                    {{else}}
+                                    <td>{{name}}</td>
+                                    {{/if}}
+                                    <td>{{total}}&nbsp;$</td>
+                                    <!--                                <td><span class="color--->
+                                    <!--">-->
+                                    <!--</span></td>-->
+                                    <td>
+                                        <span class="order-status"{{state}}</span>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
