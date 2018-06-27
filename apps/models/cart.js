@@ -81,6 +81,27 @@ let cart = {
         return d.promise;
     }
     ,
+    findByProducts: function(idProduct) {
+        let d = q.defer();
+        let sql = `Select p.id, p.name, p.price, p.picture From product p where id = ?`;
+        db.query(sql, [idProduct], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
+    ,
+    findByTotal: function(username) {
+        let d = q.defer();
+        let sql = `Select c.total From cart c where customer = ?`;
+        db.query(sql, [username], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
 
 }
 

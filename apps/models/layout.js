@@ -24,3 +24,15 @@ exports.getTypes = () =>{
     });
     return d.promise;
 }
+/*
+exports.getCount = (idProduct_Cart) => {
+    let d = q.defer();
+    let sql = `Select c.total From cart c where customer = ?`;
+    db.query(sql, [username], (error, results) => {
+        if (error)
+            d.reject(error);
+        d.resolve(results);
+    });
+    return d.promise;
+}
+*/

@@ -8,6 +8,7 @@ let manageController = {
         q.all([p]).spread(function(temp1) {
             res.render("_admin/manage", {
                 products: temp1,
+                isProduct: true,
                 manageSession: 'admin_Manage_Product',
                 layout: "admin"
             });
@@ -19,6 +20,7 @@ let manageController = {
         q.all([p]).spread(function(temp1) {
             res.render("_admin/manage", {
                 types: temp1,
+                isProduct: false,
                 manageSession: 'admin_Manage_Type',
                 layout: "admin"
             });
@@ -30,8 +32,10 @@ let manageController = {
         q.all([p]).spread(function(temp1) {
             res.render("_admin/manage", {
                 brands: temp1,
+                isProduct: false,
                 manageSession: 'admin_Manage_Brand',
                 layout: "admin"
+            
             });
         })
     },
@@ -44,11 +48,20 @@ let manageController = {
                 manageSession: 'admin_Manage_Orders',
                 layout: "admin",
                 true: 1 == 1,
+                isProduct: false,
                 orders: temp1,
                 isempty: temp1.length === 0,
             });
         })
     },
+    addProduct : function(req, res) {
+            res.render("_admin/manage", {
+                manageSession: 'admin_Add_Product',
+                layout: "admin",
+                isProduct: false,
+                true: 1 == 1
+            });
+    }
 }
 
 module.exports = manageController;

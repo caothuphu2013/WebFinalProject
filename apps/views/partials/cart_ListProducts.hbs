@@ -1,7 +1,5 @@
- {{#if noCart}}
-<h2 style="margin-bottom: 5%; text-align: center">Không có giỏ hàng</h2>
-{{else}}
-<table cellspacing="0" class="shop_table cart">
+ {{#if info}}
+ <table cellspacing="0" class="shop_table cart">
     <thead>
         <tr>
             <th class="product-remove">&nbsp;</th>
@@ -36,7 +34,7 @@
             <td class="product-quantity">
                 <div class="quantity buttons_added">
                     <a href="/cart/subtract?id={{this.id}}&count={{this.count}}&price={{this.price}}"><input type="button" class="minus" value="-"></a>
-                    <input type="number" readonly="true" size="4" class="input-text text" title="Qty" value="{{this.count}}" min="0" step="1">
+                    <input type="text" size="4" class="input-text qty text" title="Qty" value="{{this.count}}" min="0" step="1">
                     <a href="/cart/add?id={{this.id}}&count={{this.count}}&price={{this.price}}"><input type="button" class="plus" value="+"></a>
                 </div>
             </td>
@@ -46,6 +44,8 @@
             </td>
         </tr>
         {{/each}} 
-        {{/if}}
     </tbody>
 </table>
+{{else}}
+<h2 style="margin-bottom: 5%; text-align: center">Không có giỏ hàng</h2>
+   {{/if}}

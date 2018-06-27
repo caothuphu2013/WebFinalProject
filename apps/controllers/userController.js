@@ -138,11 +138,24 @@ let userController = {
                             if (checkPass === true) {
                                 // create session
                                 req.session.user = user;
+                                p1 = userDB.getTotal(user.username).catch(err => console.log(err));
+                                p2 = userDB.getCount(user.username + '_1').catch(err => console.log(err));
+                            
+                                q.all([p1,p2]).spread(function(temp1, temp2){
+                                    if (temp1[0].total === 0) {
+                                        req.session.user.total = temp1[0].total;
+                                        req.session.user.count = 0;
+                                    }
+                                    else {
+                                        req.session.user.total = temp1[0].total;
+                                        req.session.user.count = temp2[0].count;
+                                    }
 
-                                if (user.type == 0)
-                                    res.redirect("/");
-                                else
-                                    res.redirect("/dashboard");
+                                    if (user.type == 0)
+                                        res.redirect("/");
+                                    else
+                                        res.redirect("/dashboard");
+                                })
                             }
                             else {
                                 req.flash("error_msg", "Mật khẩu không đúng");

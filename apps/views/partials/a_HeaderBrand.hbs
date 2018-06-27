@@ -2,7 +2,9 @@
     <div class="col-sm-6">
         <div class="logo">
             <h1>
-                <a href="/">e<span>Sales</span></a>
+                <a href="/">e
+                    <span>Sales</span>
+                </a>
             </h1>
         </div>
     </div>
@@ -13,14 +15,16 @@
 
             </div>
         </div>
+        {{#if layoutVM.isUser}}
         <div class="col-sm-6">
             <div class="shopping-item">
                 <a href="/cart">Giỏ hàng -
-                    <span class="cart-amunt">15 triệu</span>
+                    <span class="cart-amunt">{{user.total}}$</span>
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="product-count">5</span>
+                    <span class="product-count">{{user.count}}</span>
                 </a>
             </div>
         </div>
+        {{/if}}
     </div>
 </div>
