@@ -102,6 +102,17 @@ let cart = {
         });
         return d.promise;
     }
+    ,
+    findByCount: function(idCart) {
+        let d = q.defer();
+        let sql = `Select sum(pc.count) as count From product_cart pc where idCart = ? Group By idCart`;
+        db.query(sql, [idCart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
 
 }
 

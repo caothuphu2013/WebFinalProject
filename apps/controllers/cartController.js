@@ -7,7 +7,7 @@ let cartController = {
             res.redirect('/login');
         else {
             let username = req.session.user.username;
-            let p1, p2, p3, p4;
+            let p1, p2, p3, p4, p5;
             p1 = cartDB.findByProductIntoCart(username)
                 .catch(err => {
                     console.log(err);
@@ -16,8 +16,18 @@ let cartController = {
             p2 = cartDB.findByProducts(Math.floor(Math.random() * Math.floor(50))).catch(err =>console.log(err));
             p3 = cartDB.findByProducts(Math.floor(Math.random() * Math.floor(50))).catch(err =>console.log(err));
             p4 = cartDB.findByTotal(username).catch(err => console.log(err));
+            p5 = cartDB.findByCount(username + '_1').catch(err => console.log(err));
             
-            q.all([p1, p2, p3, p4]).spread(function(temp1, temp2, temp3, temp4) {
+            q.all([p1, p2, p3, p4, p5]).spread(function(temp1, temp2, temp3, temp4, temp5) {
+
+                if (temp4[0].total === 0) {
+                    req.session.user.total = temp4[0].total;
+                    req.session.user.count = 0;
+                }
+                else {
+                    req.session.user.total = temp4[0].total;
+                    req.session.user.count = temp5[0].count;
+                }
                 res.render('_cart/cart', {
                     user: req.session.user,
                     info: temp1,
@@ -91,11 +101,7 @@ let cartController = {
                 let total = rows[0].total;
                 let total_new = total - money;
                 p2 = cartDB.updateCart(idCart, total_new).catch(err => console.log(err));
-            })
-            
-            .fail(err => {
-                res.redirect('/error');
-            });
+            }).catch(err => console.log(err));
             
         
             q.all([p1,p2]).spread(() => {
