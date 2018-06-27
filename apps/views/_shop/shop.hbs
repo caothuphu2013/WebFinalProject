@@ -52,15 +52,24 @@
 
         $("#searchform" ).submit(function(event) {
             let tmp = $('.dropdown-text').text();
-            if (tmp === "Sản phẩm") 
+            let res;
+            if (tmp === "Tên sản phẩm") 
             { 
-                $(this).append('<input type="hidden" name="typeSearch" value ="name"/>');
+                res = "name";
             }
             else if (tmp === "Loại") 
             { 
-                $(this).append('<input type="hidden" name="typeSearch" value="type"/>');
+                res = "type";            
             }
+            else if (tmp === "Hãng sản xuất") 
+            { 
+                res = "brand";       
+            }
+            else if (tmp === "Giá") 
+            { 
+                res = "price";               
+            }
+            $(this).append('<input type="hidden" name="typeSearch" value ="' + res + '"/>');
         });
-
     </script>
 {{/section}}
