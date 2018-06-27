@@ -438,22 +438,21 @@ div.navbar-nav li.active {
     border-color: #444;
 }
 
-.product-carousel-price {
-    bottom: 1%;
-    right: 0;
-    margin-bottom: 50px;
-}
-
 .product-carousel-price ins {
     color: #1abc9c;
-    position: absolute;
+    position: relative;
     font-weight: bolder;
     font-size: 17px;
     margin-right: 5px;
     text-decoration: none;
-    /* float: right; */
-    bottom: 20%;
-    right: 10%;
+     float: right;
+}
+.product-carousel-price h3 {
+    color: #1abc9c;
+    position: initial;
+    font-weight: bolder;
+    font-size: 17px;
+    margin-right: 5px;
 }
 
 .product-carousel-price del {

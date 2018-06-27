@@ -69,7 +69,18 @@ let cart = {
         });
         return d.promise;
     }
-
+    ,
+    removeProduct: function(idProduct_cart) {
+        let d = q.defer();
+        let sql = `delete from product_cart where idproduct_cart = ?`;
+        db.query(sql, [idProduct_cart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
+    ,
 }
 
 module.exports = cart;

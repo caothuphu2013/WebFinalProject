@@ -48,19 +48,46 @@
                 $('.dropdown-text').text(selected);
                 $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
             });
+             $( function() {
+                $( "#slider-range" ).slider();
+                } );
         });
 
         $("#searchform" ).submit(function(event) {
             let tmp = $('.dropdown-text').text();
-            if (tmp === "Sản phẩm") 
+            let res;
+            if (tmp === "Tên sản phẩm") 
             { 
-                $(this).append('<input type="hidden" name="typeSearch" value ="name"/>');
+                res = "name";
             }
             else if (tmp === "Loại") 
             { 
-                $(this).append('<input type="hidden" name="typeSearch" value="type"/>');
+                res = "type";            
+            }
+            else if (tmp === "Hãng sản xuất") 
+            { 
+                res = "brand";       
+            }
+            else if (tmp === "Giá") 
+            { 
+                res = "price";               
+            }
+            $(this).append('<input type="hidden" name="typeSearch" value ="' + res + '"/>');
+        });
+
+        if (document.getElementById("slider-range") != null) {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 3000,
+            values: [100, 1500],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }
         });
+        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
+        }
 
     </script>
 {{/section}}

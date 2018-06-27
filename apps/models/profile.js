@@ -4,7 +4,7 @@ const q = require('q');
 let profile = {
     findByUserName: function(username) {
         let d = q.defer();
-        let sql = `select * from user_info where username = ?`
+        let sql = `select user_info.*,account.image from user_info,account where user_info.username = account.username and account.username = ?`
         db.query(sql, [username], (error, results) => {
             if (error)
                 d.reject(error);
