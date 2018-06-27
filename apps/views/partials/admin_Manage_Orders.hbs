@@ -1,20 +1,4 @@
 <div class='dashboard-order have-margin'><table class='table-responsive-2'>
-    <thead>
-        <tr>
-            <th>
-                <span class='hidden-xs hidden-sm hidden-md'>Mã đơn hàng</span>
-                <span class='hidden-lg'>Code</span>
-            </th>
-            <th>Ngày mua</th>
-            <th>Chi tiết</th>
-            <th>Tổng tiền</th>
-            <th>
-                <span class='hidden-xs hidden-sm hidden-md'>Trạng thái <br> đơn hàng</span>
-                <span class='hidden-lg'>Trạng thái</span>
-            </th>
-        </tr>
-        <hr />
-    </thead>
     <tbody>
         {{#each orders}}
         <tr class='colorgrey'>
@@ -26,11 +10,11 @@
                 <span class='status-btn' onclick='statusOnClick(0, 0)' style='color:#FF6600; font-weight:700;'>{{this.status}}</span>
             </td>
         </tr>
-        <hr />
         {{/each}}
         {{#if isempty}}
-            <center>Không có hóa đơn nào</center>
+        <center>Không có hóa đơn nào</center>
         {{/if}}
+        <hr />
     </tbody>
 </table>
 </div>

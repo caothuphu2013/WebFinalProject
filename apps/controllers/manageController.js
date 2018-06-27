@@ -38,11 +38,13 @@ let manageController = {
     loadOrdersManagement : function(req, res) {
         let p = categoryDB.getOrders().catch(err => {
                 console.log("Error: " + err);});
+        let temp = [1];
         q.all([p]).spread(function(temp1) {
             res.render("_admin/manage", {
-                orders: temp1,
                 manageSession: 'admin_Manage_Orders',
                 layout: "admin",
+                true: 1 == 1,
+                orders: temp1,
                 isempty: temp1.length === 0,
             });
         })
