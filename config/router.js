@@ -40,6 +40,7 @@ module.exports = function(app) {
     app.get("/management/product", admin.manage.loadProductManagement);
     app.get("/management/brand", admin.manage.loadBrandManagement);
     app.get("/management/orders", admin.manage.loadOrdersManagement);
+    app.get("/management/product/addproduct", admin.manage.addProduct);
 
     //user
     app.get("/register", index.users.registerPage);
@@ -69,6 +70,13 @@ module.exports = function(app) {
     app.get('/cart/remove', index.cart.removeProductToCart);
     app.get('/cart/subtract', index.cart.subtractProductToCart);
     app.get('/cart/add', index.cart.addProductToCart);
+<<<<<<< HEAD
+=======
+    app.get('cart');
+
+    //history
+    app.get('/history', index.history.historyPage);
+>>>>>>> b0bc97c470f4b8f3e5cabc0a92bd43519cae4787
 
         //Err0r
     app.use(errorPage);

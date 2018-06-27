@@ -67,6 +67,8 @@ let productsController = {
     filter : function(req, res) {
         let brand = req.body.brand;
         let type = req.body.type;
+        let beginPrice = +req.body.beginPrice;
+        let endPrice = +req.body.endPrice;
         let brandstr = "";
         let typestr = "";
         for(let index in brand) { 
@@ -79,7 +81,7 @@ let productsController = {
         } 
         typestr = typestr.slice(0, -1);
 
-        let p1 = categoryDB.filterProducts(brand,type).catch(err => {
+        let p1 = categoryDB.filterProducts(brand,type,beginPrice,endPrice).catch(err => {
                 console.log("Error: " + err);});
 
         q.all([p1]).spread(function(temp1) {

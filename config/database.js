@@ -2,7 +2,7 @@
 module.exports = {
   host: '127.0.0.1',
   user: 'root',
-  password: '',
+  password: 'admin',
   port: 3306,
   database: 'laptop_db',
   facebook_api_key: "2042177529365417",
