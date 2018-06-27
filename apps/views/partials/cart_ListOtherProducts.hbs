@@ -2,26 +2,29 @@
     <h2>Có thể bạn sẽ thích...</h2>
     <ul class="products">
         <li class="product">
-            <a href="single-product.html">
-                <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/Hp4.jpg">
-                <h3>HP Pavilion 4</h3>
+            {{#each product_1}}
+            <a href='/product?id={{id}}'>
+                <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="/img/{{picture}}.jpg">
+                <h3>{{name}}</h3>
                 <span class="price">
-                    <span class="amount">16.000.000đ</span>
+                    <span class="amount">{{price}} $</span>
                 </span>
             </a>
+            {{/each}}
 
 
         </li>
 
         <li class="product">
-            <a href="single-product.html">
-                <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/MSI5.jpg">
-                <h3>MSI gaming</h3>
+            {{#each product_2}}
+            <a href="'/product?id={{id}}'">
+                <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="/img/{{picture}}.jpg">
+                <h3>{{name}}</h3>
                 <span class="price">
-                    <span class="amount">42.000.000 đ</span>
+                    <span class="amount">{{price}} $</span>
                 </span>
             </a>
-
+            {{/each}}
 
         </li>
     </ul>

@@ -26,11 +26,13 @@
                 <del>{{price}}$</del>
             </div>
 
-            <form action="" class="cart" method="POST" action="">
+            <form action="" class="cart" action="">
                 <div class="quantity">
                     <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                 </div>
-                <button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
+                <a href="/cart/choose?id={{id}}&price={{price}}">
+                    <button class="add_to_cart_button" type="button">Thêm vào giỏ hàng</button>
+                </a>  
             </form>
 
             <div class="product-inner-category">

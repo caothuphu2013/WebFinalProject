@@ -3,10 +3,11 @@
 
     <table cellspacing="0">
         <tbody>
+            {{#each total}}
             <tr class="cart-subtotal">
                 <th>Tiền sản phẩm</th>
                 <td>
-                    <span class="amount">15.000.000 đ</span>
+                    <span class="amount">{{total}} $</span>
                 </td>
             </tr>
 
@@ -19,10 +20,11 @@
                 <th>Tổng tiền</th>
                 <td>
                     <strong>
-                        <span class="amount">15.000.000 đ</span>
+                        <span class="amount">{{total}} $</span>
                     </strong>
                 </td>
             </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>

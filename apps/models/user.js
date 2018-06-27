@@ -66,5 +66,27 @@ let users = {
         });
         return d.promise;
     }
+    ,
+    getTotal : function(username) {
+        let d = q.defer();
+        let sql = `Select c.total From cart c where customer = ?`;
+        db.query(sql, [username], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
+    ,
+    getCount: function(idCart) {
+        let d = q.defer();
+        let sql = `Select sum(pc.count) as count From product_cart pc where idCart = ? Group By idCart`;
+        db.query(sql, [idCart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    }
 }
 module.exports = users;

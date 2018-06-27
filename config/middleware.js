@@ -59,12 +59,12 @@ module.exports = function(app) {
         q.all([layout.getBrands(),layout.getTypes()]).spread(function(temp1,temp2) {
             res.locals.layoutVM = {
             brandsList: temp1, 
-            typesList: temp2
+            typesList: temp2,
+            isUser: req.session.user,
             }
         })
         next();
     });
-
     
     app.use(passport.initialize());
     app.use(passport.session());

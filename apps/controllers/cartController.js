@@ -7,26 +7,26 @@ let cartController = {
             res.redirect('/login');
         else {
             let username = req.session.user.username;
-            cartDB.findByProductIntoCart(username)
-            .then(rows => {
-                if (rows.length > 0) {
-                    res.render('_cart/cart', {
-                        user: req.session.user,
-                        info: rows,
-                        layout: 'index',
-                    }) 
-                }
-                else {
-                    res.render('_cart/cart', {
-                        user: req.session.user,
-                        layout: "index",
-                        noCart: 'ok'
-                    })
-                }
+            let p1, p2, p3, p4;
+            p1 = cartDB.findByProductIntoCart(username)
+                .catch(err => {
+                    console.log(err);
+                });
+
+            p2 = cartDB.findByProducts(Math.floor(Math.random() * Math.floor(50))).catch(err =>console.log(err));
+            p3 = cartDB.findByProducts(Math.floor(Math.random() * Math.floor(50))).catch(err =>console.log(err));
+            p4 = cartDB.findByTotal(username).catch(err => console.log(err));
+            
+            q.all([p1, p2, p3, p4]).spread(function(temp1, temp2, temp3, temp4) {
+                res.render('_cart/cart', {
+                    user: req.session.user,
+                    info: temp1,
+                    product_1: temp2,
+                    product_2: temp3,
+                    total: temp4,
+                    layout: 'index',
+                }) 
             })
-            .catch(err => {
-                console.log(err);
-            });
         }
     }
     ,
@@ -112,9 +112,9 @@ let cartController = {
         let idCart = username + '_1';
         let p1, p2;
 
-        if (count - 1 === 0) {
-            res.redirect(`/cart/remove?id=${id}&money=${count*price}`);
-        } 
+        if (count - 1 == 0)
+            res.redirect('/cart');
+
         else if (count - 1 > 0) {
             p1 = cartDB.updateProductCart(idProduct_cart, count - 1).catch(err => console.log(err));
             
@@ -156,6 +156,7 @@ let cartController = {
         }
     }
     ,
+
 }
 
 module.exports = cartController;
