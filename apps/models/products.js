@@ -68,13 +68,13 @@ let products = {
         });
         return d.promise;
     },
-    filterProducts: function(brand, type) {
+    filterProducts: function(brand, type,beginPrice,endPrice) {
         let d = q.defer();
         let sql = `select product.id, product.name, price, picture
             from product,brand,type
             where product.brand = brand.id and product.type = type.id
-            and brand.name in (?) and type.name in (?)`;
-        db.query(sql,[brand,type], (error, results) => {
+            and brand.name in (?) and type.name in (?) and price >= ? and price <= ? `;
+        db.query(sql,[brand,type,beginPrice,endPrice], (error, results) => {
             if (error) {
                 d.reject(error);
             }

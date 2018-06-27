@@ -48,9 +48,6 @@
                 $('.dropdown-text').text(selected);
                 $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
             });
-             $( function() {
-                $( "#slider-range" ).slider();
-                } );
         });
 
         $("#searchform" ).submit(function(event) {
@@ -75,19 +72,37 @@
             $(this).append('<input type="hidden" name="typeSearch" value ="' + res + '"/>');
         });
 
+        $("#filterform" ).submit(function(event) {
+            let val1 =  $("#amount").attr("val1");
+            if (!val1) {
+                val1 = "100";
+            }
+
+            let val2 =  $("#amount").attr("val2");                
+            if (!val2) {
+                val2 = "1500";               
+            }
+
+            $(this).append('<input type="hidden" name="beginPrice" value ="' + val1 + '"/>');
+            $(this).append('<input type="hidden" name="endPrice" value ="' + val2 + '"/>');
+        });
+
         if (document.getElementById("slider-range") != null) {
         $("#slider-range").slider({
             range: true,
             min: 0,
-            max: 3000,
+            max: 5000,
             values: [100, 1500],
             slide: function (event, ui) {
                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                $("#amount").attr({
+                    "val1": ui.values[0],
+                    "val2": ui.values[1]
+                });
             }
         });
         $("#amount").val("$" + $("#slider-range").slider("values", 0) +
             " - $" + $("#slider-range").slider("values", 1));
         }
-
     </script>
 {{/section}}
