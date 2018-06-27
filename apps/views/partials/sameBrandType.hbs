@@ -13,10 +13,10 @@
                 </div>
             </div>
             <h2>
-                <p href="/product?id={{id}}">{{name}}</a>
+                <a href="/product?id={{id}}">{{name}}</a>
             </h2>
             <div class="product-carousel-price">
-                <ins>{{price}}$</ins>
+                <h3>{{price}}$</h3>
                 <del>{{price}}$</del>
             </div>
         </div>
@@ -44,7 +44,7 @@
             </h2>
 
             <div class="product-carousel-price">
-                <ins>{{price}}$</ins>
+                <h3>{{price}}$</h3>
                 <del>{{price}}$</del>
             </div>
         </div>
@@ -59,7 +59,7 @@
         $('.related-products-carousel').owlCarousel({
             loop: true,
             nav: true,
-            margin: 20,
+            margin: 40,
             responsiveClass: true,
             responsive: {
                 0: {
@@ -69,10 +69,10 @@
                     items: 2,
                 },
                 1000: {
-                    items: 2,
+                    items: 4,
                 },
                 1200: {
-                    items: 3,
+                    items: 5,
                 }
             }
         });

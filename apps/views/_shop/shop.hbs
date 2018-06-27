@@ -48,6 +48,9 @@
                 $('.dropdown-text').text(selected);
                 $('#search-input').attr('placeholder', "Tên " + selected.toLowerCase() + "...");
             });
+             $( function() {
+                $( "#slider-range" ).slider();
+                } );
         });
 
         $("#searchform" ).submit(function(event) {
@@ -71,5 +74,20 @@
             }
             $(this).append('<input type="hidden" name="typeSearch" value ="' + res + '"/>');
         });
+
+        if (document.getElementById("slider-range") != null) {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 3000,
+            values: [100, 1500],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
+        }
+
     </script>
 {{/section}}

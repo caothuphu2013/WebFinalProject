@@ -115,8 +115,8 @@
 }
 .owl-carousel .owl-item img {
   display: block;
-  width: 80%;
-  padding-left: 80px;
+  width: 100%;
+  padding-left: 0px;
   -webkit-transform-style: preserve-3d;
 }
 .owl-carousel.owl-text-select-on .owl-item {
