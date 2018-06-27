@@ -869,7 +869,8 @@ button[type=submit]:hover {
 */
 
 .update-button,
-.checkout-button {
+.checkout-button
+{
     background: none repeat scroll 0 0 #1abc9c;
     border: medium none;
     color: #fff;

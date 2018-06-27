@@ -4,7 +4,7 @@ const q = require('q');
 let cart = {
     findByProductIntoCart: function(username) {
         let d = q.defer();
-        let sql = `Select p.id, p.picture, p.name, p.price, pc.count
+        let sql = `Select p.id, p.picture, p.name, p.price, pc.count, c.total
                 From cart c, product_cart pc, product p
                 Where c.customer = ? and pc.idCart = c.idCart and pc.product = p.id`;
         db.query(sql, [username], (error, results) => {
@@ -81,6 +81,7 @@ let cart = {
         return d.promise;
     }
     ,
+
 }
 
 module.exports = cart;

@@ -1,5 +1,5 @@
  {{#if noCart}}
-<h1 style="margin-bottom: 3%; text-align: center">Không có giỏ hàng</h1>
+<h2 style="margin-bottom: 5%; text-align: center">Không có giỏ hàng</h2>
 {{else}}
 <table cellspacing="0" class="shop_table cart">
     <thead>
@@ -45,39 +45,7 @@
                 <span class="amount_count" money='{{multiple this.price this.count}}'> {{multiple this.price this.count}} $</span>
             </td>
         </tr>
-        {{/each}} {{/if}}
+        {{/each}} 
+        {{/if}}
     </tbody>
 </table>
-<!--
-<script>
-    // Click button - in cart
-    $('.minus').bind('click', function () {
-        let count = $(this).closest('.cart_item').find('.qty').val();
-        let amount = $(this).closest('.cart_item').find('.amount').attr('money');
-        if (count > 1) {
-            count--;
-           $(this).closest('.cart_item').find('.qty').val(count);
-            let money = +count * +amount;
-            $(this).closest('.cart_item').find('.amount_count').attr('money', money);
-            $(this).closest('.cart_item').find('.amount_count').text(money + ' $');
-        }
-    });
-
-    //Click button + in cart
-    $('.plus').bind('click', function () {
-        let count = $(this).closest('.cart_item').find('.qty').val();
-        let amount = $(this).closest('.cart_item').find('.amount').attr('money');
-        count++;
-        $(this).closest('.cart_item').find('.qty').val(count);
-        let money = +count * +amount;
-        $(this).closest('.cart_item').find('.amount_count').attr('money', money);
-        $(this).closest('.cart_item').find('.amount_count').text(money + ' $');
-    });
-
-        //Click button x in cart
-    $('.remove').bind('click', function () {
-        let parent = $(this).parent().parent();
-        parent.remove();
-    });
-</script>
--->
