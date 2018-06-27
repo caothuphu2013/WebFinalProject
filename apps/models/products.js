@@ -24,6 +24,17 @@ let products = {
         });
         return d.promise;
     },
+    lookPrice: function(word) {
+        let d = q.defer();
+        let sql = "select id, name, price, picture from product where price = ?";
+        db.query(sql,[word], (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
     lookNameLike: function(word) {
         let d = q.defer();
         let sql = "select id, name, price, picture from product where name like ?";
@@ -38,6 +49,17 @@ let products = {
     lookTypeLike: function(word) {
         let d = q.defer();
         let sql = "select product.id, product.name, price, picture from product,type where product.type = type.id and type.name like ?";
+        db.query(sql,[word], (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    lookBrandLike: function(word) {
+        let d = q.defer();
+        let sql = "select product.id, product.name, price, picture from product,brand where product.brand = brand.id and brand.name like ?";
         db.query(sql,[word], (error, results) => {
             if (error) {
                 d.reject(error);
