@@ -21,6 +21,9 @@ module.exports = function (app) {
         },
         multiple: (a,b) => {
             return a * b;
+        },
+        downOne: (a) => {
+            return a-1;
         }
     }
   }));
