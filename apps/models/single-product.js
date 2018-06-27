@@ -7,7 +7,7 @@ let singleproduct = {
         let sql = "update product set viewTimes = viewTimes + 1 where id = ?";
         db.query(sql,[id],(error, results) => {     
         });
-        sql = "select * from product where id = ?";
+        sql = "select * from product, Configuration where id = ? and Configuration.idConfig = product.config";
         db.query(sql,[id], (error, results) => {
             if (error) {
                 d.reject(error);
