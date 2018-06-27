@@ -1,4 +1,4 @@
-<h3>{{this.cpuName}}</h3>
+<h3>Cấu hình cơ bản</h3>
 <div id="content_features">
     <div class="ty-product-feature-group">
         <h3 class="ty-subheader">
@@ -6,15 +6,15 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Công nghệ CPU:</span>
-            <div class="ty-product-feature__value">6th Generation Intel Core™</div>
+            <div class="ty-product-feature__value">{{cpuName}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Loại CPU - Tốc Độ:</span>
-            <div class="ty-product-feature__value">Intel® Core™ i5-6200U Processor</div>
+            <div class="ty-product-feature__value">{{cpuType}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Bộ nhớ đệm:</span>
-            <div class="ty-product-feature__value">3Mb Cache</div>
+            <div class="ty-product-feature__value">{{cache}}</div>
         </div>
     </div>
     <div class="ty-product-feature-group">
@@ -23,15 +23,15 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Dung lượng RAM:</span>
-            <div class="ty-product-feature__value">4GB</div>
+            <div class="ty-product-feature__value">{{ramSize}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Loại RAM:</span>
-            <div class="ty-product-feature__value">DDR3L</div>
+            <div class="ty-product-feature__value">{{ramType}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Tốc độ BUS</span>
-            <div class="ty-product-feature__value">1600Mhz</div>
+            <div class="ty-product-feature__value">{{busSpeed}}</div>
         </div>
     </div>
     <div class="ty-product-feature-group">
@@ -40,15 +40,15 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Dung lượng ổ đĩa:</span>
-            <div class="ty-product-feature__value">500GB</div>
+            <div class="ty-product-feature__value">{{diskSize}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Loại ổ đĩa:</span>
-            <div class="ty-product-feature__value">HDD</div>
+            <div class="ty-product-feature__value">{{diskType}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Vòng quay</span>
-            <div class="ty-product-feature__value">5400rpm</div>
+            <div class="ty-product-feature__value">{{diskRound}}</div>
         </div>
     </div>
     <div class="ty-product-feature-group">
@@ -57,15 +57,15 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Công nghệ màn hình:</span>
-            <div class="ty-product-feature__value">HD WLED TrueLife</div>
+            <div class="ty-product-feature__value">{{monitorTech}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Kích thước màn hình:</span>
-            <div class="ty-product-feature__value">15.6 inch</div>
+            <div class="ty-product-feature__value">{{monitorSize}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Độ phân giải</span>
-            <div class="ty-product-feature__value">HD (1366 x 768) pixels</div>
+            <div class="ty-product-feature__value">{{monitorResolution}}</div>
         </div>
     </div>
     <div class="ty-product-feature-group">
@@ -74,11 +74,11 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label"> Bộ nhớ đồ họa:</span>
-            <div class="ty-product-feature__value">4GB</div>
+            <div class="ty-product-feature__value">{{sizeGraphic}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Chipset đồ họa:</span>
-            <div class="ty-product-feature__value">AMD R5-M335</div>
+            <div class="ty-product-feature__value">{{chipset}}</div>
         </div>
     </div>
     <div class="ty-product-feature-group">
@@ -87,38 +87,37 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label"> Kết nối mạng:</span>
-            <div class="ty-product-feature__value">802.11 1X1 ac</div>
+            <div class="ty-product-feature__value">{{networkConnection}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Bluetooth:</span>
-            <div class="ty-product-feature__value">Bluetooth® 4.0</div>
+            <div class="ty-product-feature__value">{{bluetooth}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">HDMI:</span>
-            <div class="ty-product-feature__value">HDMI-out cổng</div>
+            <div class="ty-product-feature__value">{{hdmi}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Reader:</span>
-            <div class="ty-product-feature__value">1 SD card reader</div>
+            <div class="ty-product-feature__value">{{cardReader}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">USB:</span>
             <div class="ty-product-feature__value">
-                <p>1 x USB 3.0 PowerShare</p>
-                <p>2 x USB 3.0</p>
+                <p>{{usb}}</p>
             </div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Video Port:</span>
-            <div class="ty-product-feature__value">1 VGA</div>
+            <div class="ty-product-feature__value">{{videoPort}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">LAN:</span>
-            <div class="ty-product-feature__value">1 RJ45</div>
+            <div class="ty-product-feature__value">Lan</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Headphone/Speaker out:</span>
-            <div class="ty-product-feature__value">Headphone/Microphone Combo</div>
+            <div class="ty-product-feature__value">{{speaker}}</div>
         </div>
     </div>
     <div class="ty-product-feature-group">
@@ -127,15 +126,15 @@
         </h3>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Xuất xứ:</span>
-            <div class="ty-product-feature__value">Nhập khẩu từ USA</div>
+            <div class="ty-product-feature__value">{{madein}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Nhà sản xuất:</span>
-            <div class="ty-product-feature__value">Dell</div>
+            <div class="ty-product-feature__value">{{manufacturer}}</div>
         </div>
         <div class="ty-product-feature">
             <span class="ty-product-feature__label">Loại hàng</span>
-            <div class="ty-product-feature__value">Brand New 100% - Full Box - Seal</div>
+            <div class="ty-product-feature__value">{{typeProduct}}</div>
         </div>
     </div>
 </div>
