@@ -11,10 +11,7 @@
             <div class="product-main-img">
                 <img src="/img/{{this.picture}}.jpg" alt="">
             </div>
-            <h3>Cấu hình cơ bản</h3>
-            <div id="content_features">
-                TRỐNG
-            </div>
+            {{> basicConfiguration this}}
         </div>
     </div>
 
@@ -49,15 +46,7 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="home">
-                        <h2>Mô tả sản phẩm</h2>
-                        <h5 id="product-config">1. Cấu hình </h5>
-                      
-                        <h5 id="product-config">2. Thiết kế </h5>
-                      
-                        <h5 id="product-config">3. Bàn phím và Touchpad</h5>
-                       
-                        <h5 id="product-config">4. Cổng giao tiếp</h5>
-                       
+                       {{>productDescription this}}
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="profile">
                         <h2>Đánh giá</h2>
