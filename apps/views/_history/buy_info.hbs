@@ -1,0 +1,100 @@
+<style>
+  .profiles {
+      margin-left: 14%;
+  }
+
+  .profiles .image {
+      margin-left: -10% !important;
+  }
+  .profiles img {
+      height: 150px;
+      width: 150px;
+   }
+</style>
+<!-- End mainmenu area -->
+<div class="content-profile" style="margin: 5%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profiles">
+                    <p class="image"><img src="{{user.image}}" alt="" class="img-thumbnail img-fluid rounded"></p>
+                </div>
+                <div class="nav navbar-nav">
+                        
+                        <li style="width:100%" class="">
+                            <a href="/profile"><i class="fa fa-user"></i> <span>Thông tin tài khoản</span></a>
+                        </li>
+                        <li style="width:100%" class="active">
+                            <a href="/history"> <i class="fa fa-book"></i> <span>Quản lý đơn hàng</span></a>
+                        </li>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="content-right">
+                    <h3 >Chi tiết đơn hàng # {{bill.idBill}} - <strong>{{bill.state}}</strong></h3>
+                    <p style="text-align: right;">Ngày đặt hàng: {{bill.time}}</p>
+                    <div class="havemargin">
+                        <div >               
+                               {{> bill_content}}
+                        </div>
+                        <div class="address-1">
+                            <h4>Địa chỉ người nhận        </h4>
+                            <div>
+                                <p><strong>{{bill.name}}</strong></p>
+                                <p><span>Địa chỉ: </span>{{bill.address}}</p>
+                                <p><span>Điện thoại:</span> {{bill.phone}}</p>
+                            </div>
+                        </div>
+                        <div class="address-1">
+                            <h4>Hình thức giao hàng</h4>
+                            <div>
+                                <p>{{bill.shipMethod}}</p>          
+                            </div>
+                        </div>
+                        <div class="payment-2">
+                            <h4>Hình thức thanh toán</h4>
+                            <div>
+                                <p>{{bill.payMethod}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table-responsive-2">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Giảm giá</th>
+                                    <th>Tạm tính</th>
+                                </tr>
+                            </thead>
+                            <tbody class="row-bar">
+                               {{> bill_product}}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <span>Tổng tạm tính</span>
+                                    </td>
+                                    <td>{{bill.total}}&nbsp;$</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <span>Phí vận chuyển</span>
+                                    </td>
+                                    <td>0&nbsp;$</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><span>Tổng cộng</span></td>
+                                    <td><span class="sum">{{bill.total}}&nbsp;$</span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <a href="/history" class="btn btn-danger"> Quay lại đơn hàng của tôi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{{#each productGroup}}
+<tr>
+    <td>
+        <img class = "product-img" src="/img/{{this.picture}}.jpg" width="100px" height="100px" alt="sample text">
+        <div class="single-product">
+            <h4><a href="/product?id={{this.id}}">
+            {{this.name}}</a></h4>
+            <div class="clear-fix">
+                <a class="btn btn-info"  href="/product?id={{this.id}}" target="_blank">Đánh giá</a>
+                <a class="btn btn-info"  href="cart.html" target="_blank">Mua lại</a>
+            </div>
+        </div>
+    </td>
+    <td>{{this.price}}&nbsp;$</td>
+    <td>
+        {{this.count}} </td>
+    <td>0&nbsp;$</td>
+    <td>{{this.totalPrice}}&nbsp;$</td>
+</tr>
+{{/each}}

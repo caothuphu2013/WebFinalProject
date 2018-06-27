@@ -443,9 +443,8 @@ div.navbar-nav li.active {
     position: relative;
     font-weight: bolder;
     font-size: 17px;
-    margin-right: 5px;
     text-decoration: none;
-     float: right;
+    margin-left: 65%;
 }
 .product-carousel-price h3 {
     color: #1abc9c;
@@ -479,6 +478,10 @@ div.navbar-nav li.active {
 }
 
 .single-product h2 a {
+    color: #222;
+}
+
+.single-product h4 a {
     color: #222;
 }
 
@@ -1660,7 +1663,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 }
 
 .product-img {
-    width: 100%;
+    width: 40%;
 }
 
 

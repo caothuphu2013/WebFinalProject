@@ -73,6 +73,7 @@ module.exports = function(app) {
 
     //history
     app.get('/history', index.history.historyPage);
+    app.get('/history/bill', index.history.billInfo);
 
         //Err0r
     app.use(errorPage);
