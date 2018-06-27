@@ -13,6 +13,7 @@ let profileController = {
                 let address = rows[0].address || '';
                 let phone = rows[0].phone;
                 let email = rows[0].email;
+                let image = rows[0].image;
 
                 //Tách city
                 /*
@@ -41,6 +42,7 @@ let profileController = {
                     address,
                     phone, 
                     email,
+                    image
                 }
                 res.render('_profile/contentProfile', {
                     user: req.session.user,
@@ -65,6 +67,7 @@ let profileController = {
                 let address = rows[0].address || '';
                 let phone = rows[0].phone;
                 let email = rows[0].email;
+                let image = rows[0].image;
 
                 //Check gender
                 let isMan;
@@ -84,7 +87,8 @@ let profileController = {
                     sex,
                     address,
                     phone, 
-                    email
+                    email,
+                    image
                 }
 
                 res.render('_profile/updateProfile', {
@@ -120,7 +124,7 @@ let profileController = {
         }
 
         let obj_2 = {
-            ...req.session.user,
+            username,
             image
         }
         //////////////////////////////////////////////
@@ -129,8 +133,8 @@ let profileController = {
             if (image !== '/img/avatar.jpg') {
                 profileDB.updateAvatar(obj_2)
                 .then(rows => {
-                    if (rows.length > 0) {
-                        req.session.user = obj_2;
+                    if (rows) {
+                        req.session.user.image = obj_2.image;
                         req.flash('success_msg', 'Cập nhật thông tin thành công');
                         res.redirect('/profile');
                     }
