@@ -1,0 +1,91 @@
+{{#each product}}
+<div class="product-breadcroumb">
+    <a href="">Quản lý</a>
+    <a href="">Cập nhật Sản phẩm</a>
+    <a href="">{{name}}</a>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="product-images">
+            <div class="product-main-img">
+                <img src="/img/{{this.picture}}.jpg" alt="">
+            </div>
+            <button type="button">upload ảnh khác</button>
+            {{> basicConfiguration}}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="product-inner">
+            <h2 class="product-name">{{name}}</h2>
+            <div class="product-inner-price">
+                <ins>{{price}}$</ins>
+                <del>{{price}}$</del>
+            </div>
+
+            <form action="" class="cart" action="">
+                <div class="quantity">
+                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                </div>
+                <a href="/cart/choose?id={{id}}&price={{price}}">
+                    <button class="add_to_cart_button" type="button">Thêm vào giỏ hàng</button>
+                </a>
+            </form>
+
+            <div class="product-inner-category">
+                <p>Số lượt xem:{{viewTimes}} lượt</p>
+                <p>Đã bán: {{buyTimes}} chiếc</p>
+            </div>
+
+            <div role="tabpanel">
+                <ul class="product-tab" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả sản phẩm</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+                       {{> productDescription}}
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="profile">
+                        <h2>Đánh giá</h2>
+                        <div class="submit-review">
+                            <p>
+                                <label for="name">Tên</label>
+                                <input name="name" type="text">
+                            </p>
+                            <p>
+                                <label for="email">Email</label>
+                                <input name="email" type="email">
+                            </p>
+                            <div class="rating-chooser">
+                                <p>Đánh giá của bạn</p>
+
+                                <div class="rating-wrap-post">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <p>
+                                <label for="review">Đánh giá chi tiết</label>
+                                <textarea name="review" id="" cols="30" rows="10"></textarea>
+                            </p>
+                            <p>
+                                <input type="submit" value="Gửi">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{/each}}
