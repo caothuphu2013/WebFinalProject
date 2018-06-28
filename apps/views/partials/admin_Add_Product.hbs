@@ -1,23 +1,224 @@
-<form class="form-inline" action="/action_page.php">
-  <div class="form-group">
-    <label class="sr-only" for="name">Tên sản phẩm:</label>
-    <input type="text" class="form-control" id="name">
+<div class="row addProduct">
+  <div class="col-xs-12">
+    <form role="form" action="/management/product/addproduct/add" method="POST">
+      <h2>New Product
+        <small>Add new product.</small>
+      </h2>
+      <hr class="colorgraph">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="" id="productName" class="form-control input-lg" placeholder="Tên sản phẩm" tabindex="1">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <select class="form-control form-control-lg" name="category" id="typeProduct" onchange="ChangecatList()" required>
+              <option value="">Loại sản phẩm</option>
+              <option value="1">Business</option>
+              <option value="2">Workstation</option>
+              <option value="3">Gaming</option>
+              <option value="4">Ultrabook</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="" id="price" class="form-control input-lg" placeholder="Giá sản phẩm" tabindex="1">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <select class="form-control form-control-lg" name="category" id="manufacturer" onchange="ChangecatList()" required>
+              <option value="">Nhà sản xuất</option>
+              <option value="1">Dell</option>
+              <option value="2">Asus</option>
+              <option value="3">Acer</option>
+              <option value="4">HP</option>
+              <option value="5">MSI</option>
+              <option value="6">Apple</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="" id="date" class="form-control input-lg" placeholder="Ngày nhập" tabindex="1">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="" id="inware" class="form-control input-lg" placeholder="Số lượng" tabindex="5">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <p id="typeConfig">CPU</p>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="cpuName" class="form-control input-lg" placeholder="Thế hệ CPU" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="cpuType" class="form-control input-lg" placeholder="Loại CPU" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="cache" class="form-control input-lg" placeholder="Bộ nhớ đệm" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p id="typeConfig">RAM</p>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="ramSize" class="form-control input-lg" placeholder="Dung lượng RAM" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="ramType" class="form-control input-lg" placeholder="Loại RAM" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="busSpeed" class="form-control input-lg" placeholder="Tốc độ BUS" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p id="typeConfig">Đĩa cứng</p>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="diskSize" class="form-control input-lg" placeholder="Dung lượng ổ đĩa" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="diskType" class="form-control input-lg" placeholder="Loại ổ đĩa" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="round" class="form-control input-lg" placeholder="Số vòng quay" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p id="typeConfig">Màn hình</p>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="monitorTech" class="form-control input-lg" placeholder="Công nghệ màn hình" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="monitorSize" class="form-control input-lg" placeholder="Kích thước màn hình" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="monitorResolution" class="form-control input-lg" placeholder="Độ phân giải" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p id="typeConfig">Card đồ họa</p>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="" id="graphicSize" class="form-control input-lg" placeholder="Bộ nhớ đồ họa" tabindex="1">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="form-group">
+            <input type="text" name="" id="chipset" class="form-control input-lg" placeholder="Chipset đồ họa" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p id="typeConfig">Giao tiếp</p>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="networkConnection" class="form-control input-lg" placeholder="Kết nối mạng" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="bluetooth" class="form-control input-lg" placeholder="Bluetooth" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="hdmi" class="form-control input-lg" placeholder="HDMI" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="reader" class="form-control input-lg" placeholder="Reader" tabindex="5">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="usb" class="form-control input-lg" placeholder="Cổng USB" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="videoport" class="form-control input-lg" placeholder="Video Port" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="lanport" class="form-control input-lg" placeholder="Cổng mạng LAN" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" name="" id="speaker" class="form-control input-lg" placeholder="Headphone/Speaker" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p id="typeConfig">Xuất xứ - Nhà sản xuất</p>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="export" id="" class="form-control input-lg" placeholder="Xuất xứ" tabindex="1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="manufacture" class="form-control input-lg" placeholder="Nhà sản xuất" tabindex="5">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" name="" id="quality" class="form-control input-lg" placeholder="Loại hàng" tabindex="5">
+          </div>
+        </div>
+      </div>
+
+      <hr class="colorgraph">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <input type="submit" value="Thêm" class="btn btn-primary btn-block btn-lg" tabindex="7">
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <label class="sr-only" for="date">Ngày đăng</label>
-    <input type="date" class="form-control" id="date">
-  </div>
-   <div class="form-group">
-    <label class="sr-only" for="price">Giá :</label>
-    <input type="text" class="form-control" id="price">
-  </div>
-   <div class="form-group">
-    <label class="sr-only" for="brand">Nhãn hiệu:</label>
-    <input type="text" class="form-control" id="brand">
-  </div>
-   <div class="form-group">
-    <label class="sr-only" for="type">Loại:</label>
-    <input type="text" class="form-control" id="type">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+</div>
+
