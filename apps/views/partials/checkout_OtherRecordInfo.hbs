@@ -1,0 +1,40 @@
+<div class="col-md-5">
+    <div class="woocommerce-shipping-fields">
+        <h3 id="ship-to-different-address">
+            <label class="checkbox col-sm-11" for="ship-to-different-address-checkbox" style="padding-left: 0">Giao hàng đến địa chỉ khác</label>
+            <input type="checkbox" value="0" name="ship_to_different_address" class="input-checkbox" id="ship-to-different-address-checkbox"
+                onchange="otherAddress()">
+        </h3>
+        <div class="shipping_address" style="display: block;">
+
+            <p id="shipping_first_name_field" class="form-row form-row-first validate-required">
+                <label class="" for="shipping_first_name">Họ tên người nhận
+                    <abbr title="required" class="required">*</abbr>
+                </label>
+                <input type="text" value="" placeholder="Văn B" id="shipping_first_name" name="shipping_first_name" class="input-text ">
+            </p>
+
+            <p id="shipping_company_field" class="form-row form-row-wide">
+                <label class="" for="shipping_company">Cơ quan người nhận</label>
+                <input type="text" value="" placeholder="" id="shipping_company" name="shipping_company" class="input-text ">
+            </p>
+
+            <p id="shipping_address_1_field" class="form-row form-row-wide address-field validate-required">
+                <label class="" for="shipping_address_1">Địa chỉ người nhận
+                    <abbr title="required" class="required">*</abbr>
+                </label>
+                <input type="text" value="" placeholder="181/3,Tân phước, phường 6, quận 10, TPHCM" id="shipping_address_1" name="shipping_address_1"
+                    class="input-text ">
+            </p>
+            <div class="clear"></div>
+        </div>
+
+        <p id="order_comments_field" class="form-row notes">
+            <label class="" for="order_comments">Ghi chú</label>
+            <textarea cols="6" rows="2" placeholder="Hàng dễ vỡ, tặng sinh nhật ...." id="order_comments" class="input-text " name="order_comments"></textarea>
+        </p>
+
+
+    </div>
+
+</div>

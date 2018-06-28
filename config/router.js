@@ -71,6 +71,9 @@ module.exports = function(app) {
     app.get('/cart/subtract', index.cart.subtractProductToCart);
     app.get('/cart/add', index.cart.addProductToCart);
 
+    //checkout
+    app.get('/checkout', index.checkout.checkoutPage);
+
     //history
     app.get('/history', index.history.historyPage);
     app.get('/history/bill', index.history.billInfo);
