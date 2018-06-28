@@ -1,4 +1,4 @@
-const categoryDB = require('../models/products');
+const categoryDB = require('../models/adminProduct');
 const q = require('q');
 
 let dashboardController = {

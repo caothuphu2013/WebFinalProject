@@ -4,7 +4,10 @@ const q = require('q');
 let historyController = {
     historyPage: function(req, res) {
         if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
             res.redirect('/login');
+        }
         else {
             let username = req.session.user.username;
             historyDB.getHistory(username)
@@ -31,7 +34,10 @@ let historyController = {
     },
     billInfo: function(req, res) {
         if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
             res.redirect('/login');
+        }
         else {
             let id = req.query.id;
             let username = req.session.user.username;

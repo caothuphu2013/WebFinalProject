@@ -4,7 +4,10 @@ const q = require('q');
 let cartController = {
     cartPage: function(req, res) {
         if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
             res.redirect('/login');
+        }
         else {
             let username = req.session.user.username;
             let p1, p2, p3, p4, p5;
@@ -44,7 +47,10 @@ let cartController = {
         let idProduct = req.query.id;
         let price = req.query.price;
         if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
             res.redirect('/login');
+        }
         else {
             let username = req.session.user.username;
             let idProduct_cart = username + '_' + idProduct;
@@ -87,78 +93,102 @@ let cartController = {
     }
     ,
     removeProductToCart: function(req, res) {
-       let id = req.query.id;
-       let money = req.query.money;
-       let username = req.session.user.username;
-       let idProduct_cart = username + '_' + id;
-       let idCart = username + '_1';
+        if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
+            res.redirect('/login');
+        }
+        else
+        {
+           let id = req.query.id;
+           let money = req.query.money;
+           let username = req.session.user.username;
+           let idProduct_cart = username + '_' + id;
+           let idCart = username + '_1';
 
-       let p1, p2;
-       p1 = cartDB.removeProduct(idProduct_cart).catch(err => console.log(err));
-       
-        cartDB.findByCart(idCart)
-            .then(rows => {
-                let total = rows[0].total;
-                let total_new = total - money;
-                p2 = cartDB.updateCart(idCart, total_new).catch(err => console.log(err));
-            }).catch(err => console.log(err));
+           let p1, p2;
+           p1 = cartDB.removeProduct(idProduct_cart).catch(err => console.log(err));
+           
+            cartDB.findByCart(idCart)
+                .then(rows => {
+                    let total = rows[0].total;
+                    let total_new = total - money;
+                    p2 = cartDB.updateCart(idCart, total_new).catch(err => console.log(err));
+                }).catch(err => console.log(err));
+                
             
-        
-            q.all([p1,p2]).spread(() => {
-                res.redirect('/cart');
-            });
+                q.all([p1,p2]).spread(() => {
+                    res.redirect('/cart');
+                });
+        }
     }
     ,
     subtractProductToCart : function(req, res) {
-        let id = req.query.id;
-        let count = req.query.count;
-        let price = req.query.price;
-        let username = req.session.user.username;
-        let idProduct_cart = username + '_' + id;
-        let idCart = username + '_1';
-        let p1, p2;
+        if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
+            res.redirect('/login');
+        }
+        else
+        {
+            let id = req.query.id;
+            let count = req.query.count;
+            let price = req.query.price;
+            let username = req.session.user.username;
+            let idProduct_cart = username + '_' + id;
+            let idCart = username + '_1';
+            let p1, p2;
 
-        if (count - 1 == 0)
-            res.redirect('/cart');
-
-        else if (count - 1 > 0) {
-            p1 = cartDB.updateProductCart(idProduct_cart, count - 1).catch(err => console.log(err));
-            
-            cartDB.findByCart(idCart).then(rows => {
-                if (rows.length > 0) {
-                    let total = rows[0].total;
-                    p2 = cartDB.updateCart(idCart, total - price).catch(err => console.log(err));
-                }
-            });
-
-            q.all([p1,p2]).spread(() => {
+            if (count - 1 == 0)
                 res.redirect('/cart');
-            })
+
+            else if (count - 1 > 0) {
+                p1 = cartDB.updateProductCart(idProduct_cart, count - 1).catch(err => console.log(err));
+                
+                cartDB.findByCart(idCart).then(rows => {
+                    if (rows.length > 0) {
+                        let total = rows[0].total;
+                        p2 = cartDB.updateCart(idCart, total - price).catch(err => console.log(err));
+                    }
+                });
+
+                q.all([p1,p2]).spread(() => {
+                    res.redirect('/cart');
+                })
+            }
         }
     }
     ,
     addProductToCart : function(req, res) {
-        let id = req.query.id;
-        let count = req.query.count;
-        let price = req.query.price;
-        let username = req.session.user.username;
-        let idProduct_cart = username + '_' + id;
-        let idCart = username + '_1';
-        let p1, p2;
+        if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
+            res.redirect('/login');
+        }
+        else
+        {
+            let id = req.query.id;
+            let count = req.query.count;
+            let price = req.query.price;
+            let username = req.session.user.username;
+            let idProduct_cart = username + '_' + id;
+            let idCart = username + '_1';
+            let p1, p2;
 
-        if (+count <= 70) {
-            p1 = cartDB.updateProductCart(idProduct_cart, +count + 1).catch(err => console.log(err));
-        
-            cartDB.findByCart(idCart).then(rows => {
-                if (rows.length > 0) {
-                    let total = rows[0].total;
-                    p2 = cartDB.updateCart(idCart, total + +price).catch(err => console.log(err));
-                }
-            });
+            if (+count <= 70) {
+                p1 = cartDB.updateProductCart(idProduct_cart, +count + 1).catch(err => console.log(err));
+            
+                cartDB.findByCart(idCart).then(rows => {
+                    if (rows.length > 0) {
+                        let total = rows[0].total;
+                        p2 = cartDB.updateCart(idCart, total + +price).catch(err => console.log(err));
+                    }
+                });
 
-            q.all([p1,p2]).spread(() => {
-                res.redirect('/cart');
-            })
+                q.all([p1,p2]).spread(() => {
+                    res.redirect('/cart');
+                })
+            }
         }
     }
     ,
