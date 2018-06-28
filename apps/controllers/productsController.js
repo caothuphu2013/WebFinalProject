@@ -1,30 +1,76 @@
 const categoryDB = require('../models/products');
 const q = require('q');
+const config = require('../../config/configproduct.js')
 
 let productsController = {
     searchProducts : function(req, res) {
-        let p1 = categoryDB.getProducts().catch(err => {
+        var page = req.query.page;
+        if (!page) {
+            page = 1;
+        }
+        var offset = (page - 1) * config.PRODUCTS_PER_PAGE;
+        let p1 = categoryDB.getProducts(offset).catch(err => {
                 console.log("Error: " + err);});
-        q.all([p1]).spread(function(temp1) {
+        let p2 = categoryDB.countProducts().catch(err => {
+                console.log("Error: " + err);});
+        q.all([p1,p2]).spread(function(pRows,countRows) {
+            var total = countRows[0].count;
+            var nPages = total / config.PRODUCTS_PER_PAGE;
+            if (total % config.PRODUCTS_PER_PAGE > 0) {
+                nPages++;
+            }
+            var numbers = [];
+            for (i = 1; i <= nPages; i++) {
+                numbers.push({
+                value: i,
+                isCurPage: i === +page
+                });
+            }
             res.render("_shop/shop", {
                 user: req.session.user,
-                productsList: temp1,
-                noProducts: temp1.length === 0,
+                allProduct:1,
+                productsList: pRows,
+                noProducts: pRows.length === 0,
+                page_numbers: numbers,
                 layout: "index"
             });
         })
     }
     ,
     searchProductsAuto : function(req, res) {
+        var page = req.query.page;
+        if (!page) {
+            page = 1;
+        }
+        var offset = (page - 1) * config.PRODUCTS_PER_PAGE;
         let id = req.query.id;
         let att = req.query.att;
-        let p1 = categoryDB.lookProduct(att,id).catch(err => {
+
+        let p1 = categoryDB.lookProduct(att,id,offset).catch(err => {
                 console.log("Error: " + err);});
-        q.all([p1]).spread(function(temp1) {
+        let p2 = categoryDB.countlookProduct(att,id).catch(err => {
+                console.log("Error: " + err);});
+
+        q.all([p1,p2]).spread(function(temp1,countRows) {
+            var total = countRows[0].count;
+            var nPages = total / config.PRODUCTS_PER_PAGE;
+            if (total % config.PRODUCTS_PER_PAGE > 0) {
+                nPages++;
+            }
+            var numbers = [];
+            for (i = 1; i <= nPages; i++) {
+                numbers.push({
+                value: i,
+                isCurPage: i === +page
+                });
+            }
             res.render("_shop/shop", {
                 user: req.session.user,
                 productsList: temp1,
                 noProducts: temp1.length === 0,
+                page_numbers: numbers,
+                searchID:id,
+                searchType:att,
                 layout: "index"
             });
         })

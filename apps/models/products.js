@@ -1,10 +1,22 @@
 const db = require("./database.js");
 const q = require('q');
+const config = require('../../config/configproduct.js')
 
 let products = {
-    getProducts: function() {
+    getProducts: function(offset) {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product";
+        let sql = "select id, name, price, picture from product limit " + config.PRODUCTS_PER_PAGE + " offset ?";
+        db.query(sql,[offset], (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    countProducts: function() {
+        let d = q.defer();
+        let sql = "select count(*) as count from product";
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
@@ -13,9 +25,20 @@ let products = {
         });
         return d.promise;
     },
-    lookProduct: function(att,id) {
+    lookProduct: function(att,id,offset) {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product where "+att+" = ?";
+        let sql = "select id, name, price, picture from product where "+att+" = ? limit " + config.PRODUCTS_PER_PAGE + " offset ?";
+        db.query(sql,[id,offset], (error, results) => {
+            if (error) {
+                d.reject(error);
+            }
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    countlookProduct: function(att,id) {
+        let d = q.defer();
+        let sql = "select count(*) as count from product where "+att+" = ?";
         db.query(sql,[id], (error, results) => {
             if (error) {
                 d.reject(error);
@@ -84,7 +107,7 @@ let products = {
     },
     getProductStatistic: function() {
         let d = q.defer();
-        let sql = "select name, price, buyTimes from product";
+        let sql = "select name, price, buyTimes, from product";
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);

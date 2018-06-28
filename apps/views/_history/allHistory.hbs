@@ -34,6 +34,12 @@
                     <legend>Đơn hàng của tôi</legend>
                     <div class="dashboard-order have-margin">
                         <table class="table-responsive-2">
+                            
+                            {{#if noHistory}}
+                                <div class="col-md-9 col-sm-12">
+                                 <h2 class="text-danger">Không có đơn hàng.</h2>
+                                </div>                          
+                            {{else}}
                             <thead>
                                 <tr>
                                     <th>
@@ -51,11 +57,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#if noHistory}}
-                                    <div class="col-md-9 col-sm-12">
-                    <h2 class="text-danger">Không có sản phẩm thoả yêu cầu.</h2>
-                </div>                          
-                                {{else}}
                                 {{#each info}}
                                 <tr class="colorgrey">
                                     <td><a href="/history/bill?id={{idBill}}">{{idBill}}</a></td>

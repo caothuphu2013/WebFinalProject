@@ -13,7 +13,6 @@ const passport = require('passport');
 const facebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(app) {
-
     app.use(express.static("public"));
 
     app.use(bodyParser.urlencoded({

@@ -3,7 +3,7 @@ const q = require('q');
 const helper = require('../helper/bcrypt_password');
 let emailer = require('../helper/email');
 const emailUs = 'dackweb2018@gmail.com'
-
+const request = require('request');
 let email_temp = '';
 
 let userController = {
@@ -48,7 +48,11 @@ let userController = {
         req.checkBody('password2', 'Password không tương xứng').equals(password);
         req.checkBody('email', 'Email sai định dạng').isEmail();
         req.checkBody('phone', 'Số điện thoại sai định dạng').isMobilePhone('vi-VN');
+        req.checkBody('g-recaptcha-response','Vui lòng điền reCapcha').notEmpty(); 
 
+        let secretKey = "6Lc9HmEUAAAAANwb6sGEj9q9Hq3SCLtxolRTDOBO";
+        var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+       
         var errors = req.validationErrors();
         if (errors) {
             res.render('_user/register', {
@@ -57,6 +61,16 @@ let userController = {
             })
         }
         else {
+            request(verificationUrl,function(error,response,body)
+            {
+                body = JSON.parse(body);
+                if(!body.success){
+                    res.render('_user/register', {
+                    errors: errors,
+                    layout: "index"
+                    })
+                }
+            });
 
             userDB.findByUsername(username)
                 .then(rows => {

@@ -1,3 +1,4 @@
+<div class="row" style="min-height:800px">
 {{#each productsList}}
 <div class='col-md-3 col-sm-6'>
     <div class='single-shop-product'>
@@ -11,8 +12,30 @@
             <ins>{{this.price}}$</ins>
         </div>
         <div class='product-option-shop'>
-            <a class='near-bottom' data-quantity='1' data-product_sku='' data-product_id='70' rel='nofollow' href='/cart/choose?id={{this.id}}&price={{this.price}}'>Thêm giỏ</a>
+            <a class='near-bottom'  href='/cart/choose?id={{this.id}}&price={{this.price}}'>Vào giỏ</a>
         </div>
     </div>
 </div>
 {{/each}}
+</div>
+<ul class="pagination" style="padding-left: 20%;">
+    {{#if allProduct}}
+        {{#each page_numbers}}
+            {{#if isCurPage}}
+                <li class="active"><a href="javascript:;">{{value}}</a></li>
+            {{else}}
+                <li><a href="?page={{value}}">{{value}}</a></li>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#if searchID}}
+            {{#each page_numbers}}
+                {{#if isCurPage}}
+                    <li class="active"><a href="javascript:;">{{value}}</a></li>
+                {{else}}
+                    <li><a href="?att={{../searchType}}&id={{../searchID}}&page={{value}}">{{value}}</a></li>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+    {{/if}}
+</ul>
