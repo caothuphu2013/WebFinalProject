@@ -74,6 +74,7 @@ module.exports = function(app) {
 
     //checkout
     app.get('/checkout', index.checkout.checkoutPage);
+    app.post('/checkout/buy', index.checkout.buyProduct);
 
     //history
     app.get('/history', index.history.historyPage);
