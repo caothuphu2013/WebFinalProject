@@ -1,10 +1,10 @@
-const categoryDB = require('../models/products');
+const categoryDB = require('../models/adminProduct');
 const q = require('q');
 
 let manageController = {
     loadProductManagement : function(req, res) {
         let p = categoryDB.getProducts().catch(err => {
-                console.log("Error: " + err);});
+                console.log("Error: " + err)});
         q.all([p]).spread(function(temp1) {
             res.render("_admin/manage", {
                 products: temp1,

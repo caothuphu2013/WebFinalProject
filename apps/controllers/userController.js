@@ -72,44 +72,58 @@ let userController = {
                 }
             });
 
-            userDB.findByUsername(username)
-                .then(rows => {
-                    if (rows.length > 0) {
-                        req.flash('error_msg', 'Username bị trùng');
-                        res.redirect("/register");
+            let p1 = userDB.findByEmail(email).catch(err => {
+                console.log("Error: " + err);});
+            let p2 = userDB.findByPhone(phone).catch(err => {
+                console.log("Error: " + err);});
+            let p3 = userDB.findByUsername(username).catch(err => {
+                console.log("Error: " + err);});
+            q.all([p1,p2,p3]).spread(function(temp1,temp2,temp3) {
+                if (temp1.length > 0) {
+                    req.flash('error_msg', 'Email đã tồn tại');
+                    res.redirect("/register");
+                }
+                else if (temp2.length > 0) {
+                    req.flash('error_msg', 'Số điện thoại đã tồn tại');
+                    res.redirect("/register");
+                }
+                else if (temp3.length > 0) {
+                    req.flash('error_msg', 'Username bị trùng');
+                    res.redirect("/register");
+                }
+                else
+                {
+                    let hashPassword = helper.encryptPassword(password);
+                    let obj = {
+                        username,
+                        password: hashPassword,
+                        image: '/img/avatar.jpg',
+                        name: firstname + ' ' + lastname,
+                        email,
+                        phone
                     }
-                    else {
-                        let hashPassword = helper.encryptPassword(password);
-                        let obj = {
-                            username,
-                            password: hashPassword,
-                            image: '/img/avatar.jpg',
-                            name: firstname + ' ' + lastname,
-                            email,
-                            phone
-                        }
-                        let p1 = userDB.insertUser(obj)
-                            .then(success => {
-                                req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
-                                res.redirect("/login");
-                            })
-
-                            .fail(err => {
-                                req.flash('error_msg', 'Bạn không đăng kí thành công');
-                                res.redirect("/register");
-                            })
-
-                        let p2 = userDB.insertInfo(obj).catch(err => {
-                            console.log(err);
-                        });
-
-                        let idCart = obj.username + '_1';
-                        let p3 = userDB.insertCart(idCart, obj.username, 0);
-                        q.all([p1, p2, p3]).spread(err => {
-                            console.log(err);
+                    let p4 = userDB.insertUser(obj)
+                        .then(success => {
+                            req.flash('success_msg', 'Bạn đã đăng kí thành công và có thể đăng nhập');
+                            res.redirect("/login");
                         })
-                    }
-                })
+
+                        .fail(err => {
+                            req.flash('error_msg', 'Bạn không đăng kí thành công');
+                            res.redirect("/register");
+                        })
+
+                    let p5 = userDB.insertInfo(obj).catch(err => {
+                        console.log(err);
+                    });
+
+                    let idCart = obj.username + '_1';
+                    let p6 = userDB.insertCart(idCart, obj.username, 0);
+                    q.all([p4, p5, p6]).spread(err => {
+                        console.log(err);
+                    })
+                }
+            });
         }
     }
     ,
@@ -166,7 +180,10 @@ let userController = {
                                     }
 
                                     if (user.type == 0)
-                                        res.redirect("/");
+                                        if (req.session.prePage)
+                                            res.redirect(req.session.prePage);
+                                        else
+                                            res.redirect('/shop');
                                     else
                                         res.redirect("/dashboard");
                                 })

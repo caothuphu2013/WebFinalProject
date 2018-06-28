@@ -24,6 +24,26 @@ let users = {
         });
         return d.promise;
     },
+    findByEmail: function(email) {
+        let d = q.defer();
+        let sql = `SELECT email FROM user_info WHERE email = ?`;
+        db.query(sql, [email], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    findByPhone: function(phone) {
+        let d = q.defer();
+        let sql = `SELECT phone FROM user_info WHERE phone = ?`;
+        db.query(sql, [phone], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    },
     insertInfo: function(user) {
         let d = q.defer();
         let sql = `insert into user_info(username, name, birthday, sex, address, phone, email) values (?, ?, ?, ?, ?, ?, ?)`;
