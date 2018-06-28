@@ -1967,4 +1967,12 @@ table.table-responsive-2 tfoot tr td span.sum {
 .status-btn {
     cursor:pointer;
 }
-/*  */
+
+.addProduct {
+    margin: 4%;
+}
+
+#typeConfig {
+    font-weight: bold;
+    padding-left: 3%;
+}
