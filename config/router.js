@@ -31,6 +31,7 @@ module.exports = function(app) {
 
     //admin
     app.get("/dashboard", admin.dashboard.loadDashboard);
+    app.post("/dashboard/search", admin.dashboard.searchProduct);
     app.get("/dashboardtype", admin.dashboard.loadDashboardType);
     app.get("/dashboardbrand", admin.dashboard.loadDashboardBrand);
 

@@ -7,6 +7,15 @@
     }
 </style>
 
+<form id="searchform" role="form" method="post" action="/dashboard/search">
+    <div class="search col-md-6">
+        <input type="text" placeholder="Tên sản phẩm..." class="form-control" id="search-input" name="searchWhat" style="margin-left: 0px;"/>
+    </div>
+    <div class="search-type col-md-4">    
+        <button type = "submit" class="search-type-btn click col-md-6 glyphicon glyphicon-search" id='btn_Search' style="margin-left: -25px;"></button> 
+    </div>   
+</form>
+
 <div class="col-md-8">
     <div class="panel panel-default statistics-products" style="">
         <div class="panel-heading">
@@ -19,6 +28,7 @@
                         <th>Tên sản phẩm</th>
                         <th>Giá bán</th>
                         <th>Số lượng bán</th>
+                        <th>Tồn kho</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +37,7 @@
                             <th>{{this.name}}</th>
                             <th>{{this.price}}</th>
                             <th>{{this.buyTimes}}</th>
+                            <th>{{this.inware}}</th>
                         </tr>
                     {{/each}}
                 </tbody>

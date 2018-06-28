@@ -35,6 +35,20 @@ let dashboardController = {
             });
         })
     },
+    searchProduct : function(req, res) {
+        let word = req.body.searchWhat;
+        word = '%' + word + '%';
+        let p = categoryDB.lookNameLike(word).catch(err => {
+                console.log("Error: " + err);});
+        q.all([p]).spread(function(temp1) {
+    
+            res.render("_admin/dashboard", {
+                products: temp1,
+                statistic: 'admin_StatisticProduct',
+                layout: "admin"
+            });
+        })
+    },
 }
 
 module.exports = dashboardController;
