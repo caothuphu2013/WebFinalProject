@@ -61,6 +61,9 @@ let manageController = {
                 isProduct: false,
                 true: 1 == 1
             });
+    },
+    insertProductToDB : function(req, res) {
+        console.log('Chuan bi goi xuong DAL');
     }
 }
 
