@@ -4,7 +4,10 @@ const q = require('q');
 let checkoutController = {
     checkoutPage: function (req, res) {
         if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
             res.redirect('/login');
+        }
         else {
             let username = req.session.user.username;
             let p1 = checkoutDB.findByProductIntoCart(username).catch(err => console.log(err));
