@@ -6,7 +6,10 @@ const _PENDING = 'pending';
 let checkoutController = {
     checkoutPage: function (req, res) {
         if (!req.session.user)
+        {
+            req.session.prePage = req.originalUrl;
             res.redirect('/login');
+        }
         else {
             let username = req.session.user.username;
             let p1 = checkoutDB.findByProductIntoCart(username).catch(err => console.log(err));
@@ -46,7 +49,7 @@ let checkoutController = {
 
    
             let time = Date.now();
-            let idBill = username + time;
+            let idBill = username +'_1'+ time;
             let obj = {
                 idBill,
                 username,
@@ -62,13 +65,15 @@ let checkoutController = {
 
             p1 = checkoutDB.insertBill(obj)
                 .catch (err => console.log(err));
-            p2 = checkoutDB.deleteProductIntoCart(username + '_1')
+            p2 = checkoutDB.insertBill_info(username + '_1',time)
+                .catch (err => console.log(err));
+            p3 = checkoutDB.deleteProductInCart(username + '_1')
                 .catch(err => console.log(err));
-            p3 = checkoutDB.updateCart(username+ '_1', 0)
+            p4 = checkoutDB.updateCart(username+ '_1', 0)
                 .catch(err => console.log(err));
             
 
-            q.all([p1,p2,p3]).spread((temp1, temp2, temp3, temp4) => {
+            q.all([p1,p2,p3,p4]).spread((temp1, temp2, temp3, temp4) => {
                 req.session.user.total = 0;
                 req.session.user.count = 0;
                 res.redirect('/history');
