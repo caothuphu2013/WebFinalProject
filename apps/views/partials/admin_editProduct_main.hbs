@@ -1,10 +1,9 @@
-{{#each product}}
+{{#each products}}
 <div class="product-breadcroumb">
     <a href="">Quản lý</a>
     <a href="">Cập nhật Sản phẩm</a>
     <a href="">{{name}}</a>
 </div>
-
 <div class="row">
     <div class="col-sm-6">
         <div class="product-images">
@@ -12,79 +11,35 @@
                 <img src="/img/{{this.picture}}.jpg" alt="">
             </div>
             <button type="button">upload ảnh khác</button>
-            {{> basicConfiguration}}
+            <h3 style="margin-top:20px;">Cấu hình: </h3>
+            <select>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
         </div>
     </div>
-
     <div class="col-sm-6">
         <div class="product-inner">
-            <h2 class="product-name">{{name}}</h2>
+            <h3>Tên sản phẩm:</h3>
+            <input type="text" class="product-name form-control" value="{{name}}"/>
             <div class="product-inner-price">
-                <ins>{{price}}$</ins>
-                <del>{{price}}$</del>
+                <h3>Gía:</h3>
+                <input type="number" class="form-control" value="{{price}}" style="width:100px; font-size:20px; display: inline;"/><p style="display: inline; font-size:20px; margin-left: 10px;">$</p>
             </div>
-
-            <form action="" class="cart" action="">
-                <div class="quantity">
-                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                </div>
-                <a href="/cart/choose?id={{id}}&price={{price}}">
-                    <button class="add_to_cart_button" type="button">Thêm vào giỏ hàng</button>
-                </a>
-            </form>
-
-            <div class="product-inner-category">
-                <p>Số lượt xem:{{viewTimes}} lượt</p>
-                <p>Đã bán: {{buyTimes}} chiếc</p>
+            <div>
+                <h3>Số lượng tồn:</h3>
+                <input type="number" class="product-inware form-control" value="{{inware}}" style="width:100px; font-size:20px;"/>
             </div>
-
-            <div role="tabpanel">
-                <ul class="product-tab" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả sản phẩm</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="home">
-                       {{> productDescription}}
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="profile">
-                        <h2>Đánh giá</h2>
-                        <div class="submit-review">
-                            <p>
-                                <label for="name">Tên</label>
-                                <input name="name" type="text">
-                            </p>
-                            <p>
-                                <label for="email">Email</label>
-                                <input name="email" type="email">
-                            </p>
-                            <div class="rating-chooser">
-                                <p>Đánh giá của bạn</p>
-
-                                <div class="rating-wrap-post">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <p>
-                                <label for="review">Đánh giá chi tiết</label>
-                                <textarea name="review" id="" cols="30" rows="10"></textarea>
-                            </p>
-                            <p>
-                                <input type="submit" value="Gửi">
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <h3 style="margin-top:20px;">Mô tả sản phẩm:</h3>
+            <h4 id="product-config">Cấu hình:</h4>
+            <textarea cols="100" rows="5" class="description-info form-control" >{{configInfo}}</textarea>
+            <h4 id="product-config" style="margin-top:20px;">Thiết kế:</h4>
+            <textarea cols="100" rows="5" class="description-design form-control" >{{designInfo}}</textarea>
+            <h4 id="product-config" style="margin-top:20px;">Bàn phím và touchpad:</h4>
+            <textarea cols="100" rows="5" class="description-kbtp form-control" >{{KeyboardAndTouchpad}}</textarea>
+            <h4 id="product-config" style="margin-top:20px;">Cổng giao tiếp:</h4>
+            <textarea cols="100" rows="5" class="description-port form-control" >{{portInfo}}</textarea>
         </div>
     </div>
 </div>
