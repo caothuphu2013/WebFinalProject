@@ -1,13 +1,13 @@
 //trong model -> database.js gọi ra để tạo kết nối đến mysql
-const DB_NAME = 'sql3245063';
-const DB_USER = 'sql3245063';
-const DB_PASSWORD = 'R7xl83MicI';
-const DB_HOST = 'sql3.freemysqlhosting.net';
+// const DB_NAME = 'sql3245063';
+// const DB_USER = 'sql3245063';
+// const DB_PASSWORD = 'R7xl83MicI';
+// const DB_HOST = 'sql3.freemysqlhosting.net';
 
-// const DB_NAME = 'laptop_db';
-// const DB_USER = 'root';
-// const DB_PASSWORD = 'root';
-// const DB_HOST = '127.0.0.1';
+const DB_NAME = 'laptop_db';
+const DB_USER = 'root';
+const DB_PASSWORD = 'root';
+const DB_HOST = '127.0.0.1';
 module.exports = {
   host: DB_HOST,
   user: DB_USER,
