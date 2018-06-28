@@ -5,7 +5,7 @@ const config = require('../../config/configproduct.js')
 let adminProducts = {
     getProducts: function() {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product";
+        let sql = "select id, name, price,inware,picture from product";
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
@@ -16,7 +16,7 @@ let adminProducts = {
     },
     lookProduct: function(att,id) {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product where "+att+" = ?";
+        let sql = "select id, name, price, picture,inware from product where "+att+" = ?";
         db.query(sql,[id], (error, results) => {
             if (error) {
                 d.reject(error);
@@ -27,18 +27,7 @@ let adminProducts = {
     },
     lookPrice: function(word) {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product where price = ?";
-        db.query(sql,[word], (error, results) => {
-            if (error) {
-                d.reject(error);
-            }
-            d.resolve(results);
-        });
-        return d.promise;
-    },
-    lookNameLike: function(word) {
-        let d = q.defer();
-        let sql = "select id, name, price, picture from product where name like ?";
+        let sql = "select id, name, price, picture,inware from product where price = ?";
         db.query(sql,[word], (error, results) => {
             if (error) {
                 d.reject(error);
@@ -69,13 +58,10 @@ let adminProducts = {
         });
         return d.promise;
     },
-    filterProducts: function(brand, type,beginPrice,endPrice) {
+    getProductStatistic: function() {
         let d = q.defer();
-        let sql = `select product.id, product.name, price, picture
-            from product,brand,type
-            where product.brand = brand.id and product.type = type.id
-            and brand.name in (?) and type.name in (?) and price >= ? and price <= ? `;
-        db.query(sql,[brand,type,beginPrice,endPrice], (error, results) => {
+        let sql = "select name, price, buyTimes, inware from product";
+        db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
             }
@@ -83,10 +69,10 @@ let adminProducts = {
         });
         return d.promise;
     },
-    getProductStatistic: function() {
+    lookNameLike: function(word) {
         let d = q.defer();
-        let sql = "select name, price, buyTimes from product";
-        db.query(sql, (error, results) => {
+        let sql = "select name, price, buyTimes, inware from product where name like ?";
+        db.query(sql,[word], (error, results) => {
             if (error) {
                 d.reject(error);
             }
@@ -96,7 +82,9 @@ let adminProducts = {
     },
     getBrandStatistic: function() {
         let d = q.defer();
-        let sql = "select b.name, sum(buyTimes) as soldProduct, sum(price*buyTimes) as revenue from laptop_db.product p, laptop_db.brand b group by b.id, b.name";
+        let sql = `select b.name, sum(buyTimes) as soldProduct, sum(price*buyTimes) as revenue, sum(inware) as inware
+                    from laptop_db.product p, laptop_db.brand b where p.brand = b.id
+                    group by b.name`;
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
@@ -107,7 +95,10 @@ let adminProducts = {
     },
     getTypeStatistic: function() {
         let d = q.defer();
-        let sql = "select t.name, sum(buyTimes) as soldProduct, sum(price*buyTimes) as revenue from laptop_db.product p, laptop_db.type t group by t.id, t.name";
+        let sql = `select t.name, sum(buyTimes) as soldProduct, sum(price*buyTimes) as revenue, sum(inware) as inware
+                    from laptop_db.product p, laptop_db.type t
+                    where p.type = t.id 
+                    group by t.id, t.name`;
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);

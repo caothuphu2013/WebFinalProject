@@ -31,6 +31,7 @@ module.exports = function(app) {
 
     //admin
     app.get("/dashboard", admin.dashboard.loadDashboard);
+    app.post("/dashboard/search", admin.dashboard.searchProduct);
     app.get("/dashboardtype", admin.dashboard.loadDashboardType);
     app.get("/dashboardbrand", admin.dashboard.loadDashboardBrand);
 
@@ -70,6 +71,9 @@ module.exports = function(app) {
     app.get('/cart/remove', index.cart.removeProductToCart);
     app.get('/cart/subtract', index.cart.subtractProductToCart);
     app.get('/cart/add', index.cart.addProductToCart);
+
+    //checkout
+    app.get('/checkout', index.checkout.checkoutPage);
 
     //history
     app.get('/history', index.history.historyPage);

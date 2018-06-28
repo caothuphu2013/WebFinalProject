@@ -19,14 +19,16 @@
                         <th>Tên loại</th>
                         <th>Số sản phẩm</th>
                         <th>Tổng tiền</th>
+                        <th>Tồn kho</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each type}}
                         <tr>
                             <td>{{this.name}}</td>
-                            <td>{{this.soldProduct}}</td>
-                            <td>{{this.revenue}}</td>
+                            <th>{{this.soldProduct}}</td>
+                            <th>{{this.revenue}}</td>
+                            <td>{{this.inware}}</td>
                         </tr>
                     {{/each}}
                 </tbody>

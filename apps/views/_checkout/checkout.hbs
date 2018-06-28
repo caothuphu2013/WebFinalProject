@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body> 
+    {{> a_HeaderCheckout}}
+    <div class="single-product-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+
+                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+
+                                <div id="customer_details" class="col2-set">
+                                    {{> checkout_RecordInfo}}
+
+                                    {{> checkout_OtherRecordInfo}}
+
+                                </div>
+
+                                <div id="order_review">
+                                    <h3 id="order_review_heading">
+                                        Thông tin đặt hàng
+                                    </h3>
+                                    {{> checkout_OrderInfo}}
+
+                                    {{> checkout_Payment}}
+                                </div>
+                            </form>
+
+                        </div>                       
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
