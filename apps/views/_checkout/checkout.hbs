@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <body> 
+<style>
+    #customer_details {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+</style>
     {{> a_HeaderCheckout}}
     <div class="single-product-area">
         <div class="container">
@@ -9,11 +12,10 @@
                     <div class="product-content-right">
                         <div class="woocommerce">
 
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                            <form action="/checkout/buy" class="checkout" method="Post" name="checkout">
 
                                 <div id="customer_details" class="col2-set">
                                     {{> checkout_RecordInfo}}
-
                                     {{> checkout_OtherRecordInfo}}
 
                                 </div>
