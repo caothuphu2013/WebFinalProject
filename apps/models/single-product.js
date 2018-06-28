@@ -19,7 +19,7 @@ let singleproduct = {
     },
     getSameBrandProduct: function(id) {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product where brand = (select brand from product where id = ?) and id != ? ORDER BY RAND() limit 5";
+        let sql = "select id, name, price, picture from product where brand = (select brand from product where id = ?) and id != ? ORDER BY RAND() limit 10";
         db.query(sql,[id,id], (error, results) => {
             if (error) {
                 d.reject(error);
@@ -30,7 +30,7 @@ let singleproduct = {
     },
     getSameTypeProduct: function(id) {
         let d = q.defer();
-        let sql = "select id, name, price, picture from product where type = (select type from product where id = ?) and id != ? ORDER BY RAND() limit 5";
+        let sql = "select id, name, price, picture from product where type = (select type from product where id = ?) and id != ? ORDER BY RAND() limit 10";
         db.query(sql,[id,id], (error, results) => {
             if (error) {
                 d.reject(error);
