@@ -2,8 +2,7 @@
     <div class="woocommerce-shipping-fields" style="padding-left: 3%">
         <h3 id="ship-to-different-address">
             <label class="checkbox col-sm-11" for="ship-to-different-address-checkbox" style="padding-left: 5%">Giao hàng đến địa chỉ khác</label>
-            <input type="checkbox" value="0" name="ship_to_different_address" class="input-checkbox" id="ship-to-different-address-checkbox"
-                onchange="otherAddress()">
+            <input type="checkbox" name="ship_to_different_address" value="check" class = "input-checkbox"onchange="otherAddress()" unchecked>
         </h3>
         <div class="shipping_address" style="display: none;">
 
@@ -13,12 +12,6 @@
                 </label>
                 <input type="text" value="" placeholder="Văn B" id="shipping_first_name" name="shipping_name" class="input-text ">
             </p>
-
-            <p id="shipping_company_field" class="form-row form-row-wide">
-                <label class="" for="shipping_company">Cơ quan người nhận</label>
-                <input type="text" value="" placeholder="" id="shipping_company" name="shipping_company" class="input-text ">
-            </p>
-
             <p id="shipping_address_1_field" class="form-row form-row-wide address-field validate-required">
                 <label class="" for="shipping_address_1">Địa chỉ người nhận
                     <abbr title="required" class="required">*</abbr>
@@ -43,11 +36,9 @@
     function otherAddress() {
         if ($(".input-checkbox").is(":checked"))
         {
-            $('.input-checkbox').val(1);
             $(".shipping_address").show();
         }
         else {
-            $('.input-checkbox').val(0);
             $(".shipping_address").hide();
         }
             
