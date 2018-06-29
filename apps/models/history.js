@@ -18,7 +18,7 @@ let history = {
     },
     getBill: function(id,user) {
         let d = q.defer();
-        let sql = `select distinct bill.*, user_info.name
+        let sql = `select distinct bill.*
     from bill, bill_info,user_info
     where bill_info.idBill = bill.idBill and user_info.username = bill.customer and bill.customer = ? and bill.idBill = ?`
         db.query(sql, [user,id], (error, results) => {

@@ -63,7 +63,8 @@ let manageController = {
             });
     },
     insertProductToDB : function(req, res) {
-        console.log('Chuan bi goi xuong DAL');
+        let productName = req.body.productName;
+        let productType = req.body.typeProduct;
     }
 }
 

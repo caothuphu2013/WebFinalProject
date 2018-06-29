@@ -46,38 +46,58 @@ let checkoutController = {
             email = req.body.billing_email;
             phone = req.body.billing_phone;
         }
-
-   
-            let time = Date.now();
-            let idBill = username +'_1'+ time;
-            let obj = {
-                idBill,
-                username,
-                name,
-                time: new dateToString(new Date()).convertDateToString(),
-                state: _PENDING,
-                address,
-                phone,
-                email,
-                payMethod: 'Tiền mặt',
-                total: req.session.user.total
+        let p0 = checkoutDB.checkValid(username + '_1')
+                .catch (err => console.log(err));
+        let p = checkoutDB.checkEnough(username + '_1')
+                .catch (err => console.log(err));
+        q.all([p0,p]).spread((temp,temp2) => {
+            if (temp[0]) {
+                res.redirect("/checkout");
             }
+            else if (temp2[0]) {
+                req.flash('error_msg', 'Kho không đủ hàng');
+                res.redirect("/checkout");
+            }
+            else
+            {
+                let time = Date.now();
+                let idBill = username +'_1'+ time;
+                let obj = {
+                    idBill,
+                    username,
+                    name,
+                    time: new dateToString(new Date()).convertDateToString(),
+                    state: _PENDING,
+                    address,
+                    phone,
+                    email,
+                    payMethod: 'Tiền mặt',
+                    total: req.session.user.total
+                }
+                console.log(obj);
+                
+                let p1 = checkoutDB.insertBill(obj)
+                    .catch (err => console.log(err));
+                let p2 = checkoutDB.insertBill_info(username + '_1',time)
+                    .catch (err => console.log(err));
+                let p3 = checkoutDB.increaseBuyTimes(username + '_1')
+                    .catch (err => console.log(err));
+                let p4 = checkoutDB.decreaseInWare(username + '_1')
+                    .catch (err => console.log(err));
+                let p5 = checkoutDB.deleteProductInCart(username + '_1')
+                    .catch(err => console.log(err));
+                let p6 = checkoutDB.updateCart(username+ '_1', 0)
+                    .catch(err => console.log(err));
+                
 
-            p1 = checkoutDB.insertBill(obj)
-                .catch (err => console.log(err));
-            p2 = checkoutDB.insertBill_info(username + '_1',time)
-                .catch (err => console.log(err));
-            p3 = checkoutDB.deleteProductInCart(username + '_1')
-                .catch(err => console.log(err));
-            p4 = checkoutDB.updateCart(username+ '_1', 0)
-                .catch(err => console.log(err));
-            
-
-            q.all([p1,p2,p3,p4]).spread((temp1, temp2, temp3, temp4) => {
-                req.session.user.total = 0;
-                req.session.user.count = 0;
-                res.redirect('/history');
-            })
+                q.all([p1,p2,p3,p4,p5,p6]).spread((temp1, temp2, temp3, temp4,temp5,temp6) => {
+                    req.session.user.total = 0;
+                    req.session.user.count = 0;
+                    req.flash('success_msg', 'Đơn hàng đang được xử lý, cảm ơn bạn đã đặt mua');
+                    res.redirect('/history/bill?id='+ idBill);
+                });
+            }
+        })
         }
 }
 
