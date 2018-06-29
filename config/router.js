@@ -14,6 +14,16 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage:storage});
 
+//For product update
+var storageProduct = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/img');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '_' + file.originalname)
+    }
+});
+var uploadProduct = multer({storage:storageProduct});
 
 // Exports
 module.exports = function(app) {

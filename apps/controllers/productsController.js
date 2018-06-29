@@ -117,7 +117,11 @@ let productsController = {
         let endPrice = +req.body.endPrice;
         let brandstr = "";
         let typestr = "";
+        console.log(brand);
+
         for(let index in brand) { 
+        console.log(index);
+
             brandstr += "'" + brand[index] + "',"; 
         } 
         brandstr = brandstr.slice(0, -1);
