@@ -111,6 +111,69 @@ let manageController = {
     insertProductToDB : function(req, res) {
         let productName = req.body.productName;
         let productType = req.body.typeProduct;
+        let price = req.body.price;
+        let brand = req.body.brand;
+        let date = req.body.date;
+        let inware = req.body.inware;
+
+        let cpuName = req.body.cpuName;
+        let cpuType = req.body.cpuType;
+        let cache = req.body.cache;
+
+        let ramType = req.body.ramType;
+        let ramSize = req.body.ramSize;
+        let busSpeed = req.body.busSpeed;
+
+        let diskSize = req.body.diskSize;
+        let diskType = req.body.diskType;
+        let round = req.body.round;
+
+        let monitorTech = req.body.monitorTech;
+        let monitorSize = req.body.monitorSize;
+        let monitorResolution = req.body.monitorResolution;
+
+        let graphicSize = req.body.graphicSize;
+        let chipset = req.body.chipset;
+        
+        let networkConnection = req.body.networkConnection;
+        let bluetooth = req.body.bluetooth;
+        let hdmi = req.body.hdmi;
+        let reader = req.body.reader;
+        
+        let usb = req.body.usb;
+        let videoport = req.body.videoport;
+        let lanport = req.body.lanport;
+        let speaker = req.body.speaker;
+
+        let xuatxu = req.body.export;
+        let manufacture = req.body.manufacture;
+        let quality = req.body.quality;
+
+        let data = {
+            productName,
+            productType,
+            price,
+            brand,
+            date,
+            inware,
+            cpuName, cpuType, cache,
+            ramType, ramSize, busSpeed,
+            diskSize, diskType, round,
+            monitorTech, monitorSize, monitorResolution,
+            graphicSize, chipset,
+            networkConnection, bluetooth, hdmi, reader,
+            usb, videoport, lanport, speaker,
+            xuatxu, manufacture, quality
+        }
+
+        categoryDB.addProduct(data).then((success) => {
+            req.flash('success_msg', 'Thêm sản phẩm thành công');
+            res.redirect('/management/product')
+        })
+        .fail((error) => {
+
+        })
+
     }
 }
 
