@@ -100,7 +100,8 @@ let userController = {
                         image: '/img/avatar.jpg',
                         name: firstname + ' ' + lastname,
                         email,
-                        phone
+                        phone,
+                        address: ''
                     }
                     let p4 = userDB.insertUser(obj)
                         .then(success => {
