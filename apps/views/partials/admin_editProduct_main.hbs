@@ -58,11 +58,11 @@
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Loại ổ đĩa:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{diskType}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{diskType}}" onchange="document.getElementById('pd_disk_type').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[7].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Vòng quay</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{diskRound}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{diskRound}}" onchange="document.getElementById('pd_disk_round').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[8].value);" />
                     </div>
                 </div>
                 <div class="ty-product-feature-group">
@@ -71,15 +71,15 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Công nghệ màn hình:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorTech}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorTech}}" onchange="document.getElementById('pd_monitor_tech').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[9].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Kích thước màn hình:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorSize}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorSize}}" onchange="document.getElementById('pd_monitor_size').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[10].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Độ phân giải</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorResolution}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorResolution}}" onchange="document.getElementById('pd_monitor_resolution').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[11].value);" />
                     </div>
                 </div>
                 <div class="ty-product-feature-group">
@@ -88,11 +88,11 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label"> Bộ nhớ đồ họa:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{sizeGraphic}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{sizeGraphic}}" onchange="document.getElementById('pd_graphic_size').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[12].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Chipset đồ họa:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{chipset}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{chipset}}" onchange="document.getElementById('pd_chipset').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[13].value);" />
                     </div>
                 </div>
                 <div class="ty-product-feature-group">
@@ -101,31 +101,31 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label"> Kết nối mạng:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{networkConnection}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{networkConnection}}" onchange="document.getElementById('pd_network_connection').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[14].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Bluetooth:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{bluetooth}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{bluetooth}}" onchange="document.getElementById('pd_bluetooth').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[15].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">HDMI:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{hdmi}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{hdmi}}" onchange="document.getElementById('pd_hdmi').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[16].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Reader:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{cardReader}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cardReader}}" onchange="document.getElementById('pd_cardreader').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[17].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">USB:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{usb}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{usb}}" onchange="document.getElementById('pd_usb').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[18].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Video Port:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{videoPort}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{videoPort}}" onchange="document.getElementById('pd_videoport').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[19].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Headphone/Speaker out:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{speaker}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{speaker}}" onchange="document.getElementById('pd_speaker').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[20].value);" />
                     </div>
                 </div>
                 <div class="ty-product-feature-group">
@@ -134,15 +134,15 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Xuất xứ:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{madein}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{madein}}" onchange="document.getElementById('pd_madein').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[21].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Nhà sản xuất:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{manufacturer}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{manufacturer}}" onchange="document.getElementById('pd_manufacturer').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[22].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Loại hàng</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{typeProduct}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{typeProduct}}" onchange="document.getElementById('pd_typeproduct').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[23].value);" />
                     </div>
                 </div>
             </div>
@@ -151,24 +151,24 @@
     <div class="col-sm-6">
         <div class="product-inner">
             <h3>Tên sản phẩm:</h3>
-            <input type="text" class="product-name form-control" value="{{name}}"/>
+            <input type="text" class="product-name form-control" value="{{name}}" onchange="document.getElementById('pd_name').setAttribute('value', document.getElementsByClassName('product-name')[0].value);" />
             <div class="product-inner-price">
                 <h3>Gía:</h3>
-                <input type="number" class="form-control" value="{{price}}" style="width:100px; font-size:20px; display: inline;"/><p style="display: inline; font-size:20px; margin-left: 10px;">$</p>
+                <input type="number" class="form-control product-price" value="{{price}}" style="width:100px; font-size:20px; display: inline;" onchange="document.getElementById('pd_price').setAttribute('value', document.getElementsByClassName('product-price')[0].value);" /><p style="display: inline; font-size:20px; margin-left: 10px;">$</p>
             </div>
             <div>
                 <h3>Số lượng tồn:</h3>
-                <input type="number" class="product-inware form-control" value="{{inware}}" style="width:100px; font-size:20px;"/>
+                <input type="number" class="product-inware form-control" value="{{inware}}" style="width:100px; font-size:20px;" onchange="document.getElementById('pd_inware').setAttribute('value', document.getElementsByClassName('product-inware')[0].value);" />
             </div>
             <h3 style="margin-top:20px;">Mô tả sản phẩm:</h3>
             <h4 id="product-config">Cấu hình:</h4>
-            <textarea cols="100" rows="15" class="description-info form-control" >{{configInfo}}</textarea>
+            <textarea cols="100" rows="15" class="description-info form-control" onchange="document.getElementById('pd_des_config').setAttribute('value', document.getElementsByClassName('description-info')[0].value);" >{{configInfo}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Thiết kế:</h4>
-            <textarea cols="100" rows="15" class="description-design form-control" >{{designInfo}}</textarea>
+            <textarea cols="100" rows="15" class="description-design form-control" onchange="document.getElementById('pd_des_design').setAttribute('value', document.getElementsByClassName('description-design')[0].value);" >{{designInfo}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Bàn phím và touchpad:</h4>
-            <textarea cols="100" rows="15" class="description-kbtp form-control" >{{KeyboardAndTouchpad}}</textarea>
+            <textarea cols="100" rows="15" class="description-kbtp form-control" onchange="document.getElementById('pd_des_kbtp').setAttribute('value', document.getElementsByClassName('description-kbtp')[0].value);" >{{KeyboardAndTouchpad}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Cổng giao tiếp:</h4>
-            <textarea cols="100" rows="15" class="description-port form-control" >{{portInfo}}</textarea>
+            <textarea cols="100" rows="15" class="description-port form-control" onchange="document.getElementById('pd_des_port').setAttribute('value', document.getElementsByClassName('description-port')[0].value);" >{{portInfo}}</textarea>
         </div>
     </div>
 </div>
@@ -272,7 +272,7 @@
                 <input id="pd_typeproduct" name="pd_typeproduct" type="text" value="{{typeProduct}}"/>
             </div>
         </div>
-        <button type="button" class="btn btn-default" style="background-color: #1ABC9C; display: block; width: 150px; height: 80px; margin-right: 50px; margin-top: 50px; float: right;">Lưu cập nhật</button>
+        <button type="submit" class="btn btn-default" style="background-color: #1ABC9C; color: white; display: block; width: 150px; height: 80px; margin-right: 50px; margin-top: 50px; float: right;">Lưu cập nhật</button>
     </fieldset>
 </form>
 {{/each}}
