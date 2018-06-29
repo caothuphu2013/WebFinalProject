@@ -53,6 +53,7 @@ module.exports = function(app) {
     app.get("/management/orders", admin.manage.loadOrdersManagement);
     app.get("/management/product/addproduct", admin.manage.addProduct);
     app.get("/management/product/updateproduct", admin.editProducts.loadProductEditInfo);
+    app.get("/management/product/updateproduct", upload.single('upload_photo'), admin.editProducts.loadProductEditInfo);
     app.post("/management/product/addproduct/add", admin.manage.insertProductToDB);
 
     //user
