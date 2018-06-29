@@ -32,7 +32,7 @@ let editProductsController = {
             let phone = req.body.phone;
             let email = req.body.email;
 
-            let image = req.file ? '/img/' + req.file.filename : ;
+            let image = req.file ? '/img/' + req.file.filename : '/img/avatar.jpg';
 
             let obj_1 = {
                 username, name, birthday, sex, address, phone, email
