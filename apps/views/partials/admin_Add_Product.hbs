@@ -9,12 +9,12 @@
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="text" name="" id="productName" class="form-control input-lg" placeholder="Tên sản phẩm" tabindex="1">
+            <input type="text" name="productName" id="productName" class="form-control input-lg" placeholder="Tên sản phẩm" tabindex="1">
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <select class="form-control form-control-lg" name="category" id="typeProduct" onchange="ChangecatList()" required>
+            <select class="form-control form-control-lg" name="typeProduct" id="typeProduct" onchange="ChangecatList()" required>
               <option value="">Loại sản phẩm</option>
               <option value="1">Business</option>
               <option value="2">Workstation</option>
@@ -28,13 +28,13 @@
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="text" name="" id="price" class="form-control input-lg" placeholder="Giá sản phẩm" tabindex="1">
+            <input type="text" name="price" id="price" class="form-control input-lg" placeholder="Giá sản phẩm" tabindex="1">
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <select class="form-control form-control-lg" name="category" id="manufacturer" onchange="ChangecatList()" required>
-              <option value="">Nhà sản xuất</option>
+            <select class="form-control form-control-lg" name="brand" id="brand" onchange="ChangecatList()" required>
+              <option value="">Nhãn hiệu</option>
               <option value="1">Dell</option>
               <option value="2">Asus</option>
               <option value="3">Acer</option>
@@ -48,12 +48,12 @@
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="text" name="" id="date" class="form-control input-lg" placeholder="Ngày nhập" tabindex="1">
+            <input type="text" name="date" id="date" class="form-control input-lg" placeholder="Ngày nhập" tabindex="1">
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="text" name="" id="inware" class="form-control input-lg" placeholder="Số lượng" tabindex="5">
+            <input type="text" name="inware" id="inware" class="form-control input-lg" placeholder="Số lượng" tabindex="5">
           </div>
         </div>
       </div>
@@ -61,17 +61,17 @@
         <p id="typeConfig">CPU</p>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="cpuName" class="form-control input-lg" placeholder="Thế hệ CPU" tabindex="1">
+            <input type="text" name="cpuName" id="cpuName" class="form-control input-lg" placeholder="Thế hệ CPU" tabindex="1">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="cpuType" class="form-control input-lg" placeholder="Loại CPU" tabindex="5">
+            <input type="text" name="cpuType" id="cpuType" class="form-control input-lg" placeholder="Loại CPU" tabindex="5">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="cache" class="form-control input-lg" placeholder="Bộ nhớ đệm" tabindex="5">
+            <input type="text" name="cache" id="cache" class="form-control input-lg" placeholder="Bộ nhớ đệm" tabindex="5">
           </div>
         </div>
       </div>
@@ -80,17 +80,17 @@
         <p id="typeConfig">RAM</p>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="ramSize" class="form-control input-lg" placeholder="Dung lượng RAM" tabindex="1">
+            <input type="text" name="ramSize" id="ramSize" class="form-control input-lg" placeholder="Dung lượng RAM" tabindex="1">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="ramType" class="form-control input-lg" placeholder="Loại RAM" tabindex="5">
+            <input type="text" name="ramType" id="ramType" class="form-control input-lg" placeholder="Loại RAM" tabindex="5">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="busSpeed" class="form-control input-lg" placeholder="Tốc độ BUS" tabindex="5">
+            <input type="text" name="busSpeed" id="busSpeed" class="form-control input-lg" placeholder="Tốc độ BUS" tabindex="5">
           </div>
         </div>
       </div>
@@ -99,17 +99,17 @@
         <p id="typeConfig">Đĩa cứng</p>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="diskSize" class="form-control input-lg" placeholder="Dung lượng ổ đĩa" tabindex="1">
+            <input type="text" name="diskSize" id="diskSize" class="form-control input-lg" placeholder="Dung lượng ổ đĩa" tabindex="1">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="diskType" class="form-control input-lg" placeholder="Loại ổ đĩa" tabindex="5">
+            <input type="text" name="diskType" id="diskType" class="form-control input-lg" placeholder="Loại ổ đĩa" tabindex="5">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="round" class="form-control input-lg" placeholder="Số vòng quay" tabindex="5">
+            <input type="text" name="round" id="round" class="form-control input-lg" placeholder="Số vòng quay" tabindex="5">
           </div>
         </div>
       </div>
@@ -118,17 +118,17 @@
         <p id="typeConfig">Màn hình</p>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="monitorTech" class="form-control input-lg" placeholder="Công nghệ màn hình" tabindex="1">
+            <input type="text" name="monitorTech" id="monitorTech" class="form-control input-lg" placeholder="Công nghệ màn hình" tabindex="1">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="monitorSize" class="form-control input-lg" placeholder="Kích thước màn hình" tabindex="5">
+            <input type="text" name="monitorSize" id="monitorSize" class="form-control input-lg" placeholder="Kích thước màn hình" tabindex="5">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="monitorResolution" class="form-control input-lg" placeholder="Độ phân giải" tabindex="5">
+            <input type="text" name="monitorResolution" id="monitorResolution" class="form-control input-lg" placeholder="Độ phân giải" tabindex="5">
           </div>
         </div>
       </div>
@@ -137,12 +137,12 @@
         <p id="typeConfig">Card đồ họa</p>
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="text" name="" id="graphicSize" class="form-control input-lg" placeholder="Bộ nhớ đồ họa" tabindex="1">
+            <input type="text" name="graphicSize" id="graphicSize" class="form-control input-lg" placeholder="Bộ nhớ đồ họa" tabindex="1">
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
-            <input type="text" name="" id="chipset" class="form-control input-lg" placeholder="Chipset đồ họa" tabindex="5">
+            <input type="text" name="chipset" id="chipset" class="form-control input-lg" placeholder="Chipset đồ họa" tabindex="5">
           </div>
         </div>
       </div>
@@ -151,44 +151,44 @@
         <p id="typeConfig">Giao tiếp</p>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="networkConnection" class="form-control input-lg" placeholder="Kết nối mạng" tabindex="1">
+            <input type="text" name="networkConnection" id="networkConnection" class="form-control input-lg" placeholder="Kết nối mạng" tabindex="1">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="bluetooth" class="form-control input-lg" placeholder="Bluetooth" tabindex="5">
+            <input type="text" name="bluetooth" id="bluetooth" class="form-control input-lg" placeholder="Bluetooth" tabindex="5">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="hdmi" class="form-control input-lg" placeholder="HDMI" tabindex="5">
+            <input type="text" name="hdmi" id="hdmi" class="form-control input-lg" placeholder="HDMI" tabindex="5">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="reader" class="form-control input-lg" placeholder="Reader" tabindex="5">
+            <input type="text" name="reader" id="reader" class="form-control input-lg" placeholder="Reader" tabindex="5">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="usb" class="form-control input-lg" placeholder="Cổng USB" tabindex="1">
+            <input type="text" name="usb" id="usb" class="form-control input-lg" placeholder="Cổng USB" tabindex="1">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="videoport" class="form-control input-lg" placeholder="Video Port" tabindex="5">
+            <input type="text" name="videoport" id="videoport" class="form-control input-lg" placeholder="Video Port" tabindex="5">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="lanport" class="form-control input-lg" placeholder="Cổng mạng LAN" tabindex="5">
+            <input type="text" name="lanport" id="lanport" class="form-control input-lg" placeholder="Cổng mạng LAN" tabindex="5">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <input type="text" name="" id="speaker" class="form-control input-lg" placeholder="Headphone/Speaker" tabindex="5">
+            <input type="text" name="speaker" id="speaker" class="form-control input-lg" placeholder="Headphone/Speaker" tabindex="5">
           </div>
         </div>
       </div>
@@ -197,17 +197,17 @@
         <p id="typeConfig">Xuất xứ - Nhà sản xuất</p>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="export" id="" class="form-control input-lg" placeholder="Xuất xứ" tabindex="1">
+            <input type="text" name="export" id="export" class="form-control input-lg" placeholder="Xuất xứ" tabindex="1">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="manufacture" class="form-control input-lg" placeholder="Nhà sản xuất" tabindex="5">
+            <input type="text" name="manufacture" id="manufacture" class="form-control input-lg" placeholder="Nhà sản xuất" tabindex="5">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" name="" id="quality" class="form-control input-lg" placeholder="Loại hàng" tabindex="5">
+            <input type="text" name="quality" id="quality" class="form-control input-lg" placeholder="Loại hàng" tabindex="5">
           </div>
         </div>
       </div>
