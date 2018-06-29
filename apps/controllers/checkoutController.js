@@ -32,19 +32,33 @@ let checkoutController = {
         let checkbox = req.body.ship_to_different_address;
         let username = req.session.user.username;
         let name, address, email, phone, comment;
-
-        if (checkbox == 0) {
+        if (!checkbox) {
+            req.checkBody('billing_name', 'Tên đang trống').notEmpty();
+            req.checkBody('billing_address', 'Địa chỉ đang trống').notEmpty();
+            req.checkBody('billing_email', 'Email sai định dạng').isEmail();
+            req.checkBody('billing_phone', 'Số điện thoại sai định dạng').isMobilePhone('vi-VN');
             name = req.body.billing_name;
             address = req.body.billing_address;
             email = req.body.billing_email;
             phone = req.body.billing_phone;
         }
         else {
+            req.checkBody('shipping_name', 'Tên người nhận đang trống').notEmpty();
+            req.checkBody('shipping_address', 'Địa chỉ người nhận đang trống').notEmpty();
+            req.checkBody('billing_email', 'Email sai định dạng').isEmail();
+            req.checkBody('billing_phone', 'Số điện thoại sai định dạng').isMobilePhone('vi-VN');
             name = req.body.shipping_name;
             address = req.body.shipping_address;
             comment = req.body.order_comments;
             email = req.body.billing_email;
             phone = req.body.billing_phone;
+        }
+        var errors = req.validationErrors();
+        if (errors) {
+            res.render('_checkout/checkout', {
+                errors: errors,
+                layout: "index"
+            })
         }
         let p0 = checkoutDB.checkValid(username + '_1')
                 .catch (err => console.log(err));
@@ -52,6 +66,7 @@ let checkoutController = {
                 .catch (err => console.log(err));
         q.all([p0,p]).spread((temp,temp2) => {
             if (temp[0]) {
+                req.flash('error_msg', 'Giỏ hàng trống');
                 res.redirect("/checkout");
             }
             else if (temp2[0]) {
@@ -74,8 +89,6 @@ let checkoutController = {
                     payMethod: 'Tiền mặt',
                     total: req.session.user.total
                 }
-                console.log(obj);
-                
                 let p1 = checkoutDB.insertBill(obj)
                     .catch (err => console.log(err));
                 let p2 = checkoutDB.insertBill_info(username + '_1',time)

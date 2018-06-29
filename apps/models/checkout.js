@@ -86,8 +86,8 @@ let cart = {
     ,
     checkValid: function(idCart) {
         let d = q.defer();
-        let sql = `select product_cart.idproduct_cart FROM product_cart
-        Where count <= 0 and product_cart.idCart = ?`;
+        let sql = `select * FROM cart
+        Where total <= 0 and cart.idCart = ?`;
         db.query(sql, [idCart], (error, results) => {
             if (error)
                 d.reject(error);

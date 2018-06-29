@@ -11,8 +11,12 @@
                 <div class="col-md-12">
                     <div class="product-content-right">
                         <div class="woocommerce">
-
-                            <form action="/checkout/buy" class="checkout" method="Post" name="checkout">
+                             {{#if success_msg}}
+                                <div class="alert alert-success">{{success_msg}}</div>
+                            {{else}}
+                                {{> checkErrors}}
+                            {{/if}}
+                            <form action="/checkout/buy" class="checkout" method="POST" name="checkout">
 
                                 <div id="customer_details" class="col2-set">
                                     {{> checkout_RecordInfo}}
