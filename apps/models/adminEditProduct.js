@@ -5,7 +5,7 @@ const config = require('../../config/configproduct.js')
 let adminEditProduct = {
     getProductEdit: function(id) {
         let d = q.defer();
-        let sql = "select * from laptop_db.product p, laptop_db.Configuration c, laptop_db.Description d where p.config = c.idConfig and d.idDescription = p.config and p.id = ?";
+        let sql = "update laptop_db.product";
         db.query(sql,[id], (error, results) => {
             if (error) {
                 d.reject(error);

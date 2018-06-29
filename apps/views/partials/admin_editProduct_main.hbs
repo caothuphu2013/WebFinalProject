@@ -172,9 +172,12 @@
         </div>
     </div>
 </div>
-<form class="form-horizontal" method="POST" action="/management/product/updated" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="/management/updateproduct" enctype="multipart/form-data">
     <fieldset>
         <div class="form-group">
+            <div style="display:none;">
+                <input id="pd_id" name="pd_id" type="text" value="{{id}}"/>
+            </div>
             <div style="display:none;">
                 <input id="pd_name" name="pd_name" type="text" value="{{name}}"/>
             </div>
@@ -195,6 +198,9 @@
             </div>
             <div style="position:absolute; top: 355px; left: 200px;">
                 <input id="pd_photo" name="upload_photo" type="file"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_image" name="pd_image" type="text" value="/img/{{this.picture}}.jpg"/>
             </div>
             <div style="display:none;">
                 <input id="pd_cpu_name" name="pd_cpu_name" type="text" value="{{cpuName}}"/>
@@ -258,9 +264,6 @@
             </div>
             <div style="display:none;">
                 <input id="pd_speaker" name="pd_speaker" type="text" value="{{speaker}}"/>
-            </div>
-            <div style="display:none;">
-                <input id="pd_cardreader" name="pd_cardreader" type="text" value="{{cardReader}}"/>
             </div>
             <div style="display:none;">
                 <input id="pd_madein" name="pd_madein" type="text" value="{{madein}}"/>
