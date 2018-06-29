@@ -1,7 +1,7 @@
 {{#each products}}
 <div class="product-breadcroumb">
-    <a href="">Quản lý</a>
-    <a href="">Cập nhật Sản phẩm</a>
+    <a href="/management">Quản lý</a>
+    <a href="/management">Cập nhật Sản phẩm</a>
     <a href="">{{name}}</a>
 </div>
 <div class="row">
@@ -12,11 +12,139 @@
             </div>
             <button type="button">upload ảnh khác</button>
             <h3 style="margin-top:20px;">Cấu hình: </h3>
-            <select>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-            </select>
+            <div id="content_features">
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    CPU
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Công nghệ CPU:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cpuName}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Loại CPU - Tốc Độ:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cpuType}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Bộ nhớ đệm:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cache}}" />
+                    </div>
+                </div>
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    RAM
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Dung lượng RAM:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{ramSize}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Loại RAM:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{ramType}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Tốc độ BUS</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{busSpeed}}" />
+                    </div>
+                </div>
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    Đĩa cứng
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Dung lượng ổ đĩa:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{diskSize}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Loại ổ đĩa:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{diskType}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Vòng quay</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{diskRound}}" />
+                    </div>
+                </div>
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    Màn hình
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Công nghệ màn hình:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorTech}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Kích thước màn hình:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorSize}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Độ phân giải</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{monitorResolution}}" />
+                    </div>
+                </div>
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    Card đồ họa
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label"> Bộ nhớ đồ họa:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{sizeGraphic}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Chipset đồ họa:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{chipset}}" />
+                    </div>
+                </div>
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    Giao tiếp
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label"> Kết nối mạng:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{networkConnection}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Bluetooth:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{bluetooth}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">HDMI:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{hdmi}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Reader:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cardReader}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">USB:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{usb}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Video Port:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{videoPort}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Headphone/Speaker out:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{speaker}}" />
+                    </div>
+                </div>
+                <div class="ty-product-feature-group">
+                    <h3 class="ty-subheader">
+                    Xuất xứ - Nhà sản xuất
+                    </h3>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Xuất xứ:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{madein}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Nhà sản xuất:</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{manufacturer}}" />
+                    </div>
+                    <div class="ty-product-feature">
+                        <span class="ty-product-feature__label">Loại hàng</span>
+                        <input type="text" class="ty-product-feature__value form-control" value="{{typeProduct}}" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-6">
@@ -33,14 +161,15 @@
             </div>
             <h3 style="margin-top:20px;">Mô tả sản phẩm:</h3>
             <h4 id="product-config">Cấu hình:</h4>
-            <textarea cols="100" rows="5" class="description-info form-control" >{{configInfo}}</textarea>
+            <textarea cols="100" rows="10" class="description-info form-control" >{{configInfo}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Thiết kế:</h4>
-            <textarea cols="100" rows="5" class="description-design form-control" >{{designInfo}}</textarea>
+            <textarea cols="100" rows="10" class="description-design form-control" >{{designInfo}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Bàn phím và touchpad:</h4>
-            <textarea cols="100" rows="5" class="description-kbtp form-control" >{{KeyboardAndTouchpad}}</textarea>
+            <textarea cols="100" rows="10" class="description-kbtp form-control" >{{KeyboardAndTouchpad}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Cổng giao tiếp:</h4>
-            <textarea cols="100" rows="5" class="description-port form-control" >{{portInfo}}</textarea>
+            <textarea cols="100" rows="10" class="description-port form-control" >{{portInfo}}</textarea>
         </div>
     </div>
 </div>
+<button type="button" class="btn btn-default" style="background-color: #1ABC9C; display: block; width: 150px; height: 80px; margin-right: 50px; margin-top: 50px; float: right;">Lưu cập nhật</button>
 {{/each}}
