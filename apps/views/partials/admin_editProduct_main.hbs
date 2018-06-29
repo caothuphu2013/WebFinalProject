@@ -10,8 +10,8 @@
             <div class="product-main-img">
                 <img src="/img/{{this.picture}}.jpg" alt="">
             </div>
-            <button type="button">upload ảnh khác</button>
-            <h3 style="margin-top:20px;">Cấu hình: </h3>
+            <h4>Upload ảnh mới:</h4>
+            <h3 style="margin-top:100px;">Cấu hình: </h3>
             <div id="content_features">
                 <div class="ty-product-feature-group">
                     <h3 class="ty-subheader">
@@ -19,15 +19,16 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Công nghệ CPU:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{cpuName}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cpuName}}" onchange="
+                        document.getElementById('pd_cpu_name').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[0].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Loại CPU - Tốc Độ:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{cpuType}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cpuType}}" onchange="document.getElementById('pd_cpu_type').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[1].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Bộ nhớ đệm:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{cache}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{cache}}" onchange="document.getElementById('pd_cache').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[2].value);" />
                     </div>
                 </div>
                 <div class="ty-product-feature-group">
@@ -36,15 +37,15 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Dung lượng RAM:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{ramSize}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{ramSize}}" onchange="document.getElementById('pd_ram_size').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[3].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Loại RAM:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{ramType}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{ramType}}" onchange="document.getElementById('pd_ram_type').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[4].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Tốc độ BUS</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{busSpeed}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{busSpeed}}" onchange="document.getElementById('pd_ram_busspeed').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[5].value);" />
                     </div>
                 </div>
                 <div class="ty-product-feature-group">
@@ -53,7 +54,7 @@
                     </h3>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Dung lượng ổ đĩa:</span>
-                        <input type="text" class="ty-product-feature__value form-control" value="{{diskSize}}" />
+                        <input type="text" class="ty-product-feature__value form-control" value="{{diskSize}}" onchange="document.getElementById('pd_disk_size').setAttribute('value', document.getElementsByClassName('ty-product-feature__value')[6].value);" />
                     </div>
                     <div class="ty-product-feature">
                         <span class="ty-product-feature__label">Loại ổ đĩa:</span>
@@ -161,15 +162,117 @@
             </div>
             <h3 style="margin-top:20px;">Mô tả sản phẩm:</h3>
             <h4 id="product-config">Cấu hình:</h4>
-            <textarea cols="100" rows="10" class="description-info form-control" >{{configInfo}}</textarea>
+            <textarea cols="100" rows="15" class="description-info form-control" >{{configInfo}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Thiết kế:</h4>
-            <textarea cols="100" rows="10" class="description-design form-control" >{{designInfo}}</textarea>
+            <textarea cols="100" rows="15" class="description-design form-control" >{{designInfo}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Bàn phím và touchpad:</h4>
-            <textarea cols="100" rows="10" class="description-kbtp form-control" >{{KeyboardAndTouchpad}}</textarea>
+            <textarea cols="100" rows="15" class="description-kbtp form-control" >{{KeyboardAndTouchpad}}</textarea>
             <h4 id="product-config" style="margin-top:20px;">Cổng giao tiếp:</h4>
-            <textarea cols="100" rows="10" class="description-port form-control" >{{portInfo}}</textarea>
+            <textarea cols="100" rows="15" class="description-port form-control" >{{portInfo}}</textarea>
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-default" style="background-color: #1ABC9C; display: block; width: 150px; height: 80px; margin-right: 50px; margin-top: 50px; float: right;">Lưu cập nhật</button>
+<form class="form-horizontal" method="POST" action="/management/product/updated" enctype="multipart/form-data">
+    <fieldset>
+        <div class="form-group">
+            <div style="display:none;">
+                <input id="pd_name" name="pd_name" type="text" value="{{name}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_price" name="pd_price" type="text" value="{{price}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_inware" name="pd_inware" type="text" value="{{inware}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_des_config" name="pd_des_config" type="text" value="{{configInfo}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_des_kbtp" name="pd_des_kbtp" type="text" value="{{designInfo}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_des_port" name="pd_des_port" type="text" value="{{portInfo}}"/>
+            </div>
+            <div style="position:absolute; top: 355px; left: 200px;">
+                <input id="pd_photo" name="upload_photo" type="file"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_cpu_name" name="pd_cpu_name" type="text" value="{{cpuName}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_cpu_type" name="pd_cpu_type" type="text" value="{{cpuType}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_cache" name="pd_cache" type="text" value="{{cache}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_ram_size" name="pd_ram_size" type="text" value="{{ramSize}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_ram_type" name="pd_ram_type" type="text" value="{{ramType}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_ram_busspeed" name="pd_ram_busspeed" type="text" value="{{busSpeed}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_disk_size" name="pd_disk_size" type="text" value="{{diskSize}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_disk_type" name="pd_disk_type" type="text" value="{{diskType}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_disk_round" name="pd_disk_round" type="text" value="{{diskRound}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_monitor_tech" name="pd_monitor_tech" type="text" value="{{monitorTech}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_monitor_size" name="pd_monitor_size" type="text" value="{{monitorSize}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_monitor_resolution" name="pd_monitor_resolution" type="text" value="{{monitorResolution}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_graphic_size" name="pd_graphic_size" type="text" value="{{sizeGraphic}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_chipset" name="pd_chipset" type="text" value="{{chipset}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_network_connection" name="pd_network_connection" type="text" value="{{networkConnection}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_bluetooth" name="pd_bluetooth" type="text" value="{{bluetooth}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_hdmi" name="pd_hdmi" type="text" value="{{hdmi}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_cardreader" name="pd_cardreader" type="text" value="{{cardReader}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_usb" name="pd_usb" type="text" value="{{usb}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_videoport" name="pd_videoport" type="text" value="{{videoPort}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_speaker" name="pd_speaker" type="text" value="{{speaker}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_cardreader" name="pd_cardreader" type="text" value="{{cardReader}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_madein" name="pd_madein" type="text" value="{{madein}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_manufacturer" name="pd_manufacturer" type="text" value="{{manufacturer}}"/>
+            </div>
+            <div style="display:none;">
+                <input id="pd_typeproduct" name="pd_typeproduct" type="text" value="{{typeProduct}}"/>
+            </div>
+        </div>
+        <button type="button" class="btn btn-default" style="background-color: #1ABC9C; display: block; width: 150px; height: 80px; margin-right: 50px; margin-top: 50px; float: right;">Lưu cập nhật</button>
+    </fieldset>
+</form>
 {{/each}}

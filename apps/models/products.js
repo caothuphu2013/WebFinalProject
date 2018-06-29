@@ -162,7 +162,7 @@ let products = {
     },
     getOrders: function() {
         let d = q.defer();
-        let sql = "select idBill, time, status, total from laptop_db.bill"
+        let sql = "select idBill, time, status, total from laptop_db.bill order by time desc"
         db.query(sql, (error, results) => {
             if (error) {
                 d.reject(error);
