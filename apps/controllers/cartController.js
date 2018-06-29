@@ -139,22 +139,21 @@ let cartController = {
             let idCart = username + '_1';
             let p1, p2;
 
-            if (count - 1 == 0)
+            if (count - 1 <= 0)
                 res.redirect('/cart');
 
-            else if (count - 1 > 0) {
+            else{
                 p1 = cartDB.updateProductCart(idProduct_cart, count - 1).catch(err => console.log(err));
-                
-                cartDB.findByCart(idCart).then(rows => {
+                p2 = cartDB.findByCart(idCart).catch(err => console.log(err));
+                q.all([p1,p2]).spread((tmp,rows) => {
                     if (rows.length > 0) {
                         let total = rows[0].total;
-                        p2 = cartDB.updateCart(idCart, total - price).catch(err => console.log(err));
+                        let p3 = cartDB.updateCart(idCart, total - +price).catch(err => console.log(err));
+                        q.all([p3]).spread(() => {
+                            res.redirect('/cart');
+                        });
                     }
                 });
-
-                q.all([p1,p2]).spread(() => {
-                    res.redirect('/cart');
-                })
             }
         }
     }
@@ -175,18 +174,19 @@ let cartController = {
             let idCart = username + '_1';
             let p1, p2;
 
-            if (+count <= 70) {
+            if (count > 70)
+                res.redirect('/cart');
+            else{
                 p1 = cartDB.updateProductCart(idProduct_cart, +count + 1).catch(err => console.log(err));
-            
-                cartDB.findByCart(idCart).then(rows => {
+                p2 = cartDB.findByCart(idCart).catch(err => console.log(err));
+                q.all([p1,p2]).spread((tmp,rows) => {
                     if (rows.length > 0) {
                         let total = rows[0].total;
-                        p2 = cartDB.updateCart(idCart, total + +price).catch(err => console.log(err));
+                        let p3 = cartDB.updateCart(idCart, total + +price).catch(err => console.log(err));
+                        q.all([p3]).spread(() => {
+                            res.redirect('/cart');
+                        });
                     }
-                });
-
-                q.all([p1,p2]).spread(() => {
-                    res.redirect('/cart');
                 })
             }
         }
