@@ -49,7 +49,7 @@ let cart = {
         return d.promise;
     }
     ,
-    deleteProductInCart: function(id_Cart) {
+    deleteProductIntoCart: function(id_Cart) {
         let d = q.defer();
         let sql = `delete from product_cart where idCart = ?`;
         db.query(sql, [id_Cart], (error, results) => {
@@ -60,7 +60,6 @@ let cart = {
         return d.promise;
     }
     ,
-
     updateCart: function(idCart, total) {
         let d = q.defer();
         let sql = `update cart set total=? where idCart = ?`;
@@ -84,50 +83,17 @@ let cart = {
         return d.promise;
     }
     ,
-    insertBill_info: function(idCart,date) {
+    insertBill_info: function(idBill_info, idBill, product, count) {
         let d = q.defer();
-        let sql = `INSERT INTO bill_info (idBill_info, idBill, product, count)
-            SELECT CONCAT(?,idproduct_cart), CONCAT(idCart,?), product, count
-            FROM product_cart
-            WHERE product_cart.idCart = ?`;
-        db.query(sql, [date, date, idCart], (error, results) => {
-            if (error)
-                d.reject(error);
-            d.resolve(results);
-        });
-        return d.promise;
-    },
-    increaseBuyTimes: function() {
-        let d = q.defer();
-        let sql = `UPDATE product
-                INNER JOIN
-                product_cart
-                ON product_cart.product = product.id
-                SET product.buyTimes = product.buyTimes + product_cart.count
-                WHERE product_cart.idCart = ?`;
-        db.query(sql, [date, date, idCart], (error, results) => {
-            if (error)
-                d.reject(error);
-            d.resolve(results);
-        });
-        return d.promise;
-    },
-    decreaseInWare: function() {
-        let d = q.defer();
-        let sql = `UPDATE product
-                INNER JOIN
-                product_cart
-                ON product_cart.product = product.id
-                SET product.inware = product.inware - product_cart.count
-                WHERE product_cart.idCart = ?`;
-        db.query(sql, [date, date, idCart], (error, results) => {
+        let sql = `insert into bill_info(idbill_info, idBill, product, count) 
+        Select   `;
+        db.query(sql, [idBill_info, idBill, product, count], (error, results) => {
             if (error)
                 d.reject(error);
             d.resolve(results);
         });
         return d.promise;
     }
-
-}   
+}
 
 module.exports = cart;
