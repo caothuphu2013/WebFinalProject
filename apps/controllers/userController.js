@@ -100,7 +100,8 @@ let userController = {
                         image: '/img/avatar.jpg',
                         name: firstname + ' ' + lastname,
                         email,
-                        phone
+                        phone,
+                        address: ''
                     }
                     let p4 = userDB.insertUser(obj)
                         .then(success => {
@@ -179,12 +180,13 @@ let userController = {
                                     else {
                                         req.session.user.total = temp1[0].total;
                                         req.session.user.count = temp2[0].count;
-                                    }});
+                                    }
 
                                     if (req.session.prePage)
                                         res.redirect(req.session.prePage);
                                     else
                                         res.redirect('/shop');
+                                    });
                                 }
                                 else
                                     res.redirect("/dashboard");

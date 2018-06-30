@@ -83,11 +83,65 @@ let cart = {
         return d.promise;
     }
     ,
-    insertBill_info: function(idBill_info, idBill, product, count) {
+    checkValid: function(idCart) {
         let d = q.defer();
-        let sql = `insert into bill_info(idbill_info, idBill, product, count) 
-        Select   `;
-        db.query(sql, [idBill_info, idBill, product, count], (error, results) => {
+        let sql = `select * FROM cart
+        Where total <= 0 and cart.idCart = ?`;
+        db.query(sql, [idCart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    checkEnough: function(idCart) {
+        let d = q.defer();
+        let sql = `select product_cart.idproduct_cart FROM product,product_cart
+        Where product.id = product_cart.product and inware < count and product_cart.idCart = ?`;
+        db.query(sql, [idCart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    insertBill_info: function(idCart,date) {
+        let d = q.defer();
+        let sql = `INSERT INTO bill_info (idBill_info, idBill, product, count)
+            SELECT CONCAT(?,idproduct_cart), CONCAT(idCart,?), product, count
+            FROM product_cart
+            WHERE product_cart.idCart = ?`;
+        db.query(sql, [date, date, idCart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    increaseBuyTimes: function(idCart) {
+        let d = q.defer();
+        let sql = `UPDATE product
+                INNER JOIN
+                product_cart
+                ON product_cart.product = product.id
+                SET product.buyTimes = product.buyTimes + product_cart.count
+                WHERE product_cart.idCart = ?`;
+        db.query(sql, [idCart], (error, results) => {
+            if (error)
+                d.reject(error);
+            d.resolve(results);
+        });
+        return d.promise;
+    },
+    decreaseInWare: function(idCart) {
+        let d = q.defer();
+        let sql = `UPDATE product
+                INNER JOIN
+                product_cart
+                ON product_cart.product = product.id
+                SET product.inware = product.inware - product_cart.count
+                WHERE product_cart.idCart = ?`;
+        db.query(sql, [idCart], (error, results) => {
             if (error)
                 d.reject(error);
             d.resolve(results);

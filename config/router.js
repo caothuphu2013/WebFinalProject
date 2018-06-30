@@ -14,6 +14,16 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage:storage});
 
+//For product update
+var storageProduct = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/img');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '_' + file.originalname)
+    }
+});
+var uploadProduct = multer({storage:storageProduct});
 
 // Exports
 module.exports = function(app) {
@@ -43,6 +53,8 @@ module.exports = function(app) {
     app.get("/management/orders", admin.manage.loadOrdersManagement);
     app.get("/management/product/addproduct", admin.manage.addProduct);
     app.get("/management/product/updateproduct", admin.editProducts.loadProductEditInfo);
+    //app.get("/management/product/updateproduct", upload.single('upload_photo'), admin.editProducts.loadProductEditInfo);
+    app.post("/management/product/addproduct/add", admin.manage.insertProductToDB);
 
     //user
     app.get("/register", index.users.registerPage);

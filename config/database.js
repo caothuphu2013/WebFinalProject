@@ -6,7 +6,7 @@
 
 const DB_NAME = 'laptop_db';
 const DB_USER = 'root';
-const DB_PASSWORD = 'admin';
+const DB_PASSWORD = '';
 const DB_HOST = '127.0.0.1';
 module.exports = {
   host: DB_HOST,
