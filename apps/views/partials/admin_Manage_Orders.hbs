@@ -4,10 +4,9 @@
         <tr class='colorgrey'>
             <td><a href='buy-info.html'>{{this.idBill}}</a></td>
             <td>{{this.time}}</td>
-            <td><button type='button' class='btn btn-default' style='margin: 0 35%; width: 30%;' onclick=''>Chi tiết</button></td>
             <td>{{this.total}}&nbsp;₫</td>
             <td>
-                <span class='status-btn' onclick='statusOnClick(0, 0)' style='color:#FF6600; font-weight:700;'>{{this.state}}</span>
+                <span class='status-btn' onclick='statusOnClick(0, 0)' style='font-weight:700;'>Success | </span><span class='status-btn' onclick='statusOnClick(0, 0)' style='color:#FF6600; font-weight:700;'>{{this.state}}</span><span class='status-btn' onclick='statusOnClick(0, 0)' style='font-weight:700;'> | Canceled</span>
             </td>
         </tr>
         {{/each}}
